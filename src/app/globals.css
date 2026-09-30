@@ -53,9 +53,13 @@ body {
   font-family: var(--font-inter), system-ui, sans-serif;
 }
 
-:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
+/* Keyboard focus ring. In the base layer so a component's own focus style (a Tailwind utility)
+   always wins over it; unlayered, it would override every "outline-none" on the site. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
 }
 
 /* Nav link underline: grows from the left on hover, stays for the current page. */

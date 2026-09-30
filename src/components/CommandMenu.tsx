@@ -27,8 +27,9 @@ function SearchIcon() {
   );
 }
 
+// Hover is plain CSS (no re-render while the mouse moves); the keyboard highlight uses data-selected.
 const itemClass =
-  "flex cursor-pointer items-center justify-between gap-4 rounded-sm px-3 py-2.5 text-sm text-text/85 data-[selected=true]:bg-surface-2 data-[selected=true]:text-text";
+  "flex cursor-pointer items-center justify-between gap-4 rounded-sm px-3 py-2.5 text-sm text-text/85 hover:bg-surface-2/60 hover:text-text data-[selected=true]:bg-surface-2 data-[selected=true]:text-text";
 const groupClass =
   "[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:pb-1 [&_[cmdk-group-heading]]:pt-3 [&_[cmdk-group-heading]]:text-[11px] [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.18em] [&_[cmdk-group-heading]]:text-muted";
 
@@ -64,7 +65,7 @@ export function CommandMenu() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Search the site"
-        className="grid h-11 w-11 place-items-center rounded-sm text-text/80 transition-[transform,color] duration-150 ease-snap hover:text-text active:scale-[0.94] lg:flex lg:w-auto lg:gap-2 lg:border lg:border-line lg:px-3"
+        className="grid h-11 w-11 place-items-center rounded-sm text-text/80 outline-none transition-[transform,color,border-color] duration-150 ease-snap hover:text-text focus-visible:bg-surface-2 focus-visible:text-text active:scale-[0.94] lg:flex lg:w-auto lg:gap-2 lg:border lg:border-line lg:px-3 lg:hover:border-muted lg:focus-visible:border-text/60"
       >
         <SearchIcon />
         <kbd className="hidden font-sans text-[11px] text-muted lg:inline">Ctrl K</kbd>
@@ -77,8 +78,12 @@ export function CommandMenu() {
           if (!v) setSearch("");
         }}
         label="Search the site"
-        overlayClassName="fixed inset-0 z-50 bg-bg/70 backdrop-blur-sm"
-        contentClassName="fixed left-1/2 top-[12vh] z-50 w-[min(640px,calc(100vw-2rem))] -translate-x-1/2 overflow-hidden rounded-sm border border-line bg-surface shadow-[0_24px_80px_-20px_rgb(0_0_0/0.8)]"
+        // Mouse movement doesn't move the highlight: otherwise scrolling the list keeps re-selecting the
+        // item under the pointer and snapping it into view, which makes scrolling feel sticky.
+        disablePointerSelection
+        loop
+        overlayClassName="fixed inset-0 z-50 bg-bg/80"
+        contentClassName="fixed left-1/2 top-[12vh] z-50 w-[min(640px,calc(100vw-2rem))] -translate-x-1/2 overflow-hidden rounded-sm border border-line bg-surface shadow-[0_24px_80px_-20px_rgb(0_0_0/0.8)] outline-none"
       >
         <Dialog.Title className="sr-only">Search the site</Dialog.Title>
         <Dialog.Description className="sr-only">Find pages, teams, stages, news or a player by tag.</Dialog.Description>
@@ -88,11 +93,11 @@ export function CommandMenu() {
             value={search}
             onValueChange={setSearch}
             placeholder="Search teams, stages, news… or #player-tag"
-            className="h-14 flex-1 bg-transparent text-base text-text placeholder:text-muted focus:outline-none"
+            className="h-14 flex-1 bg-transparent text-base text-text outline-none placeholder:text-muted"
           />
           <kbd className="rounded-sm border border-line px-1.5 py-0.5 text-[11px]">Esc</kbd>
         </div>
-        <Command.List data-lenis-prevent className="max-h-[60vh] overflow-y-auto overscroll-contain p-2">
+        <Command.List data-lenis-prevent className="max-h-[60vh] overflow-y-auto overscroll-contain p-2 outline-none">
           <Command.Empty className="px-3 py-8 text-center text-sm text-muted">
             No results. Tip: type # and a player tag to look up a player.
           </Command.Empty>
