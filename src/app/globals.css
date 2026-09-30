@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+/* Design tokens, PLAN.md §4. The site is dark-only by design. */
+:root {
+  --bg: #0e0f13;
+  --surface: #17191f;
+  --surface-2: #20232b;
+  --line: #2c303a;
+  --text: #f4f1ea;
+  --muted: #a3a7b3;
+  --gold: #f5b82e;
+  --elixir: #b04ce8;
+  --dark-elixir: #3b2a5a;
+  --live: #e8453c;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-gold: var(--gold);
+  --color-elixir: var(--elixir);
+  --color-dark-elixir: var(--dark-elixir);
+  --color-live: var(--live);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-anton);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
