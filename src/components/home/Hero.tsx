@@ -1,6 +1,5 @@
 import type { CSSProperties } from "react";
 import { Countdown } from "@/components/Countdown";
-import { HeroMotion } from "@/components/motion/HeroMotion";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { season } from "@/data/season";
@@ -8,10 +7,10 @@ import { formatDateTimeUTC } from "@/lib/format";
 
 // Placeholder key art: layered glows, a stone-brick grid and a large shield emblem.
 // Swap the emblem for Fan Kit art or a looping video later.
-// data-hero-art moves with scroll (parallax); data-hero-art-inner fades/scales in on load.
+// data-hero-art-inner fades/scales in on load (CSS). No scroll parallax: the hero scrolls at the same speed as the page.
 function HeroArt() {
   return (
-    <div aria-hidden data-hero-art className="pointer-events-none absolute inset-0">
+    <div aria-hidden className="pointer-events-none absolute inset-0">
       <div data-hero-art-inner className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_75%_25%,color-mix(in_oklab,var(--elixir)_35%,transparent),transparent_70%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_15%_90%,color-mix(in_oklab,var(--gold)_18%,transparent),transparent_70%)]" />
@@ -56,7 +55,7 @@ export function Hero() {
       <HeroArt />
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-bg to-transparent" />
       <Container className="relative pb-16 pt-[calc(var(--nav-h)+4rem)] sm:pb-20">
-        <div data-hero-content>
+        <div>
           <p data-hero-intro style={{ "--i": 0 } as CSSProperties} className="text-xs font-bold uppercase tracking-[0.25em] text-gold">
             Clash of Clans esports · Fan hub
           </p>
@@ -90,7 +89,7 @@ export function Hero() {
 
           <div
             data-hero-intro
-            className="mt-12 inline-flex flex-col gap-4 rounded-sm border border-line bg-surface/70 p-5 backdrop-blur-sm sm:flex-row sm:items-center sm:gap-8"
+            className="mt-12 inline-flex flex-col gap-4 rounded-sm border border-line bg-surface/90 p-5 sm:flex-row sm:items-center sm:gap-8"
           >
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">Next up</p>
@@ -104,7 +103,6 @@ export function Hero() {
           </div>
         </div>
       </Container>
-      <HeroMotion />
     </section>
   );
 }

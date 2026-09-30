@@ -145,7 +145,7 @@ export function NavBar() {
       data-instant={instant}
       className={cn(
         "fixed inset-x-0 top-0 z-40 border-b transition-[transform,background-color,border-color] duration-300 ease-snap",
-        solid ? "border-line bg-bg/90 backdrop-blur-md" : "border-transparent bg-transparent",
+        solid ? "border-line bg-bg/95" : "border-transparent bg-transparent",
         hidden && "-translate-y-full",
       )}
     >
