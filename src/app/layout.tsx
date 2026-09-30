@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import { Anton, Inter } from "next/font/google";
 import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { site } from "@/config/site";
 import "./globals.css";
+
+const motionScript = `try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("motion-ok")}catch(e){}`;
 
 const inter = Inter({
   variable: "--font-inter",
@@ -29,8 +33,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${inter.variable} ${anton.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        {/* Before first paint: mark that motion is allowed, so the hero can start hidden and animate in. */}
+        <script dangerouslySetInnerHTML={{ __html: motionScript }} />
+      </head>
       <body className="min-h-full flex flex-col">
+        <SmoothScroll />
+        <ScrollReveal />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-gold focus:px-4 focus:py-2 focus:text-bg"

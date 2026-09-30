@@ -1,4 +1,5 @@
 import { ArtPanel } from "@/components/ArtPanel";
+import { ScrollRowControls } from "@/components/motion/ScrollRowControls";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { vods } from "@/data/samples";
@@ -18,11 +19,14 @@ export function Vault() {
     <section aria-labelledby="vault" className="border-t border-line py-20 sm:py-28">
       <Container>
         <SectionHeader id="vault" eyebrow="Videos" title="From the Vault" href="/watch" linkLabel="All videos" />
+        <div className="-mt-2 mb-4 flex justify-end">
+          <ScrollRowControls targetId="vault-row" label="videos" />
+        </div>
       </Container>
       <div className="mx-auto max-w-[1280px]">
-        <ul className="scroll-row gap-4 px-4 pb-4 sm:px-6 lg:px-8">
+        <ul id="vault-row" className="scroll-row gap-4 px-4 pb-4 sm:px-6 lg:px-8">
           {vods.map((v) => (
-            <li key={v.id} className="w-[80vw] max-w-[380px] sm:w-[360px]">
+            <li key={v.id} data-reveal className="w-[80vw] max-w-[380px] sm:w-[360px]">
               <a href={v.href} target="_blank" rel="noopener noreferrer" className="group block">
                 <ArtPanel tone={v.tone} className="aspect-video rounded-sm border border-line">
                   <div className="absolute inset-0 grid place-items-center">

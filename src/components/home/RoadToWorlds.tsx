@@ -1,20 +1,29 @@
 import Link from "next/link";
+import { RoadMotion } from "@/components/motion/RoadMotion";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { stages } from "@/data/season";
 import { cn } from "@/lib/cn";
 
-// Phase 2: a horizontal scroll row. Phase 3 pins it and drives it with the page scroll (desktop only).
+// Swipeable row on phones; on desktop RoadMotion pins the section and drives it with the page scroll.
 export function RoadToWorlds() {
   return (
-    <section aria-labelledby="road" className="overflow-hidden border-y border-line bg-surface/40 py-20 sm:py-28">
+    <section
+      id="road-section"
+      aria-labelledby="road"
+      className="overflow-hidden border-y border-line bg-surface py-20 sm:py-28"
+    >
       <Container>
         <SectionHeader id="road" eyebrow="Season 2026" title="Road to Worlds" href="/worlds" linkLabel="Full season" />
+        {/* Scroll progress, shown only while the section is pinned (desktop) */}
+        <div aria-hidden className="-mt-8 mb-8 hidden h-0.5 bg-line">
+          <div data-road-progress className="h-full origin-left scale-x-0 bg-gold" />
+        </div>
       </Container>
 
       <div className="mx-auto max-w-[1280px]">
-        <ol className="scroll-row gap-4 px-4 pb-4 sm:px-6 lg:px-8">
+        <ol data-road-track className="scroll-row gap-4 px-4 pb-4 sm:px-6 lg:px-8">
           {stages.map((stage, i) => (
             <li key={stage.slug} className="relative w-[78vw] max-w-[300px] pt-8 sm:w-[280px]">
               {/* Track line + stage dot */}
@@ -52,6 +61,7 @@ export function RoadToWorlds() {
           ))}
         </ol>
       </div>
+      <RoadMotion />
     </section>
   );
 }

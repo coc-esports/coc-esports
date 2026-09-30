@@ -267,6 +267,7 @@ export function NavBar() {
       {/* Mobile menu */}
       <div
         id="mobile-menu"
+        data-lenis-prevent
         data-open={mobileOpen}
         inert={!mobileOpen}
         className="mobile-menu fixed inset-x-0 bottom-0 top-(--nav-h) overflow-y-auto bg-bg lg:hidden"

@@ -33,7 +33,7 @@ export function NextMatches() {
             const a = getTeam(m.teamA);
             const b = getTeam(m.teamB);
             return (
-              <li key={m.id}>
+              <li key={m.id} data-reveal>
                 <Link
                   href="/schedule"
                   className="group flex h-full flex-col gap-4 rounded-sm border border-line bg-bg p-4 transition-colors duration-150 hover:border-muted"

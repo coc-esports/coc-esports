@@ -18,7 +18,7 @@ export function SectionHeader({
   aside?: ReactNode; // extra element next to the eyebrow, e.g. a "Sample data" badge
 }) {
   return (
-    <div className="mb-8 flex items-end justify-between gap-6 border-b border-line pb-4">
+    <div data-reveal className="mb-8 flex items-end justify-between gap-6 border-b border-line pb-4">
       <div>
         {(eyebrow || aside) && (
           <div className="mb-2 flex flex-wrap items-center gap-3">

@@ -26,6 +26,7 @@ export function NewsGrid() {
         <div className="grid gap-4 lg:grid-cols-4 lg:grid-rows-2">
           <Link
             href={`/news/${lead.slug}`}
+            data-reveal
             className="group flex flex-col overflow-hidden rounded-sm border border-line bg-surface lg:col-span-2 lg:row-span-2"
           >
             <ArtPanel tone={lead.tone} glyph="LCQ" className="aspect-[16/9] lg:aspect-auto lg:flex-1" />
@@ -42,6 +43,7 @@ export function NewsGrid() {
             <Link
               key={a.slug}
               href={`/news/${a.slug}`}
+              data-reveal
               className="group flex flex-col overflow-hidden rounded-sm border border-line bg-surface"
             >
               <ArtPanel tone={a.tone} className="aspect-[16/9]" />

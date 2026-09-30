@@ -37,8 +37,15 @@ export function Countdown({ target, label }: { target: string; label: string }) 
     <div role="timer" aria-label={label} className="flex gap-2">
       {units.map(([key, name]) => (
         <div key={key} className="w-16 rounded-sm border border-line bg-bg/70 py-2 text-center">
-          <div className="font-display text-3xl leading-none tabular-nums">
-            {parts ? String(parts[key]).padStart(2, "0") : "--"}
+          <div className="overflow-hidden font-display text-3xl leading-none tabular-nums">
+            {/* Keyed by value: each new number slides in (the .tick rule in globals.css) */}
+            {parts ? (
+              <span key={parts[key]} className="tick">
+                {String(parts[key]).padStart(2, "0")}
+              </span>
+            ) : (
+              "--"
+            )}
           </div>
           <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted">{name}</div>
         </div>

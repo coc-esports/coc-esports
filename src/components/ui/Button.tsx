@@ -22,7 +22,7 @@ const base =
   "disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-gold text-bg hover:bg-gold-bright",
+  primary: "btn-shine bg-gold text-bg hover:bg-gold-bright",
   secondary: "border border-line bg-surface text-text hover:border-muted hover:bg-surface-2",
   ghost: "text-text hover:text-gold",
 };

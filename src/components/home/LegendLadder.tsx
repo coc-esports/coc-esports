@@ -21,7 +21,7 @@ export function LegendLadder() {
   return (
     <section aria-labelledby="ladder" className="py-20 sm:py-28">
       <Container className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-4">
+        <div data-reveal className="lg:col-span-4">
           <div className="flex flex-wrap items-center gap-3">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">Legend League</p>
             <SampleBadge />
@@ -38,7 +38,7 @@ export function LegendLadder() {
           </Button>
         </div>
 
-        <div className="overflow-hidden rounded-sm border border-line lg:col-span-8">
+        <div data-reveal className="overflow-hidden rounded-sm border border-line lg:col-span-8">
           <table className="w-full text-left text-sm">
             <caption className="sr-only">Top 10 players in the Legend League (sample data)</caption>
             <thead className="bg-surface text-xs uppercase tracking-widest text-muted">

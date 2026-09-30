@@ -15,7 +15,7 @@ export function ChosenEight() {
       <Container>
         <SectionHeader id="chosen-eight" eyebrow="World Finals" title="The Chosen Eight" href="/teams" linkLabel="All teams" />
 
-        <div className="mb-8 flex flex-wrap items-center gap-4">
+        <div data-reveal className="mb-8 flex flex-wrap items-center gap-4">
           <p className="font-display text-3xl leading-none tabular-nums">
             <span className="text-gold">{announced}</span>
             <span className="text-muted"> / {worldsSlots.length}</span>
@@ -34,6 +34,7 @@ export function ChosenEight() {
               return (
                 <li
                   key={i}
+                  data-reveal
                   className="flex aspect-[4/5] flex-col justify-between rounded-sm border border-dashed border-line p-4 sm:aspect-[5/4] sm:p-5"
                 >
                   <span className="grid h-14 w-14 place-items-center rounded-sm border border-dashed border-line font-display text-2xl text-muted">
@@ -48,7 +49,7 @@ export function ChosenEight() {
             }
             const team = getTeam(slot.team);
             return (
-              <li key={i}>
+              <li key={i} data-reveal>
                 <Link
                   href={`/teams/${team.slug}`}
                   className="group relative flex aspect-[4/5] h-full flex-col justify-between overflow-hidden rounded-sm border border-line bg-surface p-4 transition-colors duration-150 hover:border-gold/60 sm:aspect-[5/4] sm:p-5"
