@@ -62,6 +62,23 @@ body {
   }
 }
 
+/* Sticky header's frosted background, on a pseudo-element so the header never becomes the
+   containing block for its fixed-position children (mobile menu, mega panels). */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in oklab, var(--bg) 80%, transparent);
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  transition: opacity 300ms var(--ease-snap);
+  pointer-events: none;
+}
+.site-header[data-solid="true"]::before {
+  opacity: 1;
+}
+
 /* Nav link underline: grows from the left on hover, stays for the current page. */
 .nav-link {
   position: relative;

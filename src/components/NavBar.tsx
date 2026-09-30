@@ -143,9 +143,12 @@ export function NavBar() {
     <header
       ref={headerRef}
       data-instant={instant}
+      data-solid={solid}
       className={cn(
-        "fixed inset-x-0 top-0 z-40 border-b transition-[transform,background-color,border-color] duration-300 ease-snap",
-        solid ? "border-line bg-bg/80 backdrop-blur-md" : "border-transparent bg-transparent",
+        // The frosted background lives on ::before (.site-header in globals.css). A backdrop-filter on the
+        // header itself would trap the fixed-position mobile menu inside the 64px bar.
+        "site-header fixed inset-x-0 top-0 z-40 border-b transition-[transform,border-color] duration-300 ease-snap",
+        solid ? "border-line" : "border-transparent",
         hidden && "-translate-y-full",
       )}
     >
