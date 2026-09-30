@@ -5,7 +5,7 @@ export const site = {
   tagline: "The fan-made home of Clash of Clans esports",
   description:
     "Schedules, brackets, teams and live pro player stats for the Clash of Clans World Championship. Unofficial fan site.",
-  disclaimer:
-    "This material is not official and is not approved by Supercell. For more information see Supercell's Fan Content Policy.",
+  // Required by Supercell's Fan Content Policy; shown in the footer on every page.
+  disclaimer: "This material is not official and is not approved by Supercell.",
   fanPolicyUrl: "https://supercell.com/en/fan-content-policy/",
 } as const;

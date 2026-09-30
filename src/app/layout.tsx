@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Anton, Inter } from "next/font/google";
+import { NavBar } from "@/components/NavBar";
+import { Footer } from "@/components/Footer";
 import { site } from "@/config/site";
 import "./globals.css";
 
@@ -35,7 +37,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to main content
         </a>
-        {children}
+        <NavBar />
+        <main id="main" className="flex flex-1 flex-col">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

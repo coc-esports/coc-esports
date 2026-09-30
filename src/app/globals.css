@@ -9,9 +9,12 @@
   --text: #f4f1ea;
   --muted: #a3a7b3;
   --gold: #f5b82e;
+  --gold-bright: #ffcb4f;
   --elixir: #b04ce8;
+  --elixir-text: #d7a4f5;
   --dark-elixir: #3b2a5a;
   --live: #e8453c;
+  --nav-h: 4rem;
 }
 
 @theme inline {
@@ -22,11 +25,20 @@
   --color-text: var(--text);
   --color-muted: var(--muted);
   --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
   --color-elixir: var(--elixir);
+  --color-elixir-text: var(--elixir-text);
   --color-dark-elixir: var(--dark-elixir);
   --color-live: var(--live);
   --font-sans: var(--font-inter);
   --font-display: var(--font-anton);
+}
+
+/* Motion curves (PLAN.md §6). Classes: ease-snap, ease-move, ease-drawer. */
+@theme {
+  --ease-snap: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-move: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 html {
@@ -44,6 +56,96 @@ body {
   outline-offset: 3px;
 }
 
+/* Nav link underline: grows from the left on hover, stays for the current page. */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -6px;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms var(--ease-snap);
+}
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+}
+.nav-link[data-active="true"]::after {
+  transform: scaleX(1);
+}
+
+/* Mega-menu panel. Exit is faster than enter. */
+.mega {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition:
+    opacity 150ms var(--ease-snap),
+    transform 150ms var(--ease-snap),
+    visibility 0s linear 150ms;
+}
+.mega[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 200ms var(--ease-snap),
+    transform 250ms var(--ease-snap),
+    visibility 0s;
+}
+.mega [data-stagger] {
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 200ms var(--ease-snap),
+    transform 250ms var(--ease-snap);
+}
+.mega[data-open="true"] [data-stagger] {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--i, 0) * 30ms);
+}
+/* Moving from one open menu to another: swap instantly, don't replay the entrance. */
+[data-instant="true"] .mega,
+[data-instant="true"] .mega [data-stagger] {
+  transition-duration: 0s;
+  transition-delay: 0s;
+}
+
+/* Full-screen mobile menu. */
+.mobile-menu {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 200ms var(--ease-snap),
+    visibility 0s linear 200ms;
+}
+.mobile-menu[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 250ms var(--ease-snap),
+    visibility 0s;
+}
+.mobile-menu [data-stagger] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 300ms var(--ease-snap),
+    transform 400ms var(--ease-drawer);
+}
+.mobile-menu[data-open="true"] [data-stagger] {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(60ms + var(--i, 0) * 40ms);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -51,6 +153,7 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
     scroll-behavior: auto !important;
   }
 }
