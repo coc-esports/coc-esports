@@ -51,7 +51,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
         title={team.name}
         intro={team.qualified ? `${team.qualified}. Booked for the World Finals.` : "Chasing one of the last three Golden Tickets."}
       >
-        <TeamMark team={team} size="xl" />
+        <TeamMark team={team} size="xl" morph />
       </PageHeader>
 
       <Container className="py-16 sm:py-20">

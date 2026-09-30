@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { ViewTransition, type ReactNode } from "react";
 import type { ArtTone } from "@/data/types";
 import { cn } from "@/lib/cn";
 
@@ -11,18 +11,21 @@ const tones: Record<ArtTone, string> = {
 
 // Placeholder artwork until Fan Kit images arrive. The inner layer scales on card hover
 // (the card must have the `group` class); swap the inner layer for <Image> later.
+// `morphName`: the artwork glides between a news card and the article page (unique per page).
 export function ArtPanel({
   tone,
   glyph,
   className,
   children,
+  morphName,
 }: {
   tone: ArtTone;
   glyph?: string;
   className?: string;
   children?: ReactNode;
+  morphName?: string;
 }) {
-  return (
+  const panel = (
     <div className={cn("relative overflow-hidden bg-surface", className)}>
       <div
         aria-hidden
@@ -48,5 +51,11 @@ export function ArtPanel({
       <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-bg/10 to-transparent" aria-hidden />
       {children}
     </div>
+  );
+  if (!morphName) return panel;
+  return (
+    <ViewTransition name={morphName} share="morph" default="none">
+      {panel}
+    </ViewTransition>
   );
 }

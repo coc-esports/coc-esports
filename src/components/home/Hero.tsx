@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Countdown } from "@/components/Countdown";
 import { HeroMotion } from "@/components/motion/HeroMotion";
 import { Button } from "@/components/ui/Button";
@@ -10,7 +11,7 @@ import { formatDateTimeUTC } from "@/lib/format";
 // data-hero-art moves with scroll (parallax); data-hero-art-inner fades/scales in on load.
 function HeroArt() {
   return (
-    <div aria-hidden data-hero-art data-hero-hide className="pointer-events-none absolute inset-0">
+    <div aria-hidden data-hero-art className="pointer-events-none absolute inset-0">
       <div data-hero-art-inner className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_75%_25%,color-mix(in_oklab,var(--elixir)_35%,transparent),transparent_70%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_15%_90%,color-mix(in_oklab,var(--gold)_18%,transparent),transparent_70%)]" />
@@ -55,26 +56,30 @@ export function Hero() {
       <HeroArt />
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-bg to-transparent" />
       <Container className="relative pb-16 pt-[calc(var(--nav-h)+4rem)] sm:pb-20">
-        <div data-hero-content data-hero-hide>
-          <p data-hero-intro className="text-xs font-bold uppercase tracking-[0.25em] text-gold">
+        <div data-hero-content>
+          <p data-hero-intro style={{ "--i": 0 } as CSSProperties} className="text-xs font-bold uppercase tracking-[0.25em] text-gold">
             Clash of Clans esports · Fan hub
           </p>
           <h1
             id="hero-title"
-            data-hero-title
             className="mt-5 font-display text-[clamp(3.5rem,11vw,9.5rem)] uppercase leading-[0.86] tracking-tight"
           >
-            World{" "}
-            <br />
-            Championship{" "}
-            <br />
-            <span className="text-gold">2026</span>
+            {/* Each line rises out of its own mask (CSS .hero-line in globals.css) */}
+            <span className="hero-line" style={{ "--i": 0 } as CSSProperties}>
+              <span>World </span>
+            </span>
+            <span className="hero-line" style={{ "--i": 1 } as CSSProperties}>
+              <span>Championship </span>
+            </span>
+            <span className="hero-line text-gold" style={{ "--i": 2 } as CSSProperties}>
+              <span>2026</span>
+            </span>
           </h1>
-          <p data-hero-intro className="mt-6 max-w-lg text-lg text-text/80">
+          <p data-hero-intro style={{ "--i": 1 } as CSSProperties} className="mt-6 max-w-lg text-lg text-text/80">
             Eight teams. {season.finalsPrize} on the line. Every match on {season.townHall}. Follow the road from the
             monthly finals to the world title.
           </p>
-          <div data-hero-intro className="mt-8 flex flex-wrap gap-3">
+          <div data-hero-intro style={{ "--i": 2 } as CSSProperties} className="mt-8 flex flex-wrap gap-3">
             <Button href="/worlds" size="lg">
               Road to Worlds
             </Button>

@@ -45,7 +45,7 @@ export default async function ArticlePage({ params }: PageProps<"/news/[slug]">)
       </header>
 
       <Container className="max-w-4xl py-10">
-        <ArtPanel tone={article.tone} glyph={article.glyph} className="aspect-[21/9] rounded-sm border border-line" />
+        <ArtPanel tone={article.tone} glyph={article.glyph} morphName={`news-${article.slug}`} className="aspect-[21/9] rounded-sm border border-line" />
         <div className="mx-auto max-w-2xl pb-8 pt-4">
           <Body />
         </div>

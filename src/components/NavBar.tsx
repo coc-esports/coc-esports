@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { CommandMenu } from "@/components/CommandMenu";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/Button";
 import { ArrowRight, ChevronDown, CloseIcon, MenuIcon } from "@/components/icons";
@@ -248,6 +249,7 @@ export function NavBar() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <CommandMenu />
           <Button href="/worlds" size="sm" className="max-sm:hidden" onClick={closeAll}>
             Follow Worlds
           </Button>

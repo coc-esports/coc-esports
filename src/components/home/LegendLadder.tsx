@@ -8,6 +8,9 @@ import { getGlobalRankings } from "@/lib/coc";
 // Top 10 of the global Legend League, live from the official API (refreshed every 5 minutes).
 export async function LegendLadder() {
   const result = await getGlobalRankings(10);
+  // Live data isn't set up on this server (e.g. production before the proxy exists): skip the section
+  // on the home page instead of showing an empty box. /leaderboards still explains the situation.
+  if (!result.ok && result.reason === "no-token") return null;
 
   return (
     <section aria-labelledby="ladder" className="py-20 sm:py-28">

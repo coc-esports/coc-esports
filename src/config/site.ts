@@ -2,6 +2,7 @@
 // (it must not contain "Clash" or "Supercell"; see PLAN.md §2).
 export const site = {
   name: "TH18 Arena",
+  url: "https://coc-esports.vercel.app", // change when you add a custom domain
   tagline: "The fan-made home of Clash of Clans esports",
   description:
     "Schedules, brackets, teams and live pro player stats for the Clash of Clans World Championship. Unofficial fan site.",

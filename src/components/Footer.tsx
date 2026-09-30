@@ -17,7 +17,7 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 md:col-span-8">
             {footerNav.map((group) => (
               <div key={group.title}>
-                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-muted">{group.title}</h3>
+                <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-muted">{group.title}</h2>
                 <ul className="mt-4 space-y-2.5">
                   {group.links.map((link) => (
                     <li key={link.label}>

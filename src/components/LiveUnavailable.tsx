@@ -3,7 +3,7 @@ import type { CocResult } from "@/lib/coc";
 type Reason = Extract<CocResult<unknown>, { ok: false }>["reason"];
 
 const messages: Record<Reason, string> = {
-  "no-token": "Live game data isn't switched on for this version of the site yet.",
+  "no-token": "Live leaderboards and player profiles are coming soon to the public site.",
   forbidden: "The game API refused the request. The API key may have expired or its IP address may have changed.",
   "not-found": "The game API couldn't find that.",
   unavailable: "The game API isn't responding right now. Try again in a few minutes.",

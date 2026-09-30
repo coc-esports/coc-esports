@@ -21,7 +21,7 @@ export function NewsCard({ article, size = "sm" }: { article: Article; size?: "s
       data-reveal
       className="group flex h-full flex-col overflow-hidden rounded-sm border border-line bg-surface"
     >
-      <ArtPanel tone={article.tone} glyph={lg ? article.glyph : undefined} className={lg ? "aspect-[16/9] lg:aspect-auto lg:flex-1" : "aspect-[16/9]"} />
+      <ArtPanel tone={article.tone} glyph={lg ? article.glyph : undefined} morphName={`news-${article.slug}`} className={lg ? "aspect-[16/9] lg:aspect-auto lg:flex-1" : "aspect-[16/9]"} />
       <div className={lg ? "p-6" : "flex flex-1 flex-col p-4"}>
         <NewsMeta article={article} />
         <h3 className={lg ? "mt-3 font-display text-3xl uppercase leading-[1.05] sm:text-4xl" : "mt-2 text-lg font-semibold leading-snug"}>

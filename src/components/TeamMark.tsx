@@ -1,3 +1,4 @@
+import { ViewTransition } from "react";
 import type { Team } from "@/data/types";
 import { cn } from "@/lib/cn";
 
@@ -10,8 +11,20 @@ const sizes = {
 };
 
 // Placeholder team logo: the team's short code on its brand color. Swap for real logos later.
-export function TeamMark({ team, size = "md", className }: { team: Team; size?: keyof typeof sizes; className?: string }) {
-  return (
+// `morph`: the mark glides from a team card into the team page header. Only one mark per team
+// may use it on any page, or the browser skips the transition.
+export function TeamMark({
+  team,
+  size = "md",
+  className,
+  morph = false,
+}: {
+  team: Team;
+  size?: keyof typeof sizes;
+  className?: string;
+  morph?: boolean;
+}) {
+  const mark = (
     <span
       aria-hidden
       className={cn(
@@ -23,5 +36,11 @@ export function TeamMark({ team, size = "md", className }: { team: Team; size?: 
     >
       {team.short}
     </span>
+  );
+  if (!morph) return mark;
+  return (
+    <ViewTransition name={`team-${team.slug}`} share="morph" default="none">
+      {mark}
+    </ViewTransition>
   );
 }

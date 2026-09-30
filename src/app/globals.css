@@ -83,15 +83,44 @@ body {
   transform: scaleX(1);
 }
 
-/* Hero starts hidden until GSAP plays its entrance (HeroMotion). If JS never runs,
-   the failsafe reveals it after 3s. `.motion-ok` is set by an inline script in layout.tsx. */
-.motion-ok [data-hero-hide] {
-  visibility: hidden;
-  animation: hero-failsafe 0s linear 3s forwards;
+/* Hero entrance, pure CSS so it plays on first paint without waiting for JavaScript (fast LCP).
+   Each headline line rises out of its own mask; the clip-path extends above the line so tall
+   capitals aren't cut, but not below, so the rising text stays hidden until it arrives. */
+.hero-line {
+  display: block;
+  clip-path: inset(-0.3em -0.3em 0 -0.3em);
 }
-@keyframes hero-failsafe {
-  to {
-    visibility: visible;
+.hero-line > span {
+  display: block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-line > span {
+    animation: hero-rise 1s var(--ease-snap) both;
+    animation-delay: calc(100ms + var(--i, 0) * 90ms);
+  }
+  [data-hero-intro] {
+    animation: hero-fade 700ms var(--ease-snap) both;
+    animation-delay: calc(450ms + var(--i, 0) * 80ms);
+  }
+  [data-hero-art-inner] {
+    animation: hero-art 1400ms var(--ease-snap) both;
+  }
+}
+@keyframes hero-rise {
+  from {
+    transform: translateY(110%);
+  }
+}
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+@keyframes hero-art {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
   }
 }
 
@@ -229,7 +258,50 @@ body {
   transition-delay: calc(60ms + var(--i, 0) * 40ms);
 }
 
+/* Page transitions (React <ViewTransition>). Old page leaves fast, new page arrives gently. */
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-old(.page) {
+  animation: 150ms var(--ease-snap) both vt-fade reverse;
+}
+::view-transition-new(.page) {
+  animation:
+    260ms var(--ease-snap) 90ms both vt-fade,
+    420ms var(--ease-snap) both vt-rise;
+}
+/* Team marks and article art glide between card and detail page. */
+::view-transition-group(.morph) {
+  animation-duration: 450ms;
+  animation-timing-function: var(--ease-move);
+}
+::view-transition-image-pair(.morph) {
+  animation-name: vt-blur;
+}
+@keyframes vt-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes vt-rise {
+  from {
+    translate: 0 12px;
+  }
+}
+@keyframes vt-blur {
+  30% {
+    filter: blur(3px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
   *,
   *::before,
   *::after {

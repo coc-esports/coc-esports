@@ -16,7 +16,7 @@ export function TeamCard({ team }: { team: Team }) {
         style={{ background: `radial-gradient(ellipse at 100% 0%, ${team.color}, transparent 65%)` }}
       />
       <div className="relative flex items-start justify-between gap-2">
-        <TeamMark team={team} />
+        <TeamMark team={team} morph />
         {team.qualified ? <Badge tone="qualified" /> : <Badge tone="neutral">#{team.rank}</Badge>}
       </div>
       <div className="relative">
