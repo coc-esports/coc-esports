@@ -180,22 +180,35 @@ export function NavBar() {
                   onPointerEnter={(e) => e.pointerType === "mouse" && open(item.label, "hover")}
                   onPointerLeave={(e) => e.pointerType === "mouse" && scheduleClose()}
                 >
-                  <button
-                    ref={(el) => {
-                      triggerRefs.current[item.label] = el;
-                    }}
-                    type="button"
-                    aria-expanded={isOpen}
-                    aria-controls={panelId}
-                    data-active={active}
-                    onClick={(e) => onTriggerClick(item.label, isOpen, e.detail === 0)}
-                    className="nav-link flex items-center gap-1 text-sm font-semibold uppercase tracking-wider text-text/80 transition-colors duration-150 hover:text-text aria-expanded:text-text data-[active=true]:text-text"
-                  >
-                    {item.label}
-                    <ChevronDown
-                      className={cn("transition-transform duration-200 ease-snap", isOpen && "rotate-180")}
-                    />
-                  </button>
+                  {/* The label is a real link (one click goes to the page, like Riot's nav);
+                      hover opens the menu, and the arrow opens it for touch and keyboard users. */}
+                  <div className="flex items-center gap-0.5">
+                    <Link
+                      href={item.href}
+                      onClick={closeAll}
+                      data-active={active}
+                      data-open={isOpen}
+                      aria-current={active ? "page" : undefined}
+                      className="nav-link text-sm font-semibold uppercase tracking-wider text-text/80 transition-colors duration-150 hover:text-text data-[active=true]:text-text data-[open=true]:text-text"
+                    >
+                      {item.label}
+                    </Link>
+                    <button
+                      ref={(el) => {
+                        triggerRefs.current[item.label] = el;
+                      }}
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-controls={panelId}
+                      aria-label={`${item.label} menu`}
+                      onClick={(e) => onTriggerClick(item.label, isOpen, e.detail === 0)}
+                      className="grid h-7 w-6 place-items-center rounded-sm text-text/70 transition-colors duration-150 hover:text-text aria-expanded:text-text"
+                    >
+                      <ChevronDown
+                        className={cn("transition-transform duration-200 ease-snap", isOpen && "rotate-180")}
+                      />
+                    </button>
+                  </div>
 
                   <div
                     id={panelId}

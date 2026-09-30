@@ -79,7 +79,7 @@ body {
   }
 }
 .nav-link[data-active="true"]::after,
-.nav-link[aria-expanded="true"]::after {
+.nav-link[data-open="true"]::after {
   transform: scaleX(1);
 }
 
@@ -157,6 +157,18 @@ body {
   .btn-shine:hover::after {
     transform: translateX(120%);
     transition: transform 700ms var(--ease-move);
+  }
+}
+
+/* Loading skeletons: a soft light sweep shaped like the content that's coming. */
+.skeleton {
+  border-radius: 2px;
+  background: linear-gradient(100deg, var(--surface) 40%, var(--surface-2) 50%, var(--surface) 60%) 0 0 / 300% 100%;
+  animation: skeleton-sweep 1.4s linear infinite;
+}
+@keyframes skeleton-sweep {
+  to {
+    background-position: -150% 0;
   }
 }
 
@@ -258,22 +270,32 @@ body {
   transition-delay: calc(60ms + var(--i, 0) * 40ms);
 }
 
-/* Page transitions (React <ViewTransition>). Old page leaves fast, new page arrives gently. */
+/* Page transitions (React <ViewTransition>). Switching pages is something people do constantly,
+   so it must feel instant: a quick 140ms cross-fade, no delay, no movement. */
 ::view-transition {
   pointer-events: none;
 }
+/* The browser also cross-fades the whole page (header, footer) for 250ms by default.
+   Those don't change between pages, so switch it off: only the content area fades. */
+::view-transition-group(root),
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+/* No size/position morph between pages of different heights: snap, then fade. */
+::view-transition-group(.page) {
+  animation-duration: 0s;
+}
 ::view-transition-old(.page) {
-  animation: 150ms var(--ease-snap) both vt-fade reverse;
+  animation: 90ms ease-out both vt-fade reverse;
 }
 ::view-transition-new(.page) {
-  animation:
-    260ms var(--ease-snap) 90ms both vt-fade,
-    420ms var(--ease-snap) both vt-rise;
+  animation: 140ms ease-out both vt-fade;
 }
-/* Team marks and article art glide between card and detail page. */
+/* Team marks and article art glide between card and detail page (only when opening one). */
 ::view-transition-group(.morph) {
-  animation-duration: 450ms;
-  animation-timing-function: var(--ease-move);
+  animation-duration: 320ms;
+  animation-timing-function: var(--ease-snap);
 }
 ::view-transition-image-pair(.morph) {
   animation-name: vt-blur;
@@ -281,11 +303,6 @@ body {
 @keyframes vt-fade {
   from {
     opacity: 0;
-  }
-}
-@keyframes vt-rise {
-  from {
-    translate: 0 12px;
   }
 }
 @keyframes vt-blur {
