@@ -89,7 +89,7 @@ export function Hero() {
 
           <div
             data-hero-intro
-            className="mt-12 inline-flex flex-col gap-4 rounded-sm border border-line bg-surface/90 p-5 sm:flex-row sm:items-center sm:gap-8"
+            className="mt-12 inline-flex flex-col gap-4 rounded-sm border border-line bg-surface/70 p-5 backdrop-blur-sm sm:flex-row sm:items-center sm:gap-8"
           >
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">Next up</p>
