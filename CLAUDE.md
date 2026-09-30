@@ -2,6 +2,7 @@
 
 # Project: fan-made Clash of Clans esports site
 
+- Current status, decisions and next steps: `docs/NEXT.md` (read it first when resuming).
 - The full plan lives in `PLAN.md`. Read the relevant section before starting a task; the owner will say which phase/task.
 - Owner is a beginner: explain changes in plain language, keep tasks small, commit after each working step.
 - Stack: Next.js 16 (App Router, `src/`), TypeScript, Tailwind v4, GSAP + Lenis (from Phase 3).

@@ -1,0 +1,316 @@
+<title>Gildra Design Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,400..900&family=Archivo:wdth,wght@62..125,400..900&family=Bagel+Fat+One&family=Big+Shoulders+Display:wght@700;900&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Hanken+Grotesk:wght@400;600;700&family=Instrument+Sans:wght@400;600&family=Karla:wght@400;600;700&family=Lilita+One&family=Newsreader:opsz,wght@6..72,400;600&family=Onest:wght@400;600&family=Rubik:wght@400;600;700&family=Unbounded:wght@600;800&family=Young+Serif&display=swap">
+<style>
+/* Layout: one long board; each direction is a full-width specimen (live sample left, notes right), stacking on phones.
+   The board chrome is deliberately single-theme dark and neutral so each direction's own palette reads true. */
+:root {
+  color-scheme: dark;
+  --bg: #0b0b0e;
+  --panel: #131318;
+  --line: #26252d;
+  --fg: #ecebe8;
+  --muted: #9b99a3;
+  --gold: #f5b82e;
+  --ui: "Hanken Grotesk", "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--ui); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 48px 80px; }
+h1.board { font: 700 clamp(1.9rem, 4vw, 2.8rem)/1.1 var(--ui); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 62ch; margin: 12px 0 0; font-size: 1.05rem; }
+.shared { margin-top: 28px; border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; background: var(--panel); }
+.shared h2 { margin: 0 0 8px; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.shared ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.shared li::marker { color: var(--gold); }
+
+.dir { margin-top: 36px; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--panel); }
+@media (max-width: 860px) { .dir { grid-template-columns: 1fr; } }
+.notes { padding: 24px; display: grid; gap: 14px; align-content: start; min-width: 0; }
+.notes h2 { margin: 0; font: 700 1.45rem/1.15 var(--ui); letter-spacing: -0.01em; }
+.tag { display: inline-block; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; }
+.tag.rec { color: #1a1204; background: var(--gold); border-color: var(--gold); font-weight: 700; }
+.mood { color: var(--fg); margin: 0; }
+.fonts { font-size: 0.85rem; color: var(--muted); margin: 0; }
+.fonts b { color: var(--fg); font-weight: 600; }
+.pr { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.88rem; }
+.pr h3 { margin: 0 0 4px; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.pr ul { margin: 0; padding-left: 16px; display: grid; gap: 3px; }
+.swatches { display: flex; flex-wrap: wrap; gap: 8px; }
+.sw { display: grid; gap: 4px; font-size: 0.7rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.sw i { display: block; width: 44px; height: 30px; border-radius: 6px; border: 1px solid rgb(255 255 255 / 0.12); }
+
+/* ---------- Specimen (each direction overrides these variables) ---------- */
+.spec { --s-bg: #111; --s-fg: #eee; --s-muted: #999; --s-accent: #f5b82e; --s-surface: #1b1b1b;
+  --s-display: serif; --s-body: sans-serif;
+  background: var(--s-bg); color: var(--s-fg); font-family: var(--s-body); padding: 28px; display: grid; gap: 18px; align-content: start; min-width: 0; position: relative; overflow: hidden; }
+.spec .kicker { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--s-muted); }
+.spec .hl { margin: 0; font-family: var(--s-display); text-wrap: balance; }
+.spec p.body { margin: 0; color: var(--s-muted); max-width: 46ch; font-size: 0.98rem; }
+.row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.btn { font-family: var(--s-body); font-weight: 700; font-size: 0.9rem; border: 0; cursor: pointer; padding: 12px 20px; transition: transform 120ms ease-out, box-shadow 120ms ease-out; }
+.btn:active { transform: translateY(3px); }
+.btn:focus-visible { outline: 2px solid var(--s-fg); outline-offset: 3px; }
+.link { font-size: 0.85rem; color: var(--s-muted); }
+
+/* Golden Ticket: shared structure, restyled per direction */
+.ticket { --t-bg: var(--s-surface); --t-ink: var(--s-fg); --t-edge: var(--s-accent); display: grid; grid-template-columns: auto 1fr auto; align-items: stretch; width: min(100%, 440px); background: var(--t-bg); color: var(--t-ink); position: relative; }
+.t-crest { padding: 14px 12px 14px 16px; display: grid; place-items: center; }
+.t-main { padding: 14px 12px; display: grid; gap: 2px; min-width: 0; }
+.t-no { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.75; font-variant-numeric: tabular-nums; }
+.t-team { font-family: var(--s-display); font-size: 1.45rem; line-height: 1.05; }
+.t-via { font-size: 0.78rem; opacity: 0.8; }
+.t-stub { padding: 12px 16px; display: grid; place-items: center; text-align: center; font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; border-left: 2px dashed color-mix(in oklab, var(--t-edge) 70%, transparent); position: relative; color: var(--t-edge); }
+.t-stub::before, .t-stub::after { content: ""; position: absolute; left: -9px; width: 16px; height: 16px; border-radius: 50%; background: var(--s-bg); }
+.t-stub::before { top: -8px; } .t-stub::after { bottom: -8px; }
+.crest { width: 40px; height: 46px; }
+
+/* 1. Gilded War Table */
+.d-war { --s-bg: radial-gradient(ellipse 80% 70% at 85% 0%, #3a2a52 0%, transparent 60%), #15131b; --s-fg: #f3ede3; --s-muted: #b3aca2; --s-accent: #f5b82e; --s-surface: #221f29;
+  --s-display: "Bricolage Grotesque", "Arial Narrow", sans-serif; --s-body: "Hanken Grotesk", "Segoe UI", sans-serif; }
+.d-war .hl { font-weight: 800; font-variation-settings: "wdth" 75, "opsz" 96; font-size: clamp(2.6rem, 6vw, 4.2rem); line-height: 0.92; letter-spacing: -0.02em; text-transform: uppercase; }
+.gilt { background: linear-gradient(180deg, #ffe08a 0%, #f5b82e 45%, #b97a17 70%, #ffd466 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.d-war .btn { background: linear-gradient(180deg, #ffd466, #f5b82e); color: #2a1a02; border-radius: 10px; box-shadow: 0 4px 0 #8f5f12, 0 10px 24px -10px rgb(0 0 0 / 0.8); }
+.d-war .btn:active { box-shadow: 0 1px 0 #8f5f12; }
+.d-war .ticket { border-radius: 10px; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 0 0 1px #8f5f12; background: linear-gradient(110deg, #2a2432 0%, #221f29 40%, #3a2e18 100%); }
+
+/* 2. Clash Carved */
+.d-carved { --s-bg: linear-gradient(180deg, #1d3a66 0%, #13274a 100%); --s-fg: #ffffff; --s-muted: #c9d6ee; --s-accent: #ffcc33; --s-surface: #f4e3b5;
+  --s-display: "Lilita One", "Arial Black", sans-serif; --s-body: "Rubik", "Segoe UI", sans-serif; }
+.d-carved .hl { font-size: clamp(2.5rem, 6vw, 4rem); line-height: 0.95; color: #fff; -webkit-text-stroke: 7px #10213c; paint-order: stroke fill; text-shadow: 0 6px 0 #0b1830; letter-spacing: 0.01em; }
+.d-carved .hl .yel { color: #ffcc33; }
+.d-carved .btn { font-family: "Lilita One", sans-serif; font-weight: 400; font-size: 1.05rem; color: #fff; background: linear-gradient(180deg, #7fd84a, #45a61f); border: 3px solid #10213c; border-radius: 14px; box-shadow: 0 5px 0 #10213c; -webkit-text-stroke: 3px #10213c; paint-order: stroke fill; }
+.d-carved .btn:active { box-shadow: 0 2px 0 #10213c; }
+.d-carved .ticket { --t-ink: #3a2410; --t-edge: #b7791f; border: 3px solid #10213c; border-radius: 16px; box-shadow: 0 5px 0 #10213c; }
+.d-carved .t-team { color: #3a2410; }
+.d-carved .t-stub::before, .d-carved .t-stub::after { background: #16305a; }
+
+/* 3. Sharp Esports */
+.d-sharp { --s-bg: #0d0e11; --s-fg: #eef0f3; --s-muted: #9aa0ab; --s-accent: #f5b82e; --s-surface: #171a20;
+  --s-display: "Big Shoulders Display", "Arial Narrow", sans-serif; --s-body: "Anybody", "Segoe UI", sans-serif; }
+.d-sharp .hl { font-weight: 900; font-size: clamp(2.9rem, 7vw, 4.8rem); line-height: 0.86; text-transform: uppercase; letter-spacing: 0.005em; }
+.d-sharp .body { font-variation-settings: "wdth" 88; }
+.d-sharp .btn { background: #f5b82e; color: #0d0e11; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); padding: 13px 22px; }
+.d-sharp .ticket { clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px); border-top: 2px solid #f5b82e; }
+.d-sharp .t-team { text-transform: uppercase; font-weight: 900; }
+
+/* 4. Trophy Room */
+.d-trophy { --s-bg: radial-gradient(ellipse 90% 80% at 50% -10%, #1c4a3b 0%, transparent 65%), #0c1d17; --s-fg: #f1ead7; --s-muted: #b9b39c; --s-accent: #d9ad4a; --s-surface: #13291f;
+  --s-display: "Young Serif", Georgia, serif; --s-body: "Instrument Sans", "Segoe UI", sans-serif; }
+.d-trophy .hl { font-size: clamp(2.3rem, 5.4vw, 3.7rem); line-height: 1.02; font-weight: 400; }
+.d-trophy .hl em { font-style: normal; color: #d9ad4a; }
+.d-trophy .kicker { font-family: "Young Serif", serif; letter-spacing: 0.3em; color: #d9ad4a; }
+.d-trophy .btn { background: transparent; color: #f1ead7; border: 1px solid #d9ad4a; border-radius: 999px; font-weight: 600; letter-spacing: 0.04em; box-shadow: inset 0 0 0 3px #0c1d17, inset 0 0 0 4px rgb(217 173 74 / 0.45); }
+.d-trophy .ticket { border: 1px solid rgb(217 173 74 / 0.6); border-radius: 4px; box-shadow: inset 0 0 0 4px #13291f, inset 0 0 0 5px rgb(217 173 74 / 0.3); }
+.d-trophy .t-stub::before, .d-trophy .t-stub::after { background: #0d2019; }
+
+/* 5. Broadcast Night */
+.d-cast { --s-bg: linear-gradient(135deg, #07070b 0%, #140a1c 100%); --s-fg: #ffffff; --s-muted: #a9a3b8; --s-accent: #ff4fd8; --s-surface: #17121f;
+  --s-display: "Unbounded", "Arial Black", sans-serif; --s-body: "Onest", "Segoe UI", sans-serif; }
+.d-cast .hl { font-weight: 800; font-size: clamp(2rem, 4.8vw, 3.3rem); line-height: 1; text-transform: uppercase; transform: skewX(-7deg); transform-origin: left; }
+.neon { background: linear-gradient(90deg, #ff4fd8, #f5b82e); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.d-cast .btn { background: linear-gradient(90deg, #ff4fd8, #b04ce8); color: #fff; transform: skewX(-10deg); border-radius: 2px; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; box-shadow: 0 0 24px -4px rgb(255 79 216 / 0.7); }
+.d-cast .btn:active { transform: skewX(-10deg) translateY(2px); }
+.d-cast .btn span { display: inline-block; transform: skewX(10deg); }
+.d-cast .ticket { --t-edge: #f5b82e; border-left: 4px solid #ff4fd8; }
+.d-cast .scorebar { display: flex; gap: 0; font-family: "Unbounded", sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; width: min(100%, 440px); }
+.d-cast .scorebar span { padding: 8px 12px; background: #1f1729; }
+.d-cast .scorebar span:nth-child(2) { background: #f5b82e; color: #07070b; font-variant-numeric: tabular-nums; }
+.d-cast .scorebar span:last-child { margin-left: auto; background: #ff4fd8; color: #07070b; }
+
+/* 6. Village Storybook (light) */
+.d-story { --s-bg: radial-gradient(ellipse 70% 60% at 90% 0%, #fff4d6 0%, transparent 60%), #f1e2bf; --s-fg: #2b1d10; --s-muted: #6b5236; --s-accent: #c98a12; --s-surface: #fbf1d8;
+  --s-display: "Bagel Fat One", "Arial Black", sans-serif; --s-body: "Karla", "Segoe UI", sans-serif; }
+.d-story .hl { font-size: clamp(2.3rem, 5.5vw, 3.8rem); line-height: 1; color: #2b1d10; }
+.d-story .hl .gold { color: #c98a12; text-shadow: 0 3px 0 #7a4e0b; }
+.d-story .kicker { color: #4f8a3a; font-weight: 700; }
+.d-story .btn { background: linear-gradient(180deg, #a86d34, #8a5a2b); color: #fff7e6; border: 2px solid #2b1d10; border-radius: 12px; box-shadow: 0 4px 0 #2b1d10; font-family: "Bagel Fat One", sans-serif; font-weight: 400; font-size: 1rem; }
+.d-story .btn:active { box-shadow: 0 1px 0 #2b1d10; }
+.d-story .btn:focus-visible { outline-color: #2b1d10; }
+.d-story .ticket { --t-edge: #a06a0e; border: 2px solid #2b1d10; border-radius: 12px; box-shadow: 0 4px 0 #2b1d10; }
+.d-story .t-stub::before, .d-story .t-stub::after { background: #f1e2bf; }
+
+/* 7. Esports Magazine */
+.d-mag { --s-bg: #0f0f10; --s-fg: #f2efe8; --s-muted: #a8a49b; --s-accent: #f5b82e; --s-surface: #19191b;
+  --s-display: "Archivo", "Arial Narrow", sans-serif; --s-body: "Newsreader", Georgia, serif; }
+.d-mag .hl { font-weight: 900; font-variation-settings: "wdth" 62; font-size: clamp(3rem, 7.5vw, 5.2rem); line-height: 0.84; text-transform: uppercase; letter-spacing: -0.01em; }
+.d-mag .rule { height: 3px; width: 72px; background: #f5b82e; }
+.d-mag .body { font-size: 1.08rem; color: #d6d2c8; font-style: italic; }
+.d-mag .kicker { font-family: "Archivo", sans-serif; font-weight: 700; }
+.d-mag .btn { background: #f2efe8; color: #0f0f10; border-radius: 0; font-family: "Archivo", sans-serif; font-variation-settings: "wdth" 80; text-transform: uppercase; letter-spacing: 0.06em; }
+.d-mag .ticket { border-top: 1px solid #f5b82e; border-bottom: 1px solid #f5b82e; }
+.d-mag .t-team { font-weight: 900; font-variation-settings: "wdth" 62; text-transform: uppercase; font-size: 1.7rem; }
+
+.choose { margin-top: 44px; border-top: 1px solid var(--line); padding-top: 24px; display: grid; gap: 8px; }
+.choose h2 { margin: 0; font-size: 1.25rem; }
+.choose p { margin: 0; color: var(--muted); max-width: 70ch; }
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+</style>
+
+<div class="wrap">
+  <h1 class="board">Gildra: 7 design directions</h1>
+  <p class="lede">The same content in seven visual worlds for the Clash of Clans esports hub. Each sample shows the headline type, body type, main button, a Golden Ticket, a team crest and the colours. Buttons are real: press one to feel the bevel.</p>
+
+  <section class="shared" aria-labelledby="shared-h">
+    <h2 id="shared-h">Already decided in every direction</h2>
+    <ul>
+      <li>The Golden Ticket becomes the site's signature object, with a one-time gold foil sweep when a team qualifies.</li>
+      <li>Team logos become crests in the team colour, not flat squares.</li>
+      <li>Gold means only three things: the main action, qualified or winner, and special brand moments.</li>
+      <li>The home page becomes event-aware: during LCQ week the countdown and the ticket race lead.</li>
+      <li>A new Gildra logo replaces the generic shield.</li>
+    </ul>
+  </section>
+
+  <!-- Reusable crest: team colour shield with monogram -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="crest" viewBox="0 0 40 46">
+        <path d="M20 1 38 7v13c0 12-8 20-18 25C10 40 2 32 2 20V7L20 1Z" fill="#3d6fd6" stroke="#0b1530" stroke-width="2.5"/>
+        <path d="M20 5 34 10v10c0 9-6 16-14 20C12 36 6 29 6 20V10l14-5Z" fill="none" stroke="rgb(255 255 255 / .35)" stroke-width="1.5"/>
+        <text x="20" y="28" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="11" fill="#fff">VAT</text>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- 1 -->
+  <article class="dir">
+    <div class="spec d-war">
+      <span class="kicker">Last Chance Qualifier · Oct 10–11</span>
+      <h3 class="hl">World Championship <span class="gilt">2026</span></h3>
+      <p class="body">Eight teams, $700,000 and one world title. Three Golden Tickets left to win.</p>
+      <div class="row"><button class="btn" type="button">Add LCQ to calendar</button><span class="link">See the ticket race →</span></div>
+      <div class="ticket"><div class="t-crest"><svg class="crest"><use href="#crest"/></svg></div><div class="t-main"><span class="t-no">No. 03 / 08</span><span class="t-team">Vatic</span><span class="t-via">August Monthly Final winner</span></div><div class="t-stub">Golden<br>Ticket</div></div>
+    </div>
+    <div class="notes">
+      <div><span class="tag rec">Recommended</span></div>
+      <h2>Gilded War Table</h2>
+      <p class="mood">Warm and premium. Clash's village warmth with trophy-room ceremony, laid out with Riot-level discipline. Gold looks like polished metal, not flat yellow.</p>
+      <p class="fonts"><b>Bricolage Grotesque</b> (headlines) + <b>Hanken Grotesk</b> (text)</p>
+      <div class="swatches"><span class="sw"><i style="background:#15131b"></i>#15131B</span><span class="sw"><i style="background:#221f29"></i>#221F29</span><span class="sw"><i style="background:linear-gradient(180deg,#ffe08a,#f5b82e,#8f5f12)"></i>Gold metal</span><span class="sw"><i style="background:#c94cf0"></i>#C94CF0</span><span class="sw"><i style="background:#f3ede3"></i>#F3EDE3</span></div>
+      <div class="pr"><div><h3>Strengths</h3><ul><li>Premium and distinctive</li><li>Works for serious esports and fans</li><li>Easy to read at every size</li></ul></div><div><h3>Risks</h3><ul><li>Less instantly "Clash" than Carved</li><li>Needs the foil moments to shine</li></ul></div></div>
+    </div>
+  </article>
+
+  <!-- 2 -->
+  <article class="dir">
+    <div class="spec d-carved">
+      <span class="kicker">Last Chance Qualifier · Oct 10–11</span>
+      <h3 class="hl">World Championship <span class="yel">2026</span></h3>
+      <p class="body">Eight teams, $700,000 and one world title. Three Golden Tickets left to win.</p>
+      <div class="row"><button class="btn" type="button">Add LCQ to calendar</button><span class="link">See the ticket race →</span></div>
+      <div class="ticket"><div class="t-crest"><svg class="crest"><use href="#crest"/></svg></div><div class="t-main"><span class="t-no">No. 03 / 08</span><span class="t-team">Vatic</span><span class="t-via">August Monthly Final winner</span></div><div class="t-stub">Golden<br>Ticket</div></div>
+    </div>
+    <div class="notes">
+      <div><span class="tag">From the critique</span></div>
+      <h2>Clash Carved</h2>
+      <p class="mood">Chunky and playful, closest to the game itself: thick dark outlines, drop-shadowed titles, rounded beveled buttons, parchment tickets on a night-sky blue.</p>
+      <p class="fonts"><b>Lilita One</b> (outlined headlines) + <b>Rubik</b> (text)</p>
+      <div class="swatches"><span class="sw"><i style="background:#1d3a66"></i>#1D3A66</span><span class="sw"><i style="background:#10213c"></i>#10213C</span><span class="sw"><i style="background:#ffcc33"></i>#FFCC33</span><span class="sw"><i style="background:#45a61f"></i>#45A61F</span><span class="sw"><i style="background:#f4e3b5"></i>#F4E3B5</span></div>
+      <div class="pr"><div><h3>Strengths</h3><ul><li>Clash fans recognise it instantly</li><li>Fun, energetic, memorable</li></ul></div><div><h3>Risks</h3><ul><li>Can feel childish if overused</li><li>Too close to Supercell's own look</li></ul></div></div>
+    </div>
+  </article>
+
+  <!-- 3 -->
+  <article class="dir">
+    <div class="spec d-sharp">
+      <span class="kicker">Last Chance Qualifier · Oct 10–11</span>
+      <h3 class="hl">World Championship 2026</h3>
+      <p class="body">Eight teams, $700,000 and one world title. Three Golden Tickets left to win.</p>
+      <div class="row"><button class="btn" type="button">Add LCQ to calendar</button><span class="link">See the ticket race →</span></div>
+      <div class="ticket"><div class="t-crest"><svg class="crest"><use href="#crest"/></svg></div><div class="t-main"><span class="t-no">No. 03 / 08</span><span class="t-team">Vatic</span><span class="t-via">August Monthly Final winner</span></div><div class="t-stub">Golden<br>Ticket</div></div>
+    </div>
+    <div class="notes">
+      <div><span class="tag">From the critique</span></div>
+      <h2>Sharp Esports</h2>
+      <p class="mood">Competitive and technical: cut corners, tall stadium numerals, cool charcoal, gold used only for action. The closest to today's site, done properly.</p>
+      <p class="fonts"><b>Big Shoulders Display</b> (headlines) + <b>Anybody</b> (text)</p>
+      <div class="swatches"><span class="sw"><i style="background:#0d0e11"></i>#0D0E11</span><span class="sw"><i style="background:#171a20"></i>#171A20</span><span class="sw"><i style="background:#f5b82e"></i>#F5B82E</span><span class="sw"><i style="background:#9aa0ab"></i>#9AA0AB</span><span class="sw"><i style="background:#eef0f3"></i>#EEF0F3</span></div>
+      <div class="pr"><div><h3>Strengths</h3><ul><li>Feels like pro esports</li><li>Smallest change from today</li></ul></div><div><h3>Risks</h3><ul><li>Still generic esports</li><li>Little Clash personality</li></ul></div></div>
+    </div>
+  </article>
+
+  <!-- 4 -->
+  <article class="dir">
+    <div class="spec d-trophy">
+      <span class="kicker">Last Chance Qualifier · Oct 10–11</span>
+      <h3 class="hl">World Championship <em>2026</em></h3>
+      <p class="body">Eight teams, $700,000 and one world title. Three Golden Tickets left to win.</p>
+      <div class="row"><button class="btn" type="button">Add LCQ to calendar</button><span class="link">See the ticket race →</span></div>
+      <div class="ticket"><div class="t-crest"><svg class="crest"><use href="#crest"/></svg></div><div class="t-main"><span class="t-no">No. 03 / 08</span><span class="t-team">Vatic</span><span class="t-via">August Monthly Final winner</span></div><div class="t-stub">Golden<br>Ticket</div></div>
+    </div>
+    <div class="notes">
+      <div><span class="tag">New</span></div>
+      <h2>Trophy Room</h2>
+      <p class="mood">Ceremonial and grand, like an awards night: deep green felt, gold leaf lines, an elegant serif. The World Championship treated like a real trophy.</p>
+      <p class="fonts"><b>Young Serif</b> (headlines) + <b>Instrument Sans</b> (text)</p>
+      <div class="swatches"><span class="sw"><i style="background:#0c1d17"></i>#0C1D17</span><span class="sw"><i style="background:#1c4a3b"></i>#1C4A3B</span><span class="sw"><i style="background:#d9ad4a"></i>#D9AD4A</span><span class="sw"><i style="background:#b9b39c"></i>#B9B39C</span><span class="sw"><i style="background:#f1ead7"></i>#F1EAD7</span></div>
+      <div class="pr"><div><h3>Strengths</h3><ul><li>Unique in esports</li><li>Makes Worlds feel prestigious</li></ul></div><div><h3>Risks</h3><ul><li>Calm, less hype energy</li><li>Serif can feel formal for young fans</li></ul></div></div>
+    </div>
+  </article>
+
+  <!-- 5 -->
+  <article class="dir">
+    <div class="spec d-cast">
+      <span class="kicker">Live · Last Chance Qualifier</span>
+      <h3 class="hl">World Championship <span class="neon">2026</span></h3>
+      <p class="body">Eight teams, $700,000 and one world title. Three Golden Tickets left to win.</p>
+      <div class="row"><button class="btn" type="button"><span>Watch live</span></button><span class="link">See the ticket race →</span></div>
+      <div class="scorebar" aria-label="Example score bar"><span>Tribe</span><span>2 – 1</span><span>CB7</span><span>Live</span></div>
+      <div class="ticket"><div class="t-crest"><svg class="crest"><use href="#crest"/></svg></div><div class="t-main"><span class="t-no">No. 03 / 08</span><span class="t-team">Vatic</span><span class="t-via">August Monthly Final winner</span></div><div class="t-stub">Golden<br>Ticket</div></div>
+    </div>
+    <div class="notes">
+      <div><span class="tag">New</span></div>
+      <h2>Broadcast Night</h2>
+      <p class="mood">Live-TV energy: slanted wide type, elixir-pink neon with gold, scoreboard strips like a stream overlay. Built for match days.</p>
+      <p class="fonts"><b>Unbounded</b> (headlines) + <b>Onest</b> (text)</p>
+      <div class="swatches"><span class="sw"><i style="background:#07070b"></i>#07070B</span><span class="sw"><i style="background:#17121f"></i>#17121F</span><span class="sw"><i style="background:#ff4fd8"></i>#FF4FD8</span><span class="sw"><i style="background:#f5b82e"></i>#F5B82E</span><span class="sw"><i style="background:#a9a3b8"></i>#A9A3B8</span></div>
+      <div class="pr"><div><h3>Strengths</h3><ul><li>Most exciting on event days</li><li>Pink links to Clash's elixir</li></ul></div><div><h3>Risks</h3><ul><li>Loud on quiet weeks</li><li>Wide font needs short headlines</li></ul></div></div>
+    </div>
+  </article>
+
+  <!-- 6 -->
+  <article class="dir">
+    <div class="spec d-story">
+      <span class="kicker">Last Chance Qualifier · Oct 10–11</span>
+      <h3 class="hl">World Championship <span class="gold">2026</span></h3>
+      <p class="body">Eight teams, $700,000 and one world title. Three Golden Tickets left to win.</p>
+      <div class="row"><button class="btn" type="button">Add LCQ to calendar</button><span class="link">See the ticket race →</span></div>
+      <div class="ticket"><div class="t-crest"><svg class="crest"><use href="#crest"/></svg></div><div class="t-main"><span class="t-no">No. 03 / 08</span><span class="t-team">Vatic</span><span class="t-via">August Monthly Final winner</span></div><div class="t-stub">Golden<br>Ticket</div></div>
+    </div>
+    <div class="notes">
+      <div><span class="tag">New · light theme</span></div>
+      <h2>Village Storybook</h2>
+      <p class="mood">Daytime village instead of night: parchment, wood buttons, ink outlines, grass green and gold coins. Friendly and warm, and different from every dark esports site.</p>
+      <p class="fonts"><b>Bagel Fat One</b> (headlines) + <b>Karla</b> (text)</p>
+      <div class="swatches"><span class="sw"><i style="background:#f1e2bf"></i>#F1E2BF</span><span class="sw"><i style="background:#2b1d10"></i>#2B1D10</span><span class="sw"><i style="background:#8a5a2b"></i>#8A5A2B</span><span class="sw"><i style="background:#4f8a3a"></i>#4F8A3A</span><span class="sw"><i style="background:#c98a12"></i>#C98A12</span></div>
+      <div class="pr"><div><h3>Strengths</h3><ul><li>Stands out completely</li><li>Warm and welcoming</li></ul></div><div><h3>Risks</h3><ul><li>Less "pro esports"</li><li>Light theme is harder for video-heavy pages</li></ul></div></div>
+    </div>
+  </article>
+
+  <!-- 7 -->
+  <article class="dir">
+    <div class="spec d-mag">
+      <span class="kicker">Issue 10 · Last Chance Qualifier</span>
+      <h3 class="hl">World Championship 2026</h3>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="body">Eight teams, $700,000 and one world title. Three Golden Tickets left to win.</p>
+      <div class="row"><button class="btn" type="button">Read the LCQ preview</button><span class="link">See the ticket race →</span></div>
+      <div class="ticket"><div class="t-crest"><svg class="crest"><use href="#crest"/></svg></div><div class="t-main"><span class="t-no">No. 03 / 08</span><span class="t-team">Vatic</span><span class="t-via">August Monthly Final winner</span></div><div class="t-stub">Golden<br>Ticket</div></div>
+    </div>
+    <div class="notes">
+      <div><span class="tag">New</span></div>
+      <h2>Esports Magazine</h2>
+      <p class="mood">An editorial sports magazine: huge compressed headlines, an italic serif for stories, thin gold rules. Makes the news and previews the star.</p>
+      <p class="fonts"><b>Archivo Compressed</b> (headlines) + <b>Newsreader</b> (text)</p>
+      <div class="swatches"><span class="sw"><i style="background:#0f0f10"></i>#0F0F10</span><span class="sw"><i style="background:#19191b"></i>#19191B</span><span class="sw"><i style="background:#f5b82e"></i>#F5B82E</span><span class="sw"><i style="background:#a8a49b"></i>#A8A49B</span><span class="sw"><i style="background:#f2efe8"></i>#F2EFE8</span></div>
+      <div class="pr"><div><h3>Strengths</h3><ul><li>Premium storytelling feel</li><li>Great for news and previews</li></ul></div><div><h3>Risks</h3><ul><li>Least Clash-specific</li><li>Needs regular articles to feel alive</li></ul></div></div>
+    </div>
+  </article>
+
+  <section class="choose" aria-labelledby="choose-h">
+    <h2 id="choose-h">How to choose</h2>
+    <p>Reply with the name you like. Mixing is fine, for example "Gilded War Table fonts with Broadcast Night colours on match days". The choice sets the fonts, colours, buttons, ticket and logo style for the whole site.</p>
+  </section>
+</div>
