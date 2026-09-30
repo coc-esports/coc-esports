@@ -4,3 +4,4 @@
 - 2026-09-30: Connected to GitHub (github.com/coc-esports/coc-esports) and pushed `main`.
 - 2026-09-30: Deployed on Vercel: https://coc-esports.vercel.app (auto-deploys on every push to `main`). Phase 0 complete.
 - 2026-09-30: Phase 1. Design system: motion curves, Button (3 variants, 3 sizes, press feedback), Badge (live/upcoming/completed/qualified/elixir/neutral), SectionHeader, Container, Logo, NavBar (hide-on-scroll, mega-menus with hover/click/keyboard/Esc, full-screen mobile menu), Footer with disclaimer, "coming soon" 404, `/styleguide` page.
+- 2026-09-30: Phase 2. Full home page with placeholder art: hero with LCQ countdown, upcoming matches, The Chosen Eight (3/8 real), season stat band, news grid, Road to Worlds timeline, Legend League ladder, From the Vault videos. Data files in `src/data/` (sample content flagged "Sample data"). Checked on desktop and 390px mobile.

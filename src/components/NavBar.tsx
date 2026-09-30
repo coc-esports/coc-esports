@@ -247,7 +247,7 @@ export function NavBar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button href="/worlds" size="sm" className="hidden sm:inline-flex" onClick={closeAll}>
+          <Button href="/worlds" size="sm" className="max-sm:hidden" onClick={closeAll}>
             Follow Worlds
           </Button>
           <button

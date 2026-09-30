@@ -14,6 +14,7 @@
   --elixir-text: #d7a4f5;
   --dark-elixir: #3b2a5a;
   --live: #e8453c;
+  --win: #5fd08b;
   --nav-h: 4rem;
 }
 
@@ -30,6 +31,7 @@
   --color-elixir-text: var(--elixir-text);
   --color-dark-elixir: var(--dark-elixir);
   --color-live: var(--live);
+  --color-win: var(--win);
   --font-sans: var(--font-inter);
   --font-display: var(--font-anton);
 }
@@ -79,6 +81,38 @@ body {
 .nav-link[data-active="true"]::after,
 .nav-link[aria-expanded="true"]::after {
   transform: scaleX(1);
+}
+
+/* Card titles: gold underline grows from the left when the card (.group) is hovered or focused. */
+.title-underline {
+  background-image: linear-gradient(var(--gold), var(--gold));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  transition: background-size 300ms var(--ease-snap);
+}
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .title-underline {
+    background-size: 100% 2px;
+  }
+}
+.group:focus-visible .title-underline {
+  background-size: 100% 2px;
+}
+
+/* Horizontal scrolling rows (timeline, videos). Bleeds to the screen edge on mobile. */
+.scroll-row {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+  overscroll-behavior-x: contain;
+}
+.scroll-row > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
 }
 
 /* Mega-menu panel. Exit is faster than enter. */

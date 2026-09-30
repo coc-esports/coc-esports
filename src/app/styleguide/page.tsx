@@ -21,7 +21,8 @@ const colors = [
   { name: "gold", hex: "#F5B82E", use: "Primary accent, one per screen" },
   { name: "elixir", hex: "#B04CE8", use: "Secondary accent, tags" },
   { name: "dark-elixir", hex: "#3B2A5A", use: "Gradients" },
-  { name: "live", hex: "#E8453C", use: "LIVE badge only" },
+  { name: "live", hex: "#E8453C", use: "LIVE badge, losses" },
+  { name: "win", hex: "#5FD08B", use: "Wins, rank up" },
 ];
 
 const typeScale = [
