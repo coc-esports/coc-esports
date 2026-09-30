@@ -65,10 +65,9 @@ export function CommandMenu() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Search the site"
-        className="grid h-11 w-11 place-items-center rounded-sm text-text/80 outline-none transition-[transform,color,border-color] duration-150 ease-snap hover:text-text focus-visible:bg-surface-2 focus-visible:text-text active:scale-[0.94] lg:flex lg:w-auto lg:gap-2 lg:border lg:border-line lg:px-3 lg:hover:border-muted lg:focus-visible:border-text/60"
+        className="grid h-11 w-11 place-items-center rounded-sm text-text/80 outline-none transition-[transform,color,background-color] duration-150 ease-snap hover:bg-surface-2 hover:text-text focus-visible:bg-surface-2 focus-visible:text-text active:scale-[0.94]"
       >
         <SearchIcon />
-        <kbd className="hidden font-sans text-[11px] text-muted lg:inline">Ctrl K</kbd>
       </button>
 
       <Command.Dialog
