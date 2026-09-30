@@ -76,7 +76,8 @@ body {
     transform: scaleX(1);
   }
 }
-.nav-link[data-active="true"]::after {
+.nav-link[data-active="true"]::after,
+.nav-link[aria-expanded="true"]::after {
   transform: scaleX(1);
 }
 

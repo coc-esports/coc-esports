@@ -28,16 +28,29 @@ export function NavBar() {
   const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const mobileButtonRef = useRef<HTMLButtonElement>(null);
   const closeTimer = useRef<number | null>(null);
+  // How the open mega-menu was opened; decides click and Esc behaviour.
+  const openedVia = useRef<"hover" | "click" | "keyboard">("hover");
 
   const cancelClose = () => {
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
     closeTimer.current = null;
   };
 
-  const open = (label: string) => {
+  const open = (label: string, via: "hover" | "click" | "keyboard") => {
     cancelClose();
+    openedVia.current = via;
     setInstant(openMenu !== null && openMenu !== label);
     setOpenMenu(label);
+  };
+
+  const onTriggerClick = (label: string, isOpen: boolean, keyboard: boolean) => {
+    // A mouse click right after hover-open should keep the menu open, not close it.
+    if (isOpen && !keyboard && openedVia.current === "hover") {
+      openedVia.current = "click";
+      return;
+    }
+    if (isOpen) closeAll();
+    else open(label, keyboard ? "keyboard" : "click");
   };
 
   const scheduleClose = () => {
@@ -79,12 +92,20 @@ export function NavBar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Esc closes and returns focus to the trigger; clicking outside closes the mega-menu.
+  // Esc closes; clicking outside closes the mega-menu.
+  // Focus returns to the trigger only for keyboard users. Doing it for mouse users makes the
+  // browser show the gold focus ring after the Esc key press.
   useEffect(() => {
     if (!openMenu && !mobileOpen) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
-      if (openMenu) triggerRefs.current[openMenu]?.focus();
+      if (openMenu) {
+        const trigger = triggerRefs.current[openMenu];
+        const panel = document.getElementById(`mega-${openMenu.toLowerCase()}`);
+        const keyboardUser = openedVia.current === "keyboard" || panel?.contains(document.activeElement);
+        if (keyboardUser) trigger?.focus();
+        else if (headerRef.current?.contains(document.activeElement)) (document.activeElement as HTMLElement).blur();
+      }
       if (mobileOpen) mobileButtonRef.current?.focus();
       closeAll();
     };
@@ -154,7 +175,7 @@ export function NavBar() {
               return (
                 <li
                   key={item.label}
-                  onPointerEnter={(e) => e.pointerType === "mouse" && open(item.label)}
+                  onPointerEnter={(e) => e.pointerType === "mouse" && open(item.label, "hover")}
                   onPointerLeave={(e) => e.pointerType === "mouse" && scheduleClose()}
                 >
                   <button
@@ -165,7 +186,7 @@ export function NavBar() {
                     aria-expanded={isOpen}
                     aria-controls={panelId}
                     data-active={active}
-                    onClick={() => (isOpen ? closeAll() : open(item.label))}
+                    onClick={(e) => onTriggerClick(item.label, isOpen, e.detail === 0)}
                     className="nav-link flex items-center gap-1 text-sm font-semibold uppercase tracking-wider text-text/80 transition-colors duration-150 hover:text-text aria-expanded:text-text data-[active=true]:text-text"
                   >
                     {item.label}
