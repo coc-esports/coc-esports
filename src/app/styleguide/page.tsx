@@ -31,7 +31,7 @@ const typeScale = [
   { label: "Display M", className: "font-display text-4xl uppercase leading-none", sample: "Road to Worlds" },
   { label: "Heading", className: "text-2xl font-semibold", sample: "Last Chance Qualifier recap" },
   { label: "Body L", className: "text-lg", sample: "Eight teams fight for $700,000 on Town Hall 18." },
-  { label: "Body", className: "text-base", sample: "Double-elimination bracket, best-of series, live on YouTube and Twitch." },
+  { label: "Body", className: "text-base", sample: "Double-elimination bracket, 5v5 wars, live on YouTube and Twitch." },
   { label: "Meta", className: "text-sm text-muted", sample: "News · Sep 30, 2026" },
   { label: "Eyebrow", className: "text-xs font-bold uppercase tracking-[0.2em] text-gold", sample: "Next up" },
   { label: "Score", className: "font-display text-5xl tabular-nums", sample: "3 – 2" },

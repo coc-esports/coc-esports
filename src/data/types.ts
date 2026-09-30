@@ -1,4 +1,4 @@
-// Data model from PLAN.md §3. Phase 4 swaps the sample content for real JSON/MDX; the shapes stay.
+// Data model from PLAN.md §3. Edit the files in src/data to update the site; the pages read from here.
 
 export type Status = "completed" | "live" | "upcoming";
 
@@ -6,8 +6,10 @@ export type Team = {
   slug: string;
   name: string;
   short: string; // 2-3 letter code shown in the team mark
-  color: string; // team brand color for the mark
-  sample?: boolean; // invented placeholder team
+  color: string; // placeholder brand color until real logos are added
+  rank: number; // season leaderboard position
+  points: string; // as published, e.g. "350+"
+  qualified?: string; // how the team earned its Golden Ticket, if it has one
 };
 
 export type WorldsSlot =
@@ -17,22 +19,36 @@ export type WorldsSlot =
 export type Stage = {
   slug: string;
   name: string;
-  dateLabel: string;
+  kind: "monthly" | "china" | "lcq" | "worlds";
+  dateLabel: string; // short label, e.g. "Jun 27–28"
   status: Status;
+  startTime?: string; // ISO UTC, when the exact start is known
+  endTime?: string;
+  schedule?: { label: string; dates: string }[];
   prize?: string;
+  format: string;
+  winner?: string; // team slug
+  winnerNote?: string; // shown when a completed stage has no confirmed winner here yet
+  bracket?: Bracket;
   isFinal?: boolean;
 };
 
-export type Match = {
+export type BracketMatch = {
   id: string;
-  stage: string;
-  round: string;
-  teamA: string;
-  teamB: string;
-  startTime: string; // ISO, UTC
-  state: Status;
+  a?: string; // team slug
+  b?: string;
+  aLabel: string; // shown when the slot has no team yet, e.g. "Winner U1"
+  bLabel: string;
   scoreA?: number;
   scoreB?: number;
+};
+
+export type BracketRound = { name: string; matches: BracketMatch[] };
+
+export type Bracket = {
+  upper: BracketRound[];
+  lower: BracketRound[];
+  final: BracketRound;
 };
 
 export type Article = {
@@ -42,6 +58,7 @@ export type Article = {
   date: string; // ISO
   excerpt: string;
   tone: ArtTone;
+  glyph?: string;
 };
 
 export type LadderPlayer = {

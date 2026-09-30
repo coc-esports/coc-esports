@@ -11,3 +11,4 @@
 - Clash of Clans API keys only on the server, in `.env.local` (git-ignored). Never in client components.
 - Every animation needs a `prefers-reduced-motion` fallback; animate only transform/opacity/clip-path.
 - Log shipped work in `DONE.md`.
+- Esports content lives in `src/data` (TS) and `src/content/news` (MDX); `UPDATING.md` explains edits. Never invent results, scores or quotes: use TBD states and cite sources in `season.ts`.

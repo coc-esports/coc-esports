@@ -2,9 +2,11 @@ import type { Team } from "@/data/types";
 import { cn } from "@/lib/cn";
 
 const sizes = {
+  xs: "h-6 w-6 text-[9px]",
   sm: "h-10 w-10 text-sm",
   md: "h-14 w-14 text-lg",
   lg: "h-20 w-20 text-2xl",
+  xl: "h-28 w-28 text-4xl sm:h-36 sm:w-36 sm:text-5xl",
 };
 
 // Placeholder team logo: the team's short code on its brand color. Swap for real logos later.

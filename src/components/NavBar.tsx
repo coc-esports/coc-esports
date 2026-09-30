@@ -12,7 +12,8 @@ import { cn } from "@/lib/cn";
 const HOVER_CLOSE_DELAY = 120;
 
 function isActive(pathname: string, item: NavItem) {
-  const paths = [item.href, ...(item.children?.map((c) => c.href.split("#")[0]) ?? [])];
+  // Anchor links (e.g. /worlds#qualified under Teams) point into other sections, so they don't count.
+  const paths = [item.href, ...(item.children?.filter((c) => !c.href.includes("#")).map((c) => c.href) ?? [])];
   return paths.some((p) => p !== "/" && (pathname === p || pathname.startsWith(`${p}/`)));
 }
 

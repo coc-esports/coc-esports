@@ -1,22 +1,6 @@
-import type { Article, LadderPlayer, Match, Vod } from "./types";
+import type { LadderPlayer, Vod } from "./types";
 
-// Everything in this file is SAMPLE content for the Phase 2 layout.
-// Phase 4 replaces matches/articles with real data; Phase 5 makes the ladder live from the game API.
-
-export const upcomingMatches: Match[] = [
-  { id: "lcq-r1-1", stage: "Last Chance Qualifier", round: "Upper bracket · Round 1", teamA: "northgate", teamB: "ember-wolves", startTime: "2026-10-10T16:00:00Z", state: "upcoming" },
-  { id: "lcq-r1-2", stage: "Last Chance Qualifier", round: "Upper bracket · Round 1", teamA: "stonewake", teamB: "arcfall", startTime: "2026-10-10T17:30:00Z", state: "upcoming" },
-  { id: "lcq-r1-3", stage: "Last Chance Qualifier", round: "Upper bracket · Round 1", teamA: "hollow-crown", teamB: "rift-owls", startTime: "2026-10-10T19:00:00Z", state: "upcoming" },
-];
-
-export const articles: Article[] = [
-  { slug: "lcq-viewers-guide", title: "Last Chance Qualifier: three tickets, one weekend", category: "Viewer's guide", date: "2026-09-29", excerpt: "Everything you need to follow the final road to Worlds: format, schedule and the teams to watch.", tone: "gold" },
-  { slug: "double-elimination-explained", title: "How the Worlds double-elimination bracket works", category: "Explainer", date: "2026-09-26", excerpt: "", tone: "elixir" },
-  { slug: "road-to-worlds-2026", title: "Road to Worlds: every stage of 2026", category: "Season", date: "2026-09-22", excerpt: "", tone: "stone" },
-  { slug: "th18-meta", title: "The TH18 meta: what the pros attack with", category: "Strategy", date: "2026-09-18", excerpt: "", tone: "ember" },
-  { slug: "chosen-eight-so-far", title: "The Chosen Eight so far", category: "Teams", date: "2026-09-15", excerpt: "", tone: "gold" },
-];
-
+// SAMPLE ladder for the home page layout. Phase 5 replaces it with live data from the official game API.
 export const ladder: LadderPlayer[] = [
   { rank: 1, name: "Vantor", clan: "Northgate", trophies: 6812, change: 0 },
   { rank: 2, name: "Kaelis", clan: "Arcfall", trophies: 6779, change: 2 },
@@ -30,6 +14,7 @@ export const ladder: LadderPlayer[] = [
   { rank: 10, name: "Haldor", clan: "Stonewake", trophies: 6684, change: -2 },
 ];
 
+// Broadcast archive. These link to the official channel's video list until individual VOD links are added.
 const channel = "https://www.youtube.com/@ClashofClans/videos";
 
 export const vods: Vod[] = [
