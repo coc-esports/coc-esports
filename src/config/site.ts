@@ -1,7 +1,7 @@
 // One place for brand details. Change the name here once you pick the final brand
 // (it must not contain "Clash" or "Supercell"; see PLAN.md §2).
 export const site = {
-  name: "TH18 Arena",
+  name: "Gildra",
   url: "https://coc-esports.vercel.app", // change when you add a custom domain
   tagline: "The fan-made home of Clash of Clans esports",
   description:
