@@ -54,10 +54,10 @@ export default function AboutPage() {
           </p>
         </Block>
 
-        <Block title="What's still sample data">
+        <Block title="Live game data">
           <p>
-            The Legend League ladder on the home page is placeholder data until it connects to the official Clash of
-            Clans API. Team logos are simple placeholders until real artwork is added.
+            Leaderboards and player profiles come live from the official Clash of Clans API and refresh every few
+            minutes. Team logos are simple placeholders until real artwork is added.
           </p>
         </Block>
       </Container>

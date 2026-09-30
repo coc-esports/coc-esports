@@ -88,10 +88,28 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
 
         <section aria-labelledby="roster" className="mt-16">
           <SectionHeader id="roster" eyebrow="Players" title="Roster" />
-          <p data-reveal className="max-w-2xl text-muted">
-            Roster coming soon. In Phase 5, each player gets a live profile from the official Clash of Clans API: Town
-            Hall, heroes, trophies and war stars.
-          </p>
+          {team.players?.length ? (
+            <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+              {team.players.map((pl) => (
+                <li key={pl.tag} data-reveal>
+                  <Link
+                    href={`/players/${pl.tag.replace("#", "")}`}
+                    className="group block rounded-sm border border-line bg-surface p-4 transition-colors duration-150 hover:border-gold/60"
+                  >
+                    <span className="block font-semibold">
+                      <span className="title-underline">{pl.name}</span>
+                    </span>
+                    <span className="mt-1 block font-mono text-xs text-muted">{pl.tag}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p data-reveal className="max-w-2xl text-muted">
+              Roster coming soon. Each player will link to a live profile from the official Clash of Clans API: Town
+              Hall, heroes, trophies and war stars.
+            </p>
+          )}
         </section>
 
         {nearby.length > 0 && (

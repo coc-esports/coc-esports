@@ -24,6 +24,10 @@ const lcq = doubleElim8();
 lcq.upper[0].matches[0] = { ...lcq.upper[0].matches[0], a: "tribe-gaming", b: "cb7-esports", scoreA: 2, scoreB: 1 };
 ```
 
+**Add a roster:** in `teams.ts`, give the team `players: [{ name: "Player", tag: "#2PP" }, …]`. Each player links to a live profile. Find tags in-game under the player's name.
+
+**Live data stopped working (locally):** your home IP probably changed. Create a new key at developer.clashofclans.com with the new IP and paste it into `.env.local`.
+
 **New team:** add it to `teams` in `teams.ts` with a unique `slug`, a 2–3 letter `short` code and a `color`.
 
 Tip: ask Claude "Read UPDATING.md, then mark the September final as won by X", and it will make the edits.

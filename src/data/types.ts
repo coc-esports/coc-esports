@@ -10,6 +10,7 @@ export type Team = {
   rank: number; // season leaderboard position
   points: string; // as published, e.g. "350+"
   qualified?: string; // how the team earned its Golden Ticket, if it has one
+  players?: { name: string; tag: string }[]; // roster; each tag gets a live profile at /players/<tag>
 };
 
 export type WorldsSlot =
@@ -59,14 +60,6 @@ export type Article = {
   excerpt: string;
   tone: ArtTone;
   glyph?: string;
-};
-
-export type LadderPlayer = {
-  rank: number;
-  name: string;
-  clan: string;
-  trophies: number;
-  change: number; // rank change since yesterday
 };
 
 export type Vod = {
