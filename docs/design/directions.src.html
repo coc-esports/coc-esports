@@ -1,0 +1,191 @@
+<title>Gildra Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:ital,wght@0,700;0,900;1,900&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=Big+Shoulders+Display:wght@700;900&family=Barlow:wght@400;600&display=swap">
+<style>
+/* Board chrome: neutral, theme-aware. Each direction panel is a fixed single-theme specimen (the site's own look). */
+:root { --bg:#f3f4f5; --fg:#16181b; --muted:#5d6570; --line:#cfd4da; --card:#ffffff; --pick:#2a5bd7;
+  --ui:"Hanken Grotesk","Segoe UI",sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --bg:#121417; --fg:#eceef1; --muted:#9aa3ad; --line:#2c3138; --card:#1a1d21; --pick:#7ea2ff; color-scheme:dark } }
+:root[data-theme="dark"]{ --bg:#121417; --fg:#eceef1; --muted:#9aa3ad; --line:#2c3138; --card:#1a1d21; --pick:#7ea2ff; color-scheme:dark }
+*{box-sizing:border-box} body{background:var(--bg);color:var(--fg);font:15px/1.55 var(--ui);padding:32px 16px 72px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;gap:48px}
+.top h1{font:900 clamp(34px,6vw,60px)/.95 "Sofia Sans Extra Condensed","Arial Narrow",sans-serif;text-transform:uppercase;margin:0 0 10px;letter-spacing:-.005em}
+.top p{margin:0;color:var(--muted);max-width:72ch}
+.verdict{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--pick);border-radius:8px;padding:18px 22px;display:grid;gap:6px}
+.verdict b{font:600 13px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--pick)}
+.verdict h2{margin:0;font:900 30px/1 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase}
+.verdict p{margin:0;color:var(--muted)}
+.dir{display:grid;gap:14px}
+.dir-head{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.dir-head h2{margin:0;font:900 30px/1 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase}
+.dir-head .tag{font:500 12px var(--mono);padding:3px 8px;border:1px solid var(--line);border-radius:3px;color:var(--muted)}
+.dir-head .tag.rec{border-color:var(--pick);color:var(--pick)}
+.spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;font-size:14px}
+.spec div{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px 14px;min-width:0}
+.spec h3{margin:0 0 6px;font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.spec ul{margin:0;padding-left:18px} .spec li{margin:2px 0}
+.sw{display:flex;gap:6px;flex-wrap:wrap} .sw i{width:28px;height:28px;border-radius:3px;border:1px solid rgba(127,127,127,.35);display:inline-block}
+
+/* shared specimen frame */
+.shot{border-radius:10px;overflow:hidden;position:relative;isolation:isolate}
+.shot nav{display:flex;align-items:center;gap:18px;padding:16px 24px;font-size:13px}
+.shot nav .sp{margin-left:auto;display:flex;gap:10px;align-items:center}
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:12px;padding:8px 24px 28px;align-items:end;min-height:440px}
+@media (max-width:760px){.hero{grid-template-columns:minmax(0,1fr);min-height:0}.hero .art{order:-1;max-height:240px}}
+.hero .art{position:relative;display:grid;place-items:center} .hero .art img{width:100%;height:auto;max-width:460px;display:block}
+.eyebrow{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.line{display:block;overflow:hidden} .line>span{display:block}
+@media (prefers-reduced-motion:no-preference){ .line>span{animation:rise 1s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(.12s + var(--i,0)*.09s)} .hero .art img{animation:float-in 1.4s cubic-bezier(.16,1,.3,1) both .2s} }
+@keyframes rise{from{transform:translateY(105%)}} @keyframes float-in{from{opacity:0;transform:translateY(24px) scale(.97)}}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.count{display:flex;gap:10px;margin-top:18px;font-variant-numeric:tabular-nums}
+.count div{display:grid;justify-items:start} .count b{font-size:30px;line-height:1} .count small{font:500 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.eight{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;padding:0 24px 24px}
+@media (max-width:760px){.eight{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.eight > div{aspect-ratio:3/4.4;padding:10px;display:flex;flex-direction:column;justify-content:space-between;min-width:0;font-size:11px}
+.eight b{font-size:20px;line-height:1}
+
+/* A · Broadcast Editorial */
+.A{background:#0b0c0e;color:#f1f2f0;--acc:#5b9bff}
+.A nav{border-bottom:1px solid #22262c} .A nav .logo{font:900 22px "Sofia Sans Extra Condensed",sans-serif;letter-spacing:.02em}
+.A nav a{color:#a7adb5} .A .chip{font:500 11px var(--mono);border:1px solid #2c3138;padding:5px 9px;border-radius:2px;color:#c9ced4}
+.A .eyebrow{color:var(--acc)}
+.A h3.hl{font:900 clamp(56px,9.4vw,128px)/.82 "Sofia Sans Extra Condensed","Arial Narrow",sans-serif;text-transform:uppercase;margin:12px 0 0;letter-spacing:-.01em}
+.A h3.hl .inl{display:inline-block;height:.78em;width:1.25em;vertical-align:-.04em;border-radius:3px;background:#15181c center/cover;margin:0 .05em}
+.A h3.hl em{font-style:italic;color:#8b929b}
+.A .sub{font:500 17px/1.45 "Hanken Grotesk",sans-serif;color:#b9bfc6;max-width:42ch;margin:16px 0 0}
+.A .b1{background:#f1f2f0;color:#0b0c0e;font:600 13px "Hanken Grotesk";padding:12px 18px;border-radius:2px;text-transform:uppercase;letter-spacing:.06em}
+.A .b2{border:1px solid #3a4048;color:#f1f2f0;font:600 13px "Hanken Grotesk";padding:12px 18px;border-radius:2px;text-transform:uppercase;letter-spacing:.06em}
+.A .count b{font:900 34px "Sofia Sans Extra Condensed"} .A .art::before{content:"";position:absolute;inset:12% 8%;background:radial-gradient(closest-side,rgba(91,155,255,.33),transparent);z-index:-1;filter:blur(18px)}
+.A .eight > div{background:#14171b;border:1px solid #22262c} .A .eight .q{border-color:#3c5d96;background:linear-gradient(180deg,#121a28,#14171b)}
+.A .eight .q i{font:500 9px var(--mono);color:var(--acc);text-transform:uppercase;letter-spacing:.08em;font-style:normal}
+.A .eight b{font:900 26px "Sofia Sans Extra Condensed"} .A .eight span{color:#8b929b}
+
+/* B · Gilded War Table */
+.B{background:radial-gradient(ellipse 80% 70% at 85% 0%,#3a2a20 0%,transparent 60%),#17140f;color:#f3ead9;--gold:linear-gradient(180deg,#ffe3a1 0%,#f0b84a 45%,#a8701c 72%,#ffd677 100%)}
+.B nav{border-bottom:1px solid #2e271f} .B nav .logo{font:800 22px "Bricolage Grotesque";font-variation-settings:"wdth" 75;letter-spacing:.01em}
+.B nav a{color:#b9ac95} .B .chip{font:500 11px var(--mono);border:1px solid #3a3127;padding:5px 9px;border-radius:6px;color:#d8cbb3}
+.B .eyebrow{color:#e9b75a}
+.B h3.hl{font:800 clamp(48px,8vw,104px)/.88 "Bricolage Grotesque",sans-serif;font-variation-settings:"wdth" 75,"opsz" 96;text-transform:uppercase;margin:12px 0 0;letter-spacing:-.02em}
+.B h3.hl .g{background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+.B .sub{font:400 17px/1.5 "Hanken Grotesk";color:#cbbfa8;max-width:42ch;margin:16px 0 0}
+.B .b1{background:linear-gradient(180deg,#ffd677,#f0b84a);color:#2a1a02;font:600 14px "Hanken Grotesk";padding:12px 18px;border-radius:10px;box-shadow:0 4px 0 #8f5f12}
+.B .b2{border:1px solid #5a4a35;color:#f3ead9;font:600 14px "Hanken Grotesk";padding:12px 18px;border-radius:10px}
+.B .count b{font:800 32px "Bricolage Grotesque";font-variation-settings:"wdth" 75}
+.B .eight > div{background:#221d17;border:1px solid #3a3127;border-radius:8px} .B .eight .q{background:linear-gradient(110deg,#2a2432 0%,#221f29 40%,#3a2e18 100%);border-color:#8f5f12}
+.B .eight .q i{font:500 9px var(--mono);color:#e9b75a;text-transform:uppercase;font-style:normal} .B .eight b{font:800 22px "Bricolage Grotesque";font-variation-settings:"wdth" 75} .B .eight span{color:#a99c86}
+
+/* C · Night Arena */
+.C{background:#060a13;color:#fff;--c1:#46d2ff;--c2:#ffc63d}
+.C .bgart{position:absolute;inset:0;z-index:-1;background:center/cover;opacity:.55} .C .bgart::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#060a13 30%,rgba(6,10,19,.55) 70%,rgba(6,10,19,.2)),linear-gradient(0deg,#060a13 0%,transparent 45%)}
+.C nav{border-bottom:1px solid rgba(255,255,255,.08)} .C nav .logo{font:900 22px "Big Shoulders Display";letter-spacing:.04em}
+.C nav a{color:#aab6c8} .C .chip{font:500 11px var(--mono);background:rgba(255,255,255,.06);padding:5px 9px;border-radius:999px;color:#d7e2f2}
+.C .eyebrow{color:var(--c1)}
+.C h3.hl{font:900 clamp(52px,8.6vw,112px)/.86 "Big Shoulders Display",sans-serif;text-transform:uppercase;margin:12px 0 0;letter-spacing:.005em}
+.C h3.hl .y{color:var(--c2);text-shadow:0 0 28px rgba(255,198,61,.35)}
+.C .sub{font:400 17px/1.5 "Barlow";color:#c3cedd;max-width:42ch;margin:16px 0 0}
+.C .b1{background:var(--c2);color:#111;font:600 14px "Barlow";padding:12px 20px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
+.C .b2{background:rgba(255,255,255,.08);color:#fff;font:600 14px "Barlow";padding:12px 20px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
+.C .count b{font:900 32px "Big Shoulders Display";color:var(--c1)}
+.C .eight > div{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px} .C .eight .q{border-color:var(--c2);box-shadow:inset 0 0 24px rgba(255,198,61,.12)}
+.C .eight .q i{font:500 9px var(--mono);color:var(--c2);text-transform:uppercase;font-style:normal} .C .eight b{font:900 22px "Big Shoulders Display"} .C .eight span{color:#8c9bb0}
+.shot a{text-decoration:none}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>Gildra · Three directions</h1>
+    <p>Step 4, visual direction. The same home hero and "Chosen Eight" row in three complete looks: fonts, colours, art treatment and motion feel. The art is official Fan Kit material (Town Hall 18 and loading-screen key art). The headline animates in once on load. Below each: palette, type, signature moments, strengths and risks.</p>
+  </header>
+
+  <div class="verdict"><b>Claude's pick</b><h2>A · Broadcast Editorial</h2><p>It's the only one that matches all three inputs at once: your taste (The Romans' giant condensed type, SN2's monochrome restraint), the research (one accent, colour comes from the art, 1–3 signature moments), and the brief (the answer to "what's next and where do I watch" in five seconds). B is beautiful but reads close to the critique's "gold everywhere" problem; C looks like every other esports site (Riot, BLAST).</p></div>
+
+  <!-- A -->
+  <section class="dir">
+    <div class="dir-head"><h2>A · Broadcast Editorial</h2><span class="tag rec">Recommended</span><span class="tag">From: The Romans · SN2 · ESL · Riot</span></div>
+    <div class="shot A">
+      <nav><span class="logo">GILDRA</span><a>Worlds</a><a>Schedule</a><a>Teams</a><a>News</a><span class="sp"><span class="chip">Spoilers off</span><span class="chip" style="background:#f1f2f0;color:#0b0c0e;border-color:#f1f2f0">Watch live</span></span></nav>
+      <div class="hero">
+        <div>
+          <span class="eyebrow">Last Chance Qualifier · Oct 10–11</span>
+          <h3 class="hl"><span class="line"><span style="--i:0">Three <span class="inl" style="background-image:url(__TH18WARM__)"></span></span></span><span class="line"><span style="--i:1">tickets</span></span><span class="line"><span style="--i:2"><em>left.</em></span></span></h3>
+          <p class="sub">Eight teams. Double elimination. The top three go to Worlds.</p>
+          <div class="count" data-count><div><b>08</b><small>days</small></div><div><b>00</b><small>hrs</small></div><div><b>00</b><small>min</small></div></div>
+          <div class="cta"><a class="b1">Watch live</a><a class="b2">See the bracket</a></div>
+        </div>
+        <div class="art"><img alt="Town Hall 18, cold lighting (Fan Kit)" src="__TH18COLD__"></div>
+      </div>
+      <div class="eight">
+        <div class="q"><i>Golden Ticket · Jun</i><b>ZOOS</b><span>#1 · 350+</span></div><div class="q"><i>Golden Ticket · Jul</i><b>REPOTTED</b><span>#2 · 300+</span></div><div class="q"><i>Golden Ticket · Aug</i><b>VATIC</b><span>#3 · 225+</span></div>
+        <div><i style="font:500 9px var(--mono);color:#8b929b;font-style:normal">Open</i><b>SEP</b><span>Monthly winner</span></div><div><i style="font:500 9px var(--mono);color:#8b929b;font-style:normal">Open</i><b>CHINA</b><span>Regional champion</span></div><div><i style="font:500 9px var(--mono);color:#8b929b;font-style:normal">Open</i><b>LCQ 1</b><span>Oct 10–11</span></div><div><i style="font:500 9px var(--mono);color:#8b929b;font-style:normal">Open</i><b>LCQ 2</b><span>Oct 10–11</span></div><div><i style="font:500 9px var(--mono);color:#8b929b;font-style:normal">Open</i><b>LCQ 3</b><span>Oct 10–11</span></div>
+      </div>
+    </div>
+    <div class="spec">
+      <div><h3>Palette</h3><div class="sw"><i style="background:#0b0c0e"></i><i style="background:#14171b"></i><i style="background:#8b929b"></i><i style="background:#f1f2f0"></i><i style="background:#5b9bff"></i></div><p style="margin:8px 0 0;color:var(--muted)">Ink, graphite, steel, bone + one accent: <b>TH18 lightning blue</b>. All other colour comes from the official art.</p></div>
+      <div><h3>Type</h3><ul><li><b>Sofia Sans Extra Condensed</b> 900: giant headlines, team names</li><li><b>Hanken Grotesk</b>: text</li><li><b>JetBrains Mono</b>: times, labels</li></ul></div>
+      <div><h3>3 signature moments</h3><ul><li>Hero: TH18 rises with a lightning glow; headline lines rise from masks; tiny art set inside the headline</li><li>Golden Ticket cards flip from "Open" to the team when claimed</li><li>Road to Worlds: pinned timeline you scroll through</li></ul></div>
+      <div><h3>Strengths / risks</h3><ul><li>+ Premium, editorial, unmistakably yours</li><li>+ Fast: art is images, no heavy 3D needed</li><li>− Dark + one accent can look generic if the type isn't huge and confident</li></ul></div>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section class="dir">
+    <div class="dir-head"><h2>B · Gilded War Table</h2><span class="tag">From: earlier Gildra board · Exo Ape</span></div>
+    <div class="shot B">
+      <nav><span class="logo">GILDRA</span><a>Worlds</a><a>Schedule</a><a>Teams</a><a>News</a><span class="sp"><span class="chip">Spoilers off</span></span></nav>
+      <div class="hero">
+        <div>
+          <span class="eyebrow">Last Chance Qualifier · Oct 10–11</span>
+          <h3 class="hl"><span class="line"><span style="--i:0">Three</span></span><span class="line"><span style="--i:1"><span class="g">golden</span></span></span><span class="line"><span style="--i:2">tickets left</span></span></h3>
+          <p class="sub">Eight teams. Double elimination. The top three go to Worlds.</p>
+          <div class="count" data-count><div><b>08</b><small>days</small></div><div><b>00</b><small>hrs</small></div><div><b>00</b><small>min</small></div></div>
+          <div class="cta"><a class="b1">Watch live</a><a class="b2">See the bracket</a></div>
+        </div>
+        <div class="art"><img alt="Town Hall 18, warm lighting (Fan Kit)" src="__TH18WARM__"></div>
+      </div>
+      <div class="eight">
+        <div class="q"><i>Jun</i><b>ZOOS</b><span>#1</span></div><div class="q"><i>Jul</i><b>REPOTTED</b><span>#2</span></div><div class="q"><i>Aug</i><b>VATIC</b><span>#3</span></div>
+        <div><b>SEP</b><span>Open</span></div><div><b>CHINA</b><span>Open</span></div><div><b>LCQ 1</b><span>Open</span></div><div><b>LCQ 2</b><span>Open</span></div><div><b>LCQ 3</b><span>Open</span></div>
+      </div>
+    </div>
+    <div class="spec">
+      <div><h3>Palette</h3><div class="sw"><i style="background:#17140f"></i><i style="background:#221d17"></i><i style="background:#a99c86"></i><i style="background:#f3ead9"></i><i style="background:linear-gradient(180deg,#ffe3a1,#f0b84a,#a8701c)"></i></div><p style="margin:8px 0 0;color:var(--muted)">Warm stone neutrals + gold as polished metal.</p></div>
+      <div><h3>Type</h3><ul><li><b>Bricolage Grotesque</b> condensed</li><li><b>Hanken Grotesk</b></li></ul></div>
+      <div><h3>Signature moments</h3><ul><li>3D gold Golden Ticket in the hero</li><li>Foil shine on claimed tickets</li><li>Gilded count-up numbers</li></ul></div>
+      <div><h3>Strengths / risks</h3><ul><li>+ Warm, ceremonial, close to Clash's world</li><li>− Gold everywhere was the critique's main complaint</li><li>− 3D ticket is heavy on phones</li></ul></div>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section class="dir">
+    <div class="dir-head"><h2>C · Night Arena</h2><span class="tag">From: Riot Games · LoL Esports · BLAST</span></div>
+    <div class="shot C">
+      <div class="bgart" style="background-image:url(__TH16ART__)"></div>
+      <nav><span class="logo">GILDRA</span><a>Worlds</a><a>Schedule</a><a>Teams</a><a>News</a><span class="sp"><span class="chip">Spoilers off</span><span class="chip" style="background:#ffc63d;color:#111">Watch live</span></span></nav>
+      <div class="hero" style="grid-template-columns:minmax(0,1fr)">
+        <div>
+          <span class="eyebrow">Last Chance Qualifier · Oct 10–11</span>
+          <h3 class="hl"><span class="line"><span style="--i:0">Three tickets</span></span><span class="line"><span style="--i:1"><span class="y">left</span> at Worlds</span></span></h3>
+          <p class="sub">Eight teams. Double elimination. The top three go to Worlds.</p>
+          <div class="count" data-count><div><b>08</b><small>days</small></div><div><b>00</b><small>hrs</small></div><div><b>00</b><small>min</small></div></div>
+          <div class="cta"><a class="b1">Watch live</a><a class="b2">See the bracket</a></div>
+        </div>
+      </div>
+      <div class="eight">
+        <div class="q"><i>Qualified</i><b>ZOOS</b><span>Jun</span></div><div class="q"><i>Qualified</i><b>REPOTTED</b><span>Jul</span></div><div class="q"><i>Qualified</i><b>VATIC</b><span>Aug</span></div>
+        <div><b>SEP</b><span>TBD</span></div><div><b>CHINA</b><span>TBD</span></div><div><b>LCQ 1</b><span>TBD</span></div><div><b>LCQ 2</b><span>TBD</span></div><div><b>LCQ 3</b><span>TBD</span></div>
+      </div>
+    </div>
+    <div class="spec">
+      <div><h3>Palette</h3><div class="sw"><i style="background:#060a13"></i><i style="background:#46d2ff"></i><i style="background:#ffc63d"></i><i style="background:#c3cedd"></i></div><p style="margin:8px 0 0;color:var(--muted)">Night navy, cyan + gold, full-bleed key art.</p></div>
+      <div><h3>Type</h3><ul><li><b>Big Shoulders Display</b></li><li><b>Barlow</b></li></ul></div>
+      <div><h3>Signature moments</h3><ul><li>Key-art video/parallax hero</li><li>Glowing qualified cards</li><li>Broadcast-style lower thirds</li></ul></div>
+      <div><h3>Strengths / risks</h3><ul><li>+ Instantly "esports", energetic</li><li>− Looks like Riot/BLAST: not distinctive</li><li>− Two accents fight; key art carries everything</li></ul></div>
+    </div>
+  </section>
+</div>
+<script>
+(function(){ var t=Date.parse("2026-10-10T16:00:00Z"); function upd(){ var ms=Math.max(0,t-Date.now()), d=Math.floor(ms/864e5), h=Math.floor(ms/36e5)%24, m=Math.floor(ms/6e4)%60;
+  document.querySelectorAll("[data-count]").forEach(function(c){ var b=c.querySelectorAll("b"); b[0].textContent=String(d).padStart(2,"0"); b[1].textContent=String(h).padStart(2,"0"); b[2].textContent=String(m).padStart(2,"0"); }); }
+  upd(); setInterval(upd, 30000); })();
+</script>
