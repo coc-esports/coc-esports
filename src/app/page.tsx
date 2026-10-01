@@ -1,24 +1,20 @@
-import { Hero } from "@/components/home/Hero";
-import { NextMatches } from "@/components/home/NextMatches";
-import { ChosenEight } from "@/components/home/ChosenEight";
-import { NewsGrid } from "@/components/home/NewsGrid";
-import { RoadToWorlds } from "@/components/home/RoadToWorlds";
-import { LegendLadder } from "@/components/home/LegendLadder";
-import { Vault } from "@/components/home/Vault";
-import { StatBand } from "@/components/home/StatBand";
+import { HomeHero } from "@/components/v2/home/HomeHero";
+import { ChosenEightBand, HowItWorks, NewsBand, NextUp, RoadBand, WatchBand } from "@/components/v2/home/HomeSections";
 
-// Home page bands, in the Riot rhythm from PLAN.md §5.
+// Re-render at most hourly so the event-aware hero switches mode on its own after the LCQ.
+export const revalidate = 3600;
+
+// Home (docs/plan.md): answer "what's next, when, where to watch" first, then the race to Worlds.
 export default function Home() {
   return (
     <>
-      <Hero />
-      <NextMatches />
-      <ChosenEight />
-      <StatBand />
-      <NewsGrid />
-      <RoadToWorlds />
-      <LegendLadder />
-      <Vault />
+      <HomeHero />
+      <NextUp />
+      <ChosenEightBand />
+      <RoadBand />
+      <HowItWorks />
+      <NewsBand />
+      <WatchBand />
     </>
   );
 }

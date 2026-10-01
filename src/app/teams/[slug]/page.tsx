@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PageHeader } from "@/components/PageHeader";
-import { StageCard } from "@/components/StageCard";
-import { TeamCard } from "@/components/TeamCard";
-import { TeamMark } from "@/components/TeamMark";
-import { Badge } from "@/components/ui/Badge";
-import { Container } from "@/components/ui/Container";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { stages } from "@/data/season";
+import { Container, Facts, PageIntro, Section } from "@/components/v2/Layout";
+import { StageRow } from "@/components/v2/StageRow";
+import { TeamMark } from "@/components/v2/TeamMark";
+import { TeamPoster } from "@/components/v2/TeamPoster";
+import { sources, stages } from "@/data/season";
 import { findTeam, standingsAsOf, teams } from "@/data/teams";
 
 export const dynamicParams = false;
@@ -30,100 +27,79 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
 
   const wins = stages.filter((s) => s.winner === team.slug);
   const nearby = teams.filter((t) => t.slug !== team.slug && Math.abs(t.rank - team.rank) <= 2).slice(0, 4);
-  const facts = [
-    ["Season rank", `#${team.rank}`],
-    ["Leaderboard points", team.points],
-    ["Worlds status", team.qualified ? "Qualified" : "LCQ contender"],
-  ];
 
   return (
     <>
-      <PageHeader
-        eyebrow={
-          <span className="flex items-center gap-3">
-            <Link href="/teams" className="hover:text-gold-bright">
-              Teams
-            </Link>
-            <span aria-hidden className="text-muted">/</span>
-            {team.qualified ? <Badge tone="qualified" /> : <Badge tone="neutral">LCQ contender</Badge>}
-          </span>
-        }
+      <PageIntro
+        crumbs={[{ label: "Teams", href: "/teams" }]}
+        label={team.qualified ? "Golden Ticket · World Finals" : "LCQ contender"}
         title={team.name}
-        intro={team.qualified ? `${team.qualified}. Booked for the World Finals.` : "Chasing one of the last three Golden Tickets."}
-      >
-        <TeamMark team={team} size="xl" morph />
-      </PageHeader>
+        intro={team.qualified ? `${team.qualified}. Booked for the World Finals.` : "Chasing one of the last three Golden Tickets at the Last Chance Qualifier."}
+        aside={<TeamMark team={team} size="xl" morph />}
+      />
+      <Container>
+        <div className="grid gap-3 pt-12">
+          <Facts
+            items={[
+              { label: "Season rank", value: `#${team.rank}` },
+              { label: "Season points", value: team.points },
+              { label: "Worlds status", value: team.qualified ? "Qualified" : "Contender", accent: !!team.qualified },
+              { label: "Titles 2026", value: wins.length },
+            ]}
+          />
+          <p className="font-data text-label uppercase text-steel">Leaderboard {standingsAsOf}</p>
+        </div>
 
-      <Container className="py-16 sm:py-20">
-        <dl className="grid gap-4 sm:grid-cols-3">
-          {facts.map(([label, value]) => (
-            <div key={label} data-reveal className="rounded-sm border border-line bg-surface p-5">
-              <dt className="text-xs uppercase tracking-widest text-muted">{label}</dt>
-              <dd className="mt-2 font-display text-3xl uppercase leading-none text-gold tabular-nums">{value}</dd>
-            </div>
-          ))}
-        </dl>
-        <p className="mt-3 text-xs text-muted">Leaderboard {standingsAsOf}.</p>
-
-        <section aria-labelledby="titles" className="mt-16">
-          <SectionHeader id="titles" eyebrow="2026" title="Titles this season" />
+        <Section id="titles" label="2026" title="Titles this season">
           {wins.length ? (
-            <ul className="grid gap-4 md:grid-cols-3">
+            <ol className="border-t border-rule">
               {wins.map((s) => (
-                <li key={s.slug} className="grid">
-                  <StageCard stage={s} />
-                </li>
+                <StageRow key={s.slug} stage={s} />
               ))}
-            </ul>
+            </ol>
           ) : (
-            <p data-reveal className="text-muted">
-              No Monthly Final titles yet. Next chance: the{" "}
-              <Link href="/stages/lcq-2026" className="text-gold underline underline-offset-4">
-                Last Chance Qualifier
+            <p className="max-w-[60ch] text-steel">
+              No Monthly Final title yet. Next chance:{" "}
+              <Link href="/stages/lcq-2026" className="text-bone underline decoration-bolt underline-offset-4 hover:text-bolt">
+                the Last Chance Qualifier
               </Link>
               .
             </p>
           )}
-        </section>
+        </Section>
 
-        <section aria-labelledby="roster" className="mt-16">
-          <SectionHeader id="roster" eyebrow="Players" title="Roster" />
+        <Section id="roster" label="Players" title="Roster">
           {team.players?.length ? (
             <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-              {team.players.map((pl) => (
-                <li key={pl.tag} data-reveal>
-                  <Link
-                    href={`/players/${pl.tag.replace("#", "")}`}
-                    className="group block rounded-sm border border-line bg-surface p-4 transition-colors duration-150 hover:border-gold/60"
-                  >
-                    <span className="block font-semibold">
-                      <span className="title-underline">{pl.name}</span>
-                    </span>
-                    <span className="mt-1 block font-mono text-xs text-muted">{pl.tag}</span>
-                  </Link>
+              {team.players.map((p) => (
+                <li key={p.tag} className="grid gap-1 rounded-hair border border-rule bg-graphite p-4">
+                  <span className="font-semibold text-bone">{p.name}</span>
+                  <span className="font-data text-label text-steel">{p.tag}</span>
                 </li>
               ))}
             </ul>
           ) : (
-            <p data-reveal className="max-w-2xl text-muted">
-              Roster coming soon. Each player will link to a live profile from the official Clash of Clans API: Town
-              Hall, heroes, trophies and war stars.
+            <p className="max-w-[60ch] text-steel">
+              The roster isn&apos;t listed on Gildra yet. Current lineups are on{" "}
+              <a href={sources[1].href} target="_blank" rel="noopener noreferrer" className="text-bone underline decoration-bolt underline-offset-4">
+                Liquipedia
+              </a>
+              .
             </p>
           )}
-        </section>
+        </Section>
 
-        {nearby.length > 0 && (
-          <section aria-labelledby="nearby" className="mt-20">
-            <SectionHeader id="nearby" title="Nearby in the standings" href="/worlds#standings" linkLabel="Full standings" />
-            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {nearby.length ? (
+          <Section id="nearby" label="Standings" title="Nearby in the table" href="/worlds#standings" linkLabel="Full standings">
+            <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {nearby.map((t) => (
                 <li key={t.slug} className="grid">
-                  <TeamCard team={t} />
+                  <TeamPoster team={t} />
                 </li>
               ))}
             </ul>
-          </section>
-        )}
+          </Section>
+        ) : null}
       </Container>
     </>
   );

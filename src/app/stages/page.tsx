@@ -1,30 +1,30 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/PageHeader";
-import { StageCard } from "@/components/StageCard";
-import { Container } from "@/components/ui/Container";
+import { Container, PageIntro, Section } from "@/components/v2/Layout";
+import { StageRow } from "@/components/v2/StageRow";
 import { stages } from "@/data/season";
 
 export const metadata: Metadata = {
   title: "Stages",
-  description: "Every stage of the 2026 Clash of Clans World Championship season: Monthly Finals, China Regional, the Last Chance Qualifier and the World Finals.",
+  description: "Every stage of the 2026 Clash of Clans World Championship: Monthly Finals, China Regional, Last Chance Qualifier and World Finals.",
 };
 
 export default function StagesPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="Season 2026"
-        title="Every stage"
-        intro="Four Monthly Finals from June to September, the China Regional Qualifier, the Last Chance Qualifier and the World Finals."
+      <PageIntro
+        crumbs={[{ label: "Worlds", href: "/worlds" }]}
+        label="Season 2026"
+        title="Stages"
+        intro="Four Monthly Finals, the China Regional Qualifier and the Last Chance Qualifier decide the eight teams at the World Finals."
       />
-      <Container className="py-16 sm:py-20">
-        <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {stages.map((stage) => (
-            <li key={stage.slug} className="grid">
-              <StageCard stage={stage} />
-            </li>
-          ))}
-        </ol>
+      <Container>
+        <Section id="all" label="In order" title="Every stage">
+          <ol className="border-t border-rule">
+            {stages.map((s) => (
+              <StageRow key={s.slug} stage={s} />
+            ))}
+          </ol>
+        </Section>
       </Container>
     </>
   );

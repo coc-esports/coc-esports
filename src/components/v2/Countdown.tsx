@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Badge } from "@/components/ui/Badge";
+import { StatusTag } from "./Status";
 
 const units = [
   ["d", "Days"],
@@ -15,10 +15,10 @@ function split(ms: number) {
   return { d: Math.floor(s / 86400), h: Math.floor((s % 86400) / 3600), m: Math.floor((s % 3600) / 60), s: s % 60 };
 }
 
-// Renders "--" on the server and first paint (the time differs per visitor), then ticks every second.
-export function Countdown({ target, label }: { target: string; label: string }) {
+// Countdown in condensed broadcast numerals. "--" on the server (time differs per visitor), then ticks.
+// Turns into a LIVE tag between start and end.
+export function Countdown({ target, end, label }: { target: string; end?: string; label: string }) {
   const [now, setNow] = useState<number | null>(null);
-
   useEffect(() => {
     const tick = () => setNow(Date.now());
     const first = window.setTimeout(tick, 0);
@@ -29,16 +29,17 @@ export function Countdown({ target, label }: { target: string; label: string }) 
     };
   }, []);
 
-  const targetMs = new Date(target).getTime();
-  if (now !== null && now >= targetMs) return <Badge tone="live">Live now</Badge>;
-  const parts = now === null ? null : split(targetMs - now);
+  const t = new Date(target).getTime();
+  const e = end ? new Date(end).getTime() : t + 36e5 * 10;
+  if (now !== null && now >= t && now < e) return <StatusTag status="live">Live now</StatusTag>;
+  if (now !== null && now >= e) return <StatusTag status="completed">Finished</StatusTag>;
+  const parts = now === null ? null : split(t - now);
 
   return (
-    <div role="timer" aria-label={label} className="flex gap-2">
+    <div role="timer" aria-label={label} className="flex gap-5">
       {units.map(([key, name]) => (
-        <div key={key} className="w-16 rounded-sm border border-line bg-bg/70 py-2 text-center">
-          <div className="overflow-hidden font-display text-3xl leading-none tabular-nums">
-            {/* Keyed by value: each new number slides in (the .tick rule in globals.css) */}
+        <div key={key} className="grid">
+          <span className="overflow-hidden font-cond text-[2.75rem] font-black leading-none tabular-nums text-bone">
             {parts ? (
               <span key={parts[key]} className="tick">
                 {String(parts[key]).padStart(2, "0")}
@@ -46,8 +47,8 @@ export function Countdown({ target, label }: { target: string; label: string }) 
             ) : (
               "--"
             )}
-          </div>
-          <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted">{name}</div>
+          </span>
+          <span className="mt-1 font-data text-label uppercase text-steel">{name}</span>
         </div>
       ))}
     </div>

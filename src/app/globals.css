@@ -1,23 +1,5 @@
 @import "tailwindcss";
 
-/* Design tokens, PLAN.md §4. The site is dark-only by design. */
-:root {
-  --bg: #0e0f13;
-  --surface: #17191f;
-  --surface-2: #20232b;
-  --line: #2c303a;
-  --text: #f4f1ea;
-  --muted: #a3a7b3;
-  --gold: #f5b82e;
-  --gold-bright: #ffcb4f;
-  --elixir: #b04ce8;
-  --elixir-text: #d7a4f5;
-  --dark-elixir: #3b2a5a;
-  --live: #e8453c;
-  --win: #5fd08b;
-  --nav-h: 4rem;
-}
-
 /* ---------------------------------------------------------------------------------------------
    Gildra v2 · Direction A "Broadcast Editorial" (docs/decisions.md, 2026-10-01).
    Monochrome base + one accent (TH18 lightning blue). All other colour comes from Fan Kit art.
@@ -75,29 +57,8 @@
   --container-page: 80rem;
 }
 
-@theme inline {
-  --color-bg: var(--bg);
-  --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
-  --color-line: var(--line);
-  --color-text: var(--text);
-  --color-muted: var(--muted);
-  --color-gold: var(--gold);
-  --color-gold-bright: var(--gold-bright);
-  --color-elixir: var(--elixir);
-  --color-elixir-text: var(--elixir-text);
-  --color-dark-elixir: var(--dark-elixir);
-  --color-live: var(--live);
-  --color-win: var(--win);
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-anton);
-}
-
-/* Motion curves (PLAN.md §6). Classes: ease-snap, ease-move, ease-drawer. */
-@theme {
-  --ease-snap: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-move: cubic-bezier(0.77, 0, 0.175, 1);
-  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+:root {
+  --nav-h: 4.5rem;
 }
 
 html {
@@ -105,16 +66,16 @@ html {
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--font-hanken), "Segoe UI", system-ui, sans-serif;
 }
 
 /* Keyboard focus ring. In the base layer so a component's own focus style (a Tailwind utility)
    always wins over it; unlayered, it would override every "outline-none" on the site. */
 @layer base {
   :focus-visible {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--bolt);
     outline-offset: 3px;
   }
 }
@@ -126,10 +87,10 @@ body {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: color-mix(in oklab, var(--bg) 80%, transparent);
+  background: color-mix(in oklab, var(--ink) 82%, transparent);
   backdrop-filter: blur(12px);
   opacity: 0;
-  transition: opacity 300ms var(--ease-snap);
+  transition: opacity 300ms var(--ease-expo);
   pointer-events: none;
 }
 .site-header[data-solid="true"]::before {
@@ -146,10 +107,10 @@ body {
   inset-inline: 0;
   bottom: -6px;
   height: 2px;
-  background: var(--gold);
+  background: var(--bolt);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 200ms var(--ease-snap);
+  transition: transform 200ms var(--ease-expo);
 }
 @media (hover: hover) and (pointer: fine) {
   .nav-link:hover::after {
@@ -159,47 +120,6 @@ body {
 .nav-link[data-active="true"]::after,
 .nav-link[data-open="true"]::after {
   transform: scaleX(1);
-}
-
-/* Hero entrance, pure CSS so it plays on first paint without waiting for JavaScript (fast LCP).
-   Each headline line rises out of its own mask; the clip-path extends above the line so tall
-   capitals aren't cut, but not below, so the rising text stays hidden until it arrives. */
-.hero-line {
-  display: block;
-  clip-path: inset(-0.3em -0.3em 0 -0.3em);
-}
-.hero-line > span {
-  display: block;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .hero-line > span {
-    animation: hero-rise 1s var(--ease-snap) both;
-    animation-delay: calc(100ms + var(--i, 0) * 90ms);
-  }
-  [data-hero-intro] {
-    animation: hero-fade 700ms var(--ease-snap) both;
-    animation-delay: calc(450ms + var(--i, 0) * 80ms);
-  }
-  [data-hero-art-inner] {
-    animation: hero-art 1400ms var(--ease-snap) both;
-  }
-}
-@keyframes hero-rise {
-  from {
-    transform: translateY(110%);
-  }
-}
-@keyframes hero-fade {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-}
-@keyframes hero-art {
-  from {
-    opacity: 0;
-    transform: scale(0.94);
-  }
 }
 
 /* v2 display lines: each line rises out of its own mask on first paint (pure CSS, so it never delays LCP
@@ -235,146 +155,14 @@ body {
 .tick {
   display: inline-block;
   transition:
-    transform 300ms var(--ease-snap),
-    opacity 300ms var(--ease-snap);
+    transform 300ms var(--ease-expo),
+    opacity 300ms var(--ease-expo);
 }
 @starting-style {
   .tick {
     transform: translateY(-45%);
     opacity: 0;
   }
-}
-
-/* Primary button: a light sweep crosses the gold on hover. */
-.btn-shine {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-.btn-shine::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(110deg, transparent 35%, rgb(255 255 255 / 0.5) 50%, transparent 65%);
-  transform: translateX(-120%);
-  pointer-events: none;
-}
-@media (hover: hover) and (pointer: fine) {
-  .btn-shine:hover::after {
-    transform: translateX(120%);
-    transition: transform 700ms var(--ease-move);
-  }
-}
-
-/* Loading skeletons: a soft light sweep shaped like the content that's coming. */
-.skeleton {
-  border-radius: 2px;
-  background: linear-gradient(100deg, var(--surface) 40%, var(--surface-2) 50%, var(--surface) 60%) 0 0 / 300% 100%;
-  animation: skeleton-sweep 1.4s linear infinite;
-}
-@keyframes skeleton-sweep {
-  to {
-    background-position: -150% 0;
-  }
-}
-
-/* Card titles: gold underline grows from the left when the card (.group) is hovered or focused. */
-.title-underline {
-  background-image: linear-gradient(var(--gold), var(--gold));
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 0% 2px;
-  transition: background-size 300ms var(--ease-snap);
-}
-@media (hover: hover) and (pointer: fine) {
-  .group:hover .title-underline {
-    background-size: 100% 2px;
-  }
-}
-.group:focus-visible .title-underline {
-  background-size: 100% 2px;
-}
-
-/* Horizontal scrolling rows (timeline, videos). Bleeds to the screen edge on mobile. */
-.scroll-row {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: 1rem;
-  scrollbar-width: thin;
-  scrollbar-color: var(--line) transparent;
-  overscroll-behavior-x: contain;
-}
-.scroll-row > * {
-  scroll-snap-align: start;
-  flex-shrink: 0;
-}
-
-/* Mega-menu panel. Exit is faster than enter. */
-.mega {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px);
-  transition:
-    opacity 150ms var(--ease-snap),
-    transform 150ms var(--ease-snap),
-    visibility 0s linear 150ms;
-}
-.mega[data-open="true"] {
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-  transition:
-    opacity 200ms var(--ease-snap),
-    transform 250ms var(--ease-snap),
-    visibility 0s;
-}
-.mega [data-stagger] {
-  opacity: 0;
-  transform: translateY(6px);
-  transition:
-    opacity 200ms var(--ease-snap),
-    transform 250ms var(--ease-snap);
-}
-.mega[data-open="true"] [data-stagger] {
-  opacity: 1;
-  transform: none;
-  transition-delay: calc(var(--i, 0) * 30ms);
-}
-/* Moving from one open menu to another: swap instantly, don't replay the entrance. */
-[data-instant="true"] .mega,
-[data-instant="true"] .mega [data-stagger] {
-  transition-duration: 0s;
-  transition-delay: 0s;
-}
-
-/* Full-screen mobile menu. */
-.mobile-menu {
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity 200ms var(--ease-snap),
-    visibility 0s linear 200ms;
-}
-.mobile-menu[data-open="true"] {
-  opacity: 1;
-  visibility: visible;
-  transition:
-    opacity 250ms var(--ease-snap),
-    visibility 0s;
-}
-.mobile-menu [data-stagger] {
-  opacity: 0;
-  transform: translateY(12px);
-  transition:
-    opacity 300ms var(--ease-snap),
-    transform 400ms var(--ease-drawer);
-}
-.mobile-menu[data-open="true"] [data-stagger] {
-  opacity: 1;
-  transform: none;
-  transition-delay: calc(60ms + var(--i, 0) * 40ms);
 }
 
 /* Page transitions (React <ViewTransition>). Switching pages is something people do constantly,
@@ -402,7 +190,7 @@ body {
 /* Team marks and article art glide between card and detail page (only when opening one). */
 ::view-transition-group(.morph) {
   animation-duration: 320ms;
-  animation-timing-function: var(--ease-snap);
+  animation-timing-function: var(--ease-expo);
 }
 ::view-transition-image-pair(.morph) {
   animation-name: vt-blur;
@@ -434,5 +222,27 @@ body {
     transition-duration: 0.01ms !important;
     transition-delay: 0s !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* v2 phone menu: quick fade, links rise in sequence. Exit is instant (Radix unmounts). */
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-sheet {
+    animation: v2-fade 200ms var(--ease-expo) both;
+  }
+  .mobile-sheet .mobile-link {
+    animation: v2-up 500ms var(--ease-expo) both;
+    animation-delay: calc(60ms + var(--i, 0) * 45ms);
+  }
+}
+@keyframes v2-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes v2-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
   }
 }

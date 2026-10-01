@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { cn } from "@/lib/cn";
 import { StatusTag, type V2Status } from "./Status";
+import { useSpoilers } from "./Spoilers";
 
 // One match line in a day-grouped schedule (Riot pattern). Time shows in the visitor's own time zone.
 // Results stay hidden behind "Reveal" when spoilers are on (site-wide switch arrives in Step 5; prop for now).
@@ -14,7 +15,7 @@ export function MatchRow({
   scoreA,
   scoreB,
   status,
-  spoilers = true,
+  spoilers,
 }: {
   startTime: string;
   stage: string;
@@ -25,6 +26,8 @@ export function MatchRow({
   status: V2Status;
   spoilers?: boolean;
 }) {
+  const { hide } = useSpoilers();
+  spoilers = spoilers ?? hide; // follows the site-wide switch unless set explicitly
   const [revealed, setRevealed] = useState(false);
   const hasScore = scoreA !== undefined && scoreB !== undefined;
   const showScore = hasScore && (!spoilers || revealed);

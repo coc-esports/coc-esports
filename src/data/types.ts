@@ -10,7 +10,7 @@ export type Team = {
   rank: number; // season leaderboard position
   points: string; // as published, e.g. "350+"
   qualified?: string; // how the team earned its Golden Ticket, if it has one
-  players?: { name: string; tag: string }[]; // roster; each tag gets a live profile at /players/<tag>
+  players?: { name: string; tag: string }[]; // roster (names and player tags), shown on the team page
 };
 
 export type WorldsSlot =
@@ -60,6 +60,7 @@ export type Article = {
   excerpt: string;
   tone: ArtTone;
   glyph?: string;
+  art?: { src: string; alt: string }; // Fan Kit image in /public/art
 };
 
 export type Vod = {

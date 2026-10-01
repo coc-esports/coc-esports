@@ -14,7 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/teams", 0.8),
     page("/stages", 0.7),
     page("/news", 0.7),
-    page("/leaderboards", 0.6),
     page("/watch", 0.5),
     page("/about", 0.3),
     ...stages.map((s) => page(`/stages/${s.slug}`)),

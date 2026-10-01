@@ -8,7 +8,6 @@ import { mainNav } from "@/config/nav";
 import { articles } from "@/data/news";
 import { stages } from "@/data/season";
 import { teams } from "@/data/teams";
-import { normalizeTag } from "@/lib/tags";
 
 const pages = [
   { label: "Home", href: "/" },
@@ -29,9 +28,9 @@ function SearchIcon() {
 
 // Hover is plain CSS (no re-render while the mouse moves); the keyboard highlight uses data-selected.
 const itemClass =
-  "flex cursor-pointer items-center justify-between gap-4 rounded-sm px-3 py-2.5 text-sm text-text/85 hover:bg-surface-2/60 hover:text-text data-[selected=true]:bg-surface-2 data-[selected=true]:text-text";
+  "flex cursor-pointer items-center justify-between gap-4 rounded-hair px-3 py-2.5 text-sm text-bone/85 hover:bg-plate/60 hover:text-bone data-[selected=true]:bg-plate data-[selected=true]:text-bone";
 const groupClass =
-  "[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:pb-1 [&_[cmdk-group-heading]]:pt-3 [&_[cmdk-group-heading]]:text-[11px] [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.18em] [&_[cmdk-group-heading]]:text-muted";
+  "[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:pb-1 [&_[cmdk-group-heading]]:pt-3 [&_[cmdk-group-heading]]:text-[11px] [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.18em] [&_[cmdk-group-heading]]:text-steel";
 
 // Site search (PLAN.md §6 #20): Ctrl+K / ⌘K or the search button. Opens instantly, no animation,
 // because it's a tool people reach for often.
@@ -57,15 +56,13 @@ export function CommandMenu() {
     router.push(href);
   };
 
-  const tag = search.trim().startsWith("#") ? normalizeTag(search) : null;
-
   return (
     <>
       <button
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Search the site"
-        className="grid h-11 w-11 place-items-center rounded-sm text-text/80 outline-none transition-[transform,color,background-color] duration-150 ease-snap hover:bg-surface-2 hover:text-text focus-visible:bg-surface-2 focus-visible:text-text active:scale-[0.94]"
+        className="grid h-11 w-11 place-items-center rounded-hair text-bone/80 outline-none transition-[transform,color,background-color] duration-150 ease-expo hover:bg-plate hover:text-bone focus-visible:bg-plate focus-visible:text-bone active:scale-[0.94]"
       >
         <SearchIcon />
       </button>
@@ -81,41 +78,31 @@ export function CommandMenu() {
         // item under the pointer and snapping it into view, which makes scrolling feel sticky.
         disablePointerSelection
         loop
-        overlayClassName="fixed inset-0 z-50 bg-bg/80"
-        contentClassName="fixed left-1/2 top-[12vh] z-50 w-[min(640px,calc(100vw-2rem))] -translate-x-1/2 overflow-hidden rounded-sm border border-line bg-surface shadow-[0_24px_80px_-20px_rgb(0_0_0/0.8)] outline-none"
+        overlayClassName="fixed inset-0 z-50 bg-ink/80"
+        contentClassName="fixed left-1/2 top-[12vh] z-50 w-[min(640px,calc(100vw-2rem))] -translate-x-1/2 overflow-hidden rounded-hair border border-rule bg-graphite shadow-[0_24px_80px_-20px_rgb(0_0_0/0.8)] outline-none"
       >
         <Dialog.Title className="sr-only">Search the site</Dialog.Title>
-        <Dialog.Description className="sr-only">Find pages, teams, stages, news or a player by tag.</Dialog.Description>
-        <div className="flex items-center gap-3 border-b border-line px-4 text-muted">
+        <Dialog.Description className="sr-only">Find pages, teams, stages or news.</Dialog.Description>
+        <div className="flex items-center gap-3 border-b border-rule px-4 text-steel">
           <SearchIcon />
           <Command.Input
             value={search}
             onValueChange={setSearch}
-            placeholder="Search teams, stages, news… or #player-tag"
-            className="h-14 flex-1 bg-transparent text-base text-text outline-none placeholder:text-muted"
+            placeholder="Search teams, stages, news…"
+            className="h-14 flex-1 bg-transparent text-base text-bone outline-none placeholder:text-steel"
           />
-          <kbd className="rounded-sm border border-line px-1.5 py-0.5 text-[11px]">Esc</kbd>
+          <kbd className="rounded-hair border border-rule px-1.5 py-0.5 text-[11px]">Esc</kbd>
         </div>
         <Command.List data-lenis-prevent className="max-h-[60vh] overflow-y-auto overscroll-contain p-2 outline-none">
-          <Command.Empty className="px-3 py-8 text-center text-sm text-muted">
-            No results. Tip: type # and a player tag to look up a player.
+          <Command.Empty className="px-3 py-8 text-center text-sm text-steel">
+            No results. Try a team name or LCQ.
           </Command.Empty>
-
-          {tag && (
-            <Command.Group heading="Player" className={groupClass}>
-              <Command.Item value={`player ${search}`} onSelect={() => go(`/players/${tag}`)} className={itemClass}>
-                <span>
-                  Look up player <span className="font-mono text-gold">#{tag}</span>
-                </span>
-              </Command.Item>
-            </Command.Group>
-          )}
 
           <Command.Group heading="Teams" className={groupClass}>
             {teams.map((t) => (
               <Command.Item key={t.slug} value={`team ${t.name}`} keywords={[t.short]} onSelect={() => go(`/teams/${t.slug}`)} className={itemClass}>
                 <span>{t.name}</span>
-                <span className="text-xs text-muted">{t.qualified ? "Qualified" : `#${t.rank}`}</span>
+                <span className="text-xs text-steel">{t.qualified ? "Qualified" : `#${t.rank}`}</span>
               </Command.Item>
             ))}
           </Command.Group>
@@ -124,7 +111,7 @@ export function CommandMenu() {
             {stages.map((s) => (
               <Command.Item key={s.slug} value={`stage ${s.name}`} keywords={[s.dateLabel, s.kind === "lcq" ? "LCQ" : ""]} onSelect={() => go(`/stages/${s.slug}`)} className={itemClass}>
                 <span>{s.name}</span>
-                <span className="text-xs text-muted">{s.dateLabel}</span>
+                <span className="text-xs text-steel">{s.dateLabel}</span>
               </Command.Item>
             ))}
           </Command.Group>

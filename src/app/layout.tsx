@@ -1,23 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Anton, Inter, Sofia_Sans_Extra_Condensed, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Sofia_Sans_Extra_Condensed, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import { ViewTransition } from "react";
-import { NavBar } from "@/components/NavBar";
-import { Footer } from "@/components/Footer";
+import { Header } from "@/components/v2/Header";
+import { Footer } from "@/components/v2/Footer";
+import { SpoilerProvider } from "@/components/v2/Spoilers";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { site } from "@/config/site";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const anton = Anton({
-  variable: "--font-anton",
-  weight: "400",
-  subsets: ["latin"],
-});
 
 // v2 type system (Direction A). Self-hosted at build time: visitors never contact Google.
 const sofiaCond = Sofia_Sans_Extra_Condensed({
@@ -48,7 +37,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0e0f13",
+  themeColor: "#0b0c0e",
   colorScheme: "dark",
 };
 
@@ -56,18 +45,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${anton.variable} ${sofiaCond.variable} ${hanken.variable} ${jetbrains.variable} h-full antialiased`}
+      className={`${sofiaCond.variable} ${hanken.variable} ${jetbrains.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-full flex-col bg-ink text-bone">
+        <SpoilerProvider>
         <SmoothScroll />
-        <ScrollReveal />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-gold focus:px-4 focus:py-2 focus:text-bg"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-hair focus:bg-bone focus:px-4 focus:py-3 focus:text-ink"
         >
           Skip to main content
         </a>
-        <NavBar />
+        <Header />
         <main id="main" className="flex flex-1 flex-col">
           {/* Page-to-page cross-fade (PLAN.md §6 #17); styles in globals.css */}
           <ViewTransition default="page">
@@ -75,6 +64,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </ViewTransition>
         </main>
         <Footer />
+        </SpoilerProvider>
       </body>
     </html>
   );

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArtPanel } from "@/components/ArtPanel";
-import { NewsCard, NewsMeta } from "@/components/NewsCard";
-import { Container } from "@/components/ui/Container";
-import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Container, Section } from "@/components/v2/Layout";
+import { DisplayHeading, Label } from "@/components/v2/Type";
 import { site } from "@/config/site";
 import { articles, getArticle } from "@/data/news";
+import { formatDate } from "@/lib/format";
 
 export const dynamicParams = false;
 
@@ -30,37 +30,51 @@ export default async function ArticlePage({ params }: PageProps<"/news/[slug]">)
 
   return (
     <article>
-      <header className="border-b border-line">
-        <Container className="max-w-4xl pb-10 pt-[calc(var(--nav-h)+3.5rem)]">
-          <Link href="/news" className="text-xs font-bold uppercase tracking-[0.25em] text-gold hover:text-gold-bright">
-            ← News
-          </Link>
-          <div className="mt-6">
-            <NewsMeta article={article} />
-          </div>
-          <h1 className="mt-4 font-display text-[clamp(2.5rem,6vw,4.5rem)] uppercase leading-[0.95]">{article.title}</h1>
-          <p className="mt-5 text-xl text-text/80">{article.excerpt}</p>
-          <p className="mt-6 text-sm text-muted">By the {site.name} team</p>
+      <header className="border-b border-rule">
+        <Container className="grid max-w-5xl gap-6 pb-12 pt-[calc(var(--nav-h)+3rem)]">
+          <nav aria-label="Breadcrumb" className="font-data text-label uppercase text-steel">
+            <Link href="/news" className="hover:text-bone">
+              News
+            </Link>
+          </nav>
+          <Label tone="bolt">
+            {article.category} · {formatDate(article.date)}
+          </Label>
+          <DisplayHeading as="h1" size="h1" lines={[[article.title]]} />
+          <p className="max-w-[60ch] text-lead text-steel">{article.excerpt}</p>
+          <p className="font-data text-label uppercase text-steel">By the {site.name} team</p>
         </Container>
       </header>
-
-      <Container className="max-w-4xl py-10">
-        <ArtPanel tone={article.tone} glyph={article.glyph} morphName={`news-${article.slug}`} className="aspect-[21/9] rounded-sm border border-line" />
-        <div className="mx-auto max-w-2xl pb-8 pt-4">
+      <Container className="max-w-5xl py-10">
+        {article.art ? (
+          <figure className="grid gap-2">
+            <div className="relative aspect-[21/9] overflow-hidden rounded-hair bg-graphite">
+              <Image src={article.art.src} alt={article.art.alt} fill priority sizes="(min-width: 1024px) 64rem, 100vw" className="object-cover" />
+            </div>
+            <figcaption className="font-data text-label uppercase text-steel">Art: Supercell Fan Kit</figcaption>
+          </figure>
+        ) : null}
+        <div className="mx-auto max-w-[68ch] pb-8 pt-4">
           <Body />
         </div>
       </Container>
-
-      <section aria-labelledby="more-news" className="border-t border-line py-16 sm:py-20">
-        <Container>
-          <SectionHeader id="more-news" title="More news" href="/news" linkLabel="All news" />
-          <div className="grid gap-4 md:grid-cols-2">
+      <Container>
+        <Section id="more" label="Keep reading" title="More news" href="/news" linkLabel="All news" className="border-t border-rule">
+          <ul className="grid gap-x-6 gap-y-10 md:grid-cols-2">
             {more.map((a) => (
-              <NewsCard key={a.slug} article={a} />
+              <li key={a.slug}>
+                <Link href={`/news/${a.slug}`} className="group grid gap-3">
+                  <Label>
+                    {a.category} · {formatDate(a.date)}
+                  </Label>
+                  <span className="font-cond text-h2 font-black uppercase text-bone group-hover:text-bolt">{a.title}</span>
+                  <span className="text-steel">{a.excerpt}</span>
+                </Link>
+              </li>
             ))}
-          </div>
-        </Container>
-      </section>
+          </ul>
+        </Section>
+      </Container>
     </article>
   );
 }

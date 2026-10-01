@@ -11,6 +11,7 @@ export const articles: Article[] = [
     excerpt: "Eight teams, a double-elimination bracket and the last three Golden Tickets to Worlds. Here's who's in the running.",
     tone: "gold",
     glyph: "LCQ",
+    art: { src: "/art/keyart-th17.webp", alt: "Clash of Clans key art: heroes at a golden Town Hall (Supercell Fan Kit)" },
   },
   {
     slug: "how-worlds-2026-works",
@@ -19,6 +20,7 @@ export const articles: Article[] = [
     date: "2026-09-29",
     excerpt: "From a 128-team monthly qualifier to an 8-team world final: the whole format in five minutes.",
     tone: "elixir",
+    art: { src: "/art/th18-front.webp", alt: "Town Hall 18, the level every World Championship match is played on (Supercell Fan Kit)" },
   },
   {
     slug: "golden-tickets-so-far",
@@ -27,6 +29,7 @@ export const articles: Article[] = [
     date: "2026-09-28",
     excerpt: "Three monthly champions have booked their seats at the World Finals. A look at how they got there.",
     tone: "stone",
+    art: { src: "/art/legend-badge.webp", alt: "Legend League badge (Supercell Fan Kit)" },
   },
 ];
 

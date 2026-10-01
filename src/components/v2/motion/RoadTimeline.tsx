@@ -11,7 +11,7 @@ export type RoadStop = { slug: string; name: string; date: string; state: "done"
 // Signature moment #3: on large screens the season timeline pins while you scroll and travels
 // sideways stop by stop, with a bolt progress line. Pinned distance is capped (~1.5 screens) so it
 // never traps. Phones and reduced motion get a plain vertical list.
-export function RoadTimeline({ stops }: { stops: RoadStop[] }) {
+export function RoadTimeline({ stops, label, title }: { stops: RoadStop[]; label?: string; title?: string }) {
   const wrap = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLOListElement>(null);
 
@@ -28,14 +28,14 @@ export function RoadTimeline({ stops }: { stops: RoadStop[] }) {
           ease: "none",
           scrollTrigger: {
             trigger: wrap.current,
-            start: "top top+=96",
+            start: "center center",
             end: () => "+=" + Math.min(distance(), innerHeight * 1.5),
             pin: true,
             scrub: 0.6,
             invalidateOnRefresh: true,
           },
         });
-        gsap.fromTo("[data-progress]", { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: { trigger: wrap.current, start: "top top+=96", end: () => "+=" + Math.min(distance(), innerHeight * 1.5), scrub: 0.6 } });
+        gsap.fromTo("[data-progress]", { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: { trigger: wrap.current, start: "center center", end: () => "+=" + Math.min(distance(), innerHeight * 1.5), scrub: 0.6 } });
         return () => {
           tween.scrollTrigger?.kill();
           ScrollTrigger.refresh();
@@ -47,7 +47,13 @@ export function RoadTimeline({ stops }: { stops: RoadStop[] }) {
   );
 
   return (
-    <div ref={wrap} className="grid gap-6 overflow-hidden">
+    <div ref={wrap} className="grid gap-6 overflow-hidden py-4">
+      {title ? (
+        <div className="grid gap-3">
+          {label ? <Label tone="bolt">{label}</Label> : null}
+          <h2 className="font-cond text-h1 font-black uppercase text-bone">{title}</h2>
+        </div>
+      ) : null}
       <div className="relative h-px bg-rule">
         <div data-progress className="absolute inset-0 origin-left scale-x-100 bg-bolt" />
       </div>
