@@ -79,7 +79,7 @@ export default async function StagePage({ params }: PageProps<"/stages/[slug]">)
                 <Link href={`/teams/${winner.slug}`} className="group flex items-center gap-6 rounded-hair border border-foil/50 bg-[linear-gradient(90deg,color-mix(in_oklab,var(--foil)_14%,var(--graphite)),var(--graphite)_70%)] p-6 hover:border-foil">
                   <TeamMark team={winner} size="lg" />
                   <span className="grid gap-2">
-                    <span className="font-cond text-h1 font-black uppercase text-bone group-hover:text-bolt">{winner.name}</span>
+                    <span className="font-cond text-h1 uppercase text-bone group-hover:text-bolt">{winner.name}</span>
                     <span className="text-steel">Earned a Golden Ticket to the World Finals</span>
                   </span>
                 </Link>
@@ -105,7 +105,7 @@ export default async function StagePage({ params }: PageProps<"/stages/[slug]">)
         </Section>
 
         <Section id="more" title="More stages" href="/schedule" linkLabel="Full schedule">
-          <ol className="border-t border-rule">
+          <ol className="grid">
             {others.map((s) => (
               <StageRow key={s.slug} stage={s} />
             ))}

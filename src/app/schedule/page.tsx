@@ -22,14 +22,14 @@ export default function SchedulePage() {
       />
       <Container>
         <Section id="upcoming" title="Upcoming">
-          <ol className="border-t border-rule">
+          <ol className="grid">
             {upcoming.map((s) => (
               <StageRow key={s.slug} stage={s} />
             ))}
           </ol>
         </Section>
         <Section id="completed" title="Completed">
-          <ol className="border-t border-rule">
+          <ol className="grid">
             {completed.map((s) => (
               <StageRow key={s.slug} stage={s} />
             ))}

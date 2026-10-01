@@ -90,7 +90,7 @@ export default function StyleguidePage() {
                 <Label>
                   {s.token} · {s.note}
                 </Label>
-                <p className={`font-cond font-black uppercase ${s.token}`}>{s.sample}</p>
+                <p className={`font-cond uppercase ${s.token}`}>{s.sample}</p>
               </div>
             ))}
             <div className="grid max-w-[65ch] gap-3">

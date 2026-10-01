@@ -148,7 +148,7 @@ export function Header() {
                         <Link
                           href={n.href}
                           aria-current={pathname === n.href ? "page" : undefined}
-                          className={cn("block py-1 font-cond text-[3.25rem] font-black uppercase leading-none", pathname === n.href ? "text-bolt" : "text-bone")}
+                          className={cn("block py-1 font-cond text-[3.25rem] uppercase leading-none", pathname === n.href ? "text-bolt" : "text-bone")}
                         >
                           {n.label}
                         </Link>

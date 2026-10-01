@@ -14,7 +14,7 @@ const link = "text-bone underline decoration-bolt decoration-2 underline-offset-
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="grid gap-4 border-t border-rule py-10 md:grid-cols-[14rem_minmax(0,1fr)] md:gap-10">
-      <h2 className="font-cond text-h3 font-black uppercase text-bone">{title}</h2>
+      <h2 className="font-cond text-h3 uppercase text-bone">{title}</h2>
       <div className="grid max-w-[64ch] gap-4 text-lead text-steel">{children}</div>
     </section>
   );

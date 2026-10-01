@@ -410,3 +410,36 @@ html:not([data-hide-results]) .sp-safe {
   transform: rotate(-6deg);
   mix-blend-mode: screen;
 }
+
+/* An event row printed as a horizontal ticket: punched where the date stub meets the body (md+). */
+.row-ticket {
+  --n: 10px;
+  margin-bottom: 0.75rem;
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+@media (min-width: 768px) {
+  .row-ticket {
+    mask:
+      radial-gradient(circle at 11rem 0, transparent var(--n), #000 calc(var(--n) + 0.5px)) top / 100% 51% no-repeat,
+      radial-gradient(circle at 11rem 100%, transparent var(--n), #000 calc(var(--n) + 0.5px)) bottom / 100% 51% no-repeat;
+  }
+}
+.row-ticket:focus-within {
+  box-shadow: inset 0 0 0 2px var(--bolt);
+}
+
+/* Reading mode: bone paper. The shared colour names are redefined inside, so every component reads
+   dark-on-paper without its own variant (contrast measured: ink 15.9, ink-2 7.5, stock links 12.4, deep gold 6.0 / 5.4 on cards). */
+.on-paper {
+  --ink: #f2eee4;
+  --graphite: #e8e2d4;
+  --plate: #ddd5c5;
+  --rule: #cbc2ae;
+  --steel: #4a4670;
+  --bone: #12102e;
+  --bolt: #1b1580;
+  --foil: #74500c;
+  --bolt-ink: #f2eee4;
+  background: var(--paper);
+  color: var(--paper-ink);
+}

@@ -24,7 +24,7 @@ export function DisplayHeading({
 }) {
   const sizes = { mega: "text-mega", hero: "text-hero", h1: "text-h1", h2: "text-h2" };
   return (
-    <Tag className={cn("font-cond font-black uppercase text-bone text-balance", sizes[size], className)}>
+    <Tag className={cn("font-cond uppercase text-bone text-balance", sizes[size], className)}>
       {lines.map((parts, i) => (
         <span key={i} className="v2-line" style={{ ["--i" as string]: i }}>
           <span>
@@ -32,7 +32,7 @@ export function DisplayHeading({
               if (typeof part === "string") return <span key={j}>{part}</span>;
               if ("em" in part)
                 return (
-                  <em key={j} className="italic text-steel">
+                  <em key={j} className="not-italic text-foil">
                     {part.em}
                   </em>
                 );

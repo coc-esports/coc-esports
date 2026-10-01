@@ -39,7 +39,7 @@ export function Countdown({ target, end, label }: { target: string; end?: string
     <div role="timer" aria-label={label} className="flex gap-5">
       {units.map(([key, name]) => (
         <div key={key} className="grid">
-          <span className="overflow-hidden font-cond text-[2.75rem] font-black leading-none tabular-nums text-bone">
+          <span className="overflow-hidden font-cond text-[2.75rem] leading-none tabular-nums text-bone">
             {parts ? (
               <span key={parts[key]} className="tick">
                 {String(parts[key]).padStart(2, "0")}

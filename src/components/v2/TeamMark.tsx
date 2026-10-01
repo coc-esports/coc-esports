@@ -17,7 +17,7 @@ export function TeamMark({ team, size = "md", className, morph = false }: { team
   const mark = (
     <span
       aria-hidden
-      className={cn("relative grid shrink-0 place-items-center overflow-hidden rounded-hair border border-rule bg-graphite font-cond font-black uppercase leading-none text-bone", sizes[size], className)}
+      className={cn("relative grid shrink-0 place-items-center overflow-hidden rounded-hair border border-rule bg-graphite font-cond uppercase leading-none text-bone", sizes[size], className)}
     >
       {team.short}
       <span className="absolute inset-x-0 bottom-0 h-[8%] min-h-[2px]" style={{ background: team.color }} />

@@ -112,7 +112,7 @@ export default function WorldsPage() {
           <div className="grid gap-px overflow-hidden rounded-hair border border-rule bg-rule md:grid-cols-2">
             {rules.map((r) => (
               <div key={r.title} className="grid content-start gap-3 bg-ink p-6">
-                <h3 className="font-cond text-h3 font-black uppercase text-bone">{r.title}</h3>
+                <h3 className="font-cond text-h3 uppercase text-bone">{r.title}</h3>
                 <p className="text-steel">{r.body}</p>
               </div>
             ))}

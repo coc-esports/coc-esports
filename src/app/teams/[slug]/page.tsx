@@ -62,7 +62,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
         <Section id="titles" title="Titles this season">
           <HideResult block safe={<HiddenNote />}>
           {wins.length ? (
-            <ol className="border-t border-rule">
+            <ol className="grid">
               {wins.map((s) => (
                 <StageRow key={s.slug} stage={s} asTitle />
               ))}

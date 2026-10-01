@@ -61,7 +61,7 @@ export function RoadTimeline({ stops, label, title }: { stops: RoadStop[]; label
     <div ref={wrap} className="grid gap-6 overflow-hidden py-4">
       {title ? (
         <div className="grid gap-3">
-          <h2 className="font-cond text-h1 font-black uppercase text-bone">{title}</h2>
+          <h2 className="font-cond text-h1 uppercase text-bone">{title}</h2>
           {label ? <Label>{label}</Label> : null}
         </div>
       ) : null}
@@ -83,8 +83,8 @@ export function RoadTimeline({ stops, label, title }: { stops: RoadStop[]; label
                 <span className="font-data text-label text-steel tabular-nums">{String(i + 1).padStart(2, "0")}</span>
               </div>
               <div className="grid gap-2">
-                <p className={cn("font-cond text-h2 font-black uppercase leading-none", s.state === "done" ? "text-steel" : "text-bone")}>{s.date}</p>
-                <p className={cn("font-cond text-h3 font-black uppercase", s.state === "done" ? "text-steel" : "text-bone")}>{s.name}</p>
+                <p className={cn("font-cond text-h2 uppercase leading-none", s.state === "done" ? "text-steel" : "text-bone")}>{s.date}</p>
+                <p className={cn("font-cond text-h3 uppercase", s.state === "done" ? "text-steel" : "text-bone")}>{s.name}</p>
                 <p className="text-sm text-steel">{s.spoiler ? <HideResult safe="Winner hidden">{s.note}</HideResult> : s.note}</p>
               </div>
             </Link>

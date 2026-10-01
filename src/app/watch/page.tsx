@@ -42,7 +42,7 @@ export default function WatchPage() {
               <li key={v.id}>
                 <a href={v.href} target="_blank" rel="noopener noreferrer" className="group flex flex-wrap items-center justify-between gap-4 border-b border-rule py-5">
                   <span className="grid gap-2">
-                    <span className="font-cond text-h2 font-black uppercase text-bone group-hover:text-bolt">{v.title}</span>
+                    <span className="font-cond text-h2 uppercase text-bone group-hover:text-bolt">{v.title}</span>
                     <span className="font-data text-label uppercase text-steel">{v.meta}</span>
                   </span>
                   <span className="inline-flex h-11 items-center gap-2 rounded-hair border border-rule px-4 font-text text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-bone transition-colors group-hover:border-bolt">

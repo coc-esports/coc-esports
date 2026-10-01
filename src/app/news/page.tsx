@@ -16,6 +16,7 @@ export default function NewsPage() {
   return (
     <>
       <PageIntro title="News" intro="Previews, explainers and team stories. Facts are checked against the sources on each article." />
+      <div className="on-paper perf-top flex-1">
       <Container>
         <Section id="all" title="Latest">
           <ul className="grid gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
@@ -30,7 +31,7 @@ export default function NewsPage() {
                   <Label>
                     {a.category} · {formatDate(a.date)}
                   </Label>
-                  <h2 className="font-cond text-h2 font-black uppercase text-bone group-hover:text-bolt"><ArticleTitle article={a} /></h2>
+                  <h2 className="font-cond text-h2 uppercase text-bone group-hover:text-bolt"><ArticleTitle article={a} /></h2>
                   <p className="text-steel">{a.excerpt}</p>
                 </Link>
               </li>
@@ -38,6 +39,7 @@ export default function NewsPage() {
           </ul>
         </Section>
       </Container>
+      </div>
     </>
   );
 }

@@ -8,15 +8,15 @@ type LinkRest = { href: string } & Omit<ComponentProps<typeof Link>, "href" | "c
 type ButtonRest = { href?: never } & Omit<ComponentProps<"button">, "className" | "children">;
 export type ButtonProps = Common & (LinkRest | ButtonRest);
 
-// Broadcast Editorial buttons: square-cut (2px), uppercase text face, 48px tall (tap target >= 44px).
-// solid = the one main action per view · outline = secondary · text = inline link with bolt underline.
+// "Will Call" buttons are ticket parts (globals.css): solid = the foil tear-off stub (the one main action per view),
+// outline = an engraved hairline field, text = inline link with a halo underline. All >= 44px tall.
 const base =
   "inline-flex items-center justify-center gap-2 select-none whitespace-nowrap font-text text-[0.8125rem] font-semibold uppercase tracking-[0.08em] " +
   "transition-[background-color,border-color,color,transform] duration-200 ease-expo active:translate-y-px disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
-  solid: "h-12 rounded-hair bg-bone px-6 text-ink hover:bg-white",
-  outline: "h-12 rounded-hair border border-rule px-6 text-bone hover:border-steel hover:bg-graphite",
+  solid: "stub-button",
+  outline: "h-12 border border-rule bg-ink/40 px-6 text-bone hover:border-foil hover:text-foil",
   text: "min-h-11 text-bone underline decoration-bolt decoration-2 underline-offset-[6px] hover:text-bolt",
 };
 

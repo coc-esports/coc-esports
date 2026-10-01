@@ -27,7 +27,7 @@ function Slot({ slug, label, score, won, hovered, onHover, hideScore }: { slug?:
       ) : (
         <span className="min-w-0 flex-1 truncate font-data text-label uppercase text-steel">{label}</span>
       )}
-      <span className={cn("w-5 text-right font-cond text-lg font-black tabular-nums", won && !hideScore ? "text-signal-win" : "text-steel")}>{hideScore ? "" : (score ?? "")}</span>
+      <span className={cn("w-5 text-right font-cond text-lg tabular-nums", won && !hideScore ? "text-signal-win" : "text-steel")}>{hideScore ? "" : (score ?? "")}</span>
     </div>
   );
 }
@@ -88,16 +88,16 @@ export function Bracket({ bracket, label }: { bracket: BracketData; label: strin
         <div className="flex w-max items-center gap-10 pr-6 pt-3">
           <div className="flex flex-col gap-12">
             <div>
-              <h3 className="mb-5 font-cond text-h3 font-black uppercase text-bone">Upper bracket</h3>
+              <h3 className="mb-5 font-cond text-h3 uppercase text-bone">Upper bracket</h3>
               <Rounds rounds={bracket.upper} hovered={hovered} onHover={setHovered} hideScore={hideScore} />
             </div>
             <div>
-              <h3 className="mb-5 font-cond text-h3 font-black uppercase text-steel">Lower bracket</h3>
+              <h3 className="mb-5 font-cond text-h3 uppercase text-steel">Lower bracket</h3>
               <Rounds rounds={bracket.lower} hovered={hovered} onHover={setHovered} hideScore={hideScore} />
             </div>
           </div>
           <div className="self-center">
-            <h3 className="mb-5 font-cond text-h3 font-black uppercase text-bone">{bracket.final.name}</h3>
+            <h3 className="mb-5 font-cond text-h3 uppercase text-bone">{bracket.final.name}</h3>
             {bracket.final.matches.map((m) => (
               <Match key={m.id} match={m} hovered={hovered} onHover={setHovered} hideScore={hideScore} final />
             ))}

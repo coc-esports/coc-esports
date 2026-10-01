@@ -26,7 +26,7 @@ export function NextUp() {
         <ol className="grid border-t border-rule">
           {(stage?.schedule ?? [{ label: "Starts", dates: stage?.dateLabel ?? "TBA" }]).map((day, i) => (
             <li key={day.label} className="grid items-center gap-x-6 gap-y-2 border-b border-rule py-5 sm:grid-cols-[10rem_minmax(0,1fr)_auto]">
-              <span className="font-cond text-h3 font-black uppercase text-bone">{day.label}</span>
+              <span className="font-cond text-h3 uppercase text-bone">{day.label}</span>
               <span className="grid gap-1">
                 <span className="font-data text-sm text-bone">{day.dates}</span>
                 <span className="text-sm text-steel">
@@ -89,7 +89,7 @@ export function HowItWorks() {
           {steps.map((s) => (
             <li key={s.n} className="grid content-start gap-4 bg-ink p-6 sm:p-8">
               <span className="font-data text-label text-bolt">{s.n}</span>
-              <h3 className="font-cond text-h2 font-black uppercase text-bone">{s.title}</h3>
+              <h3 className="font-cond text-h2 uppercase text-bone">{s.title}</h3>
               <p className="text-steel">{s.body}</p>
             </li>
           ))}
@@ -115,7 +115,7 @@ export function NewsBand() {
               <Label>
                 {lead.category} · {formatDate(lead.date)}
               </Label>
-              <h3 className="font-cond text-h2 font-black uppercase text-bone group-hover:text-bolt"><ArticleTitle article={lead} /></h3>
+              <h3 className="font-cond text-h2 uppercase text-bone group-hover:text-bolt"><ArticleTitle article={lead} /></h3>
               <p className="max-w-[60ch] text-steel">{lead.excerpt}</p>
             </div>
           </Link>
@@ -130,7 +130,7 @@ export function NewsBand() {
                     <Label>
                       {a.category} · {formatDate(a.date)}
                     </Label>
-                    <span className="font-cond text-h3 font-black uppercase text-bone group-hover:text-bolt"><ArticleTitle article={a} /></span>
+                    <span className="font-cond text-h3 uppercase text-bone group-hover:text-bolt"><ArticleTitle article={a} /></span>
                   </span>
                 </Link>
               </li>
@@ -162,7 +162,7 @@ export function WatchBand() {
             {vods.slice(0, 4).map((v) => (
               <li key={v.id}>
                 <a href={v.href} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between gap-4 border-b border-rule py-4">
-                  <span className="font-cond text-h3 font-black uppercase text-bone group-hover:text-bolt">{v.title}</span>
+                  <span className="font-cond text-h3 uppercase text-bone group-hover:text-bolt">{v.title}</span>
                   <span className="inline-flex shrink-0 items-center gap-2 font-data text-label uppercase text-steel transition-colors group-hover:text-bone">{v.meta} <ExternalIcon /></span>
                 </a>
               </li>

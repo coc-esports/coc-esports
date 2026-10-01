@@ -46,6 +46,7 @@ export default async function ArticlePage({ params }: PageProps<"/news/[slug]">)
           <p className="font-data text-label uppercase text-steel">By the {site.name} team</p>
         </Container>
       </header>
+      <div className="on-paper perf-top">
       <Container className="max-w-5xl py-10">
         {article.art ? (
           <figure className="grid gap-2">
@@ -68,7 +69,7 @@ export default async function ArticlePage({ params }: PageProps<"/news/[slug]">)
                   <Label>
                     {a.category} · {formatDate(a.date)}
                   </Label>
-                  <span className="font-cond text-h2 font-black uppercase text-bone group-hover:text-bolt"><ArticleTitle article={a} /></span>
+                  <span className="font-cond text-h2 uppercase text-bone group-hover:text-bolt"><ArticleTitle article={a} /></span>
                   <span className="text-steel">{a.excerpt}</span>
                 </Link>
               </li>
@@ -76,6 +77,7 @@ export default async function ArticlePage({ params }: PageProps<"/news/[slug]">)
           </ul>
         </Section>
       </Container>
+      </div>
     </article>
   );
 }

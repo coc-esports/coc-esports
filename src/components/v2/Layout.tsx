@@ -38,7 +38,7 @@ export function Section({
     <section id={id} aria-labelledby={id ? `${id}-title` : undefined} className={cn("grid scroll-mt-16 gap-8 py-16 sm:py-20", className)}>
       <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
         <div className="grid gap-3">
-          <h2 id={id ? `${id}-title` : undefined} className="font-cond text-h1 font-black uppercase text-bone text-balance">
+          <h2 id={id ? `${id}-title` : undefined} className="font-cond text-h1 uppercase text-bone text-balance">
             {title}
           </h2>
           {label ? <Label>{label}</Label> : null}
@@ -79,7 +79,9 @@ export function PageIntro({
   backdrop?: { src: string; alt: string };
 }) {
   return (
-    <header className={cn("relative isolate border-b border-rule", backdrop && "overflow-hidden")}>
+    <header className="relative isolate overflow-hidden border-b border-rule bg-[radial-gradient(60%_80%_at_80%_30%,#2a22b8,transparent_70%),linear-gradient(180deg,#14107a,var(--ink))]">
+      {/* Ticket stock: every inner page opens on the engraved security print (scripts/guilloche.mjs). */}
+      <div aria-hidden className="guilloche-rosette absolute -right-[18vmin] top-[55%] -z-20 size-[min(95vmin,900px)] -translate-y-1/2 opacity-45" />
       {backdrop ? (
         <div className="absolute inset-0 -z-10">
           <Image src={backdrop.src} alt={backdrop.alt} fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover object-[65%_45%]" />
@@ -119,7 +121,7 @@ export function Facts({ items }: { items: { label: string; value: ReactNode; acc
       {items.map((f) => (
         <div key={f.label} className="grid gap-2 border-rule py-5 pr-4 odd:border-r sm:border-r sm:last:border-r-0 sm:[&:not(:first-child)]:pl-6">
           <dt className="font-data text-label uppercase text-steel">{f.label}</dt>
-          <dd className={cn("font-cond text-h3 font-black uppercase tabular-nums", f.accent ? "text-foil" : "text-bone")}>{f.value}</dd>
+          <dd className={cn("font-cond text-h3 uppercase tabular-nums", f.accent ? "text-foil" : "text-bone")}>{f.value}</dd>
         </div>
       ))}
     </dl>

@@ -18,11 +18,12 @@ export function ClosingBand() {
   const pathname = usePathname();
   const c = lines.find((l) => l.match(pathname)) ?? fallback;
   return (
-    <div className="grid gap-8 py-16 sm:py-20">
-      <p className="font-cond text-mega font-black uppercase text-bone text-balance">
-        {c.line[0]} <span className="italic text-steel">{c.line[1]}</span>
+    <div className="relative grid gap-8 overflow-hidden py-16 sm:py-20">
+      <div aria-hidden className="guilloche-rosette absolute -right-[20vmin] top-1/2 size-[min(90vmin,900px)] -translate-y-1/2 opacity-40" />
+      <p className="relative font-cond text-mega uppercase text-bone text-balance">
+        {c.line[0]} <span className="text-foil">{c.line[1]}</span>
       </p>
-      <div className="flex flex-wrap gap-3">
+      <div className="relative flex flex-wrap items-center gap-4">
         <Button href={c.primary[1]}>{c.primary[0]}</Button>
         {c.secondary ? (
           <Button href={c.secondary[1]} variant="outline">
