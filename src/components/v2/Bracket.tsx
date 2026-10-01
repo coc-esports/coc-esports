@@ -35,11 +35,11 @@ function Slot({ slug, label, score, won, hovered, onHover, hideScore }: { slug?:
 function Match({ match, hovered, onHover, hideScore, final = false }: { match: BracketMatch; hovered: string | null; onHover: (s: string | null) => void; hideScore: boolean; final?: boolean }) {
   const decided = match.scoreA !== undefined && match.scoreB !== undefined;
   return (
-    <div className="relative w-56">
+    <div className="relative w-48">
       <span className="absolute -top-2.5 right-2 z-10 bg-ink px-1 font-data text-label text-steel" aria-hidden>
         {match.id}
       </span>
-      <div className={cn("overflow-hidden rounded-hair border bg-graphite", final ? "border-bolt/60" : "border-rule")}>
+      <div className={cn("overflow-hidden rounded-hair border bg-graphite", final ? "border-steel" : "border-rule")}>
         <Slot slug={match.a} label={match.aLabel} score={match.scoreA} won={decided && match.scoreA! > match.scoreB!} hovered={hovered} onHover={onHover} hideScore={hideScore} />
         <div className="h-px bg-rule" />
         <Slot slug={match.b} label={match.bLabel} score={match.scoreB} won={decided && match.scoreB! > match.scoreA!} hovered={hovered} onHover={onHover} hideScore={hideScore} />
@@ -74,7 +74,7 @@ export function Bracket({ bracket, label }: { bracket: BracketData; label: strin
   const seeded = [...bracket.upper, ...bracket.lower, bracket.final].some((r) => r.matches.some((m) => m.a || m.b));
   return (
     <div className="grid gap-4">
-      <p className="max-w-[70ch] text-sm text-steel">
+      <p className="max-w-[62ch] text-sm text-steel">
         {seeded ? null : <span className="text-bone">No teams seeded yet: names appear here once the field is confirmed. </span>}
         Match codes: U = upper bracket, L = lower bracket, GF = Grand Final. &ldquo;Winner U5&rdquo; means the winner of match U5.
         <span className="lg:hidden"> Scroll sideways to see the whole bracket.</span>
@@ -97,7 +97,7 @@ export function Bracket({ bracket, label }: { bracket: BracketData; label: strin
             </div>
           </div>
           <div className="self-center">
-            <h3 className="mb-5 font-cond text-h3 font-black uppercase text-bolt">{bracket.final.name}</h3>
+            <h3 className="mb-5 font-cond text-h3 font-black uppercase text-bone">{bracket.final.name}</h3>
             {bracket.final.matches.map((m) => (
               <Match key={m.id} match={m} hovered={hovered} onHover={setHovered} hideScore={hideScore} final />
             ))}

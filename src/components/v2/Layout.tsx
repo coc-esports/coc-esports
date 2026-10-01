@@ -100,14 +100,14 @@ export function PageIntro({
   );
 }
 
-// Label/value facts in a strict row (stage facts, team facts).
+// Label/value facts in a strict row (stage facts, team facts). `accent` = Golden Ticket status (foil); nothing else is coloured.
 export function Facts({ items }: { items: { label: string; value: ReactNode; accent?: boolean }[] }) {
   return (
     <dl className="grid grid-cols-2 border-y border-rule sm:grid-cols-4">
       {items.map((f) => (
         <div key={f.label} className="grid gap-2 border-rule py-5 pr-4 odd:border-r sm:border-r sm:last:border-r-0 sm:[&:not(:first-child)]:pl-6">
           <dt className="font-data text-label uppercase text-steel">{f.label}</dt>
-          <dd className={cn("font-cond text-h3 font-black uppercase tabular-nums", f.accent ? "text-bolt" : "text-bone")}>{f.value}</dd>
+          <dd className={cn("font-cond text-h3 font-black uppercase tabular-nums", f.accent ? "text-foil" : "text-bone")}>{f.value}</dd>
         </div>
       ))}
     </dl>

@@ -51,11 +51,11 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
             items={[
               { label: "Season rank", value: `#${team.rank}` },
               { label: "Season points", value: team.points },
-              { label: "Worlds status", value: team.qualified ? "Qualified" : "Contender", accent: !!team.qualified },
+              { label: "Worlds status", value: team.qualified ? "Golden Ticket" : "Contender", accent: !!team.qualified },
               { label: "Titles 2026", value: wins.length },
             ]}
           />
-          <p className="font-data text-label text-steel">Leaderboard {standingsAsOf}</p>
+          <p className="text-sm text-steel">Leaderboard {standingsAsOf}</p>
         </div>
         </HideResult>
 

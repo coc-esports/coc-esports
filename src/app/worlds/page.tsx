@@ -40,7 +40,7 @@ export default function WorldsPage() {
         <div className="pt-12">
           <Facts
             items={[
-              { label: "Season prize pool", value: season.prizePool, accent: true },
+              { label: "Season prize pool", value: season.prizePool },
               { label: "World Finals", value: season.finalsPrize },
               { label: "Teams at Worlds", value: season.teamsAtWorlds },
               { label: "Played on", value: season.townHall },

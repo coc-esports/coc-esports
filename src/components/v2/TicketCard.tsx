@@ -28,7 +28,7 @@ export function TicketCard(props: TicketCardProps) {
         <p className={cn("font-cond font-black uppercase leading-[0.9] text-balance", claimed ? "text-[2rem] text-bone lg:text-[2.5rem]" : "text-[1.5rem] text-steel lg:text-[1.75rem]")}>
           {claimed ? <HideResult safe="Ticket claimed">{props.team}</HideResult> : props.via}
         </p>
-        <p className="text-sm leading-snug text-steel">
+        <p className={cn("text-sm leading-snug", claimed ? "text-bone/80" : "text-steel")}>
           {claimed ? props.via : (props.when ?? "Decided later in the season")}
           {claimed && props.rank ? <HideResult safe="">{` · Season #${props.rank}${props.points ? ` · ${props.points} pts` : ""}`}</HideResult> : null}
         </p>

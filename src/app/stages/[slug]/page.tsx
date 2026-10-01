@@ -36,7 +36,7 @@ export default async function StagePage({ params }: PageProps<"/stages/[slug]">)
   const facts = [
     { label: "When", value: stage.dateLabel },
     ...(stage.schedule ?? []).map((s) => ({ label: s.label, value: s.dates })),
-    ...(stage.prize ? [{ label: "Prize pool", value: stage.prize, accent: true }] : []),
+    ...(stage.prize ? [{ label: "Prize pool", value: stage.prize }] : []),
   ].slice(0, 4);
 
   return (
