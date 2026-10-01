@@ -13,3 +13,4 @@
 | 2026-10-01 | Brief approved (docs/brief.md); Step 1 done | Owner |
 | 2026-10-01 | Research (docs/research.md) and plan (docs/plan.md) approved; Steps 2–3 done | Owner |
 | 2026-10-01 | Fan Kit starter set (18 official files: TH18 renders, loading-screen key art, heroes, Goblin, Legend League badge) downloaded by Claude at web size into References\gildra-fankit; used under the Supercell Fan Content Policy | Owner ("u do it") |
+| 2026-10-01 | Wireframes approved; owner delegated design choices to Claude ("u do what is the best") | Owner |
