@@ -73,11 +73,11 @@ export function PageIntro({
       <Container className="grid items-end gap-10 pb-12 pt-[calc(var(--nav-h)+3rem)] sm:pb-16 lg:grid-cols-[minmax(0,1fr)_auto]">
         <div className="grid min-w-0 gap-5">
           {crumbs?.length ? (
-            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 font-data text-label uppercase text-steel">
+            <nav aria-label="Breadcrumb" className="-my-3 flex flex-wrap items-center gap-2 font-data text-label uppercase text-steel">
               {crumbs.map((c, i) => (
                 <span key={c.href} className="flex items-center gap-2">
                   {i > 0 ? <span aria-hidden>/</span> : null}
-                  <Link href={c.href} className="hover:text-bone">
+                  <Link href={c.href} className="inline-flex min-h-11 min-w-11 items-center hover:text-bone">
                     {c.label}
                   </Link>
                 </span>

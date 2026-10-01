@@ -79,7 +79,7 @@ export default function WorldsPage() {
                   <tr key={t.slug} className="border-b border-rule">
                     <td className="py-3 pr-4 font-data tabular-nums text-steel">{String(t.rank).padStart(2, "0")}</td>
                     <td className="py-3 pr-4">
-                      <Link href={`/teams/${t.slug}`} className="flex items-center gap-3 font-semibold text-bone hover:text-bolt">
+                      <Link href={`/teams/${t.slug}`} className="flex min-h-11 items-center gap-3 font-semibold text-bone hover:text-bolt">
                         <TeamMark team={t} size="xs" />
                         {t.name}
                       </Link>

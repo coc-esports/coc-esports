@@ -32,8 +32,8 @@ export default async function ArticlePage({ params }: PageProps<"/news/[slug]">)
     <article>
       <header className="border-b border-rule">
         <Container className="grid max-w-5xl gap-6 pb-12 pt-[calc(var(--nav-h)+3rem)]">
-          <nav aria-label="Breadcrumb" className="font-data text-label uppercase text-steel">
-            <Link href="/news" className="hover:text-bone">
+          <nav aria-label="Breadcrumb" className="-my-3 font-data text-label uppercase text-steel">
+            <Link href="/news" className="inline-flex min-h-11 min-w-11 items-center hover:text-bone">
               News
             </Link>
           </nav>

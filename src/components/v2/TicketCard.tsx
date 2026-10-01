@@ -13,7 +13,7 @@ export function TicketCard(props: TicketCardProps) {
   const body = (
     <div
       className={cn(
-        "group relative flex aspect-[3/4.2] min-w-0 flex-col justify-between overflow-hidden rounded-hair border p-4 transition-colors duration-300 ease-expo",
+        "group relative flex aspect-[3/4.2] min-w-0 lg:aspect-[5/4] lg:p-5 flex-col justify-between overflow-hidden rounded-hair border p-4 transition-colors duration-300 ease-expo",
         claimed ? "border-bolt/50 bg-[linear-gradient(180deg,#101a2b,var(--graphite))]" : "border-dashed border-rule bg-graphite",
         claimed && props.href && "hover:border-bolt",
       )}
@@ -23,7 +23,7 @@ export function TicketCard(props: TicketCardProps) {
         <span className="font-data text-label text-steel tabular-nums">{String(props.seat).padStart(2, "0")}/08</span>
       </div>
       <div className="grid gap-2">
-        <p className={cn("font-cond font-black uppercase leading-[0.9] text-balance", claimed ? "text-[2rem] text-bone" : "text-[1.5rem] text-steel")}>
+        <p className={cn("font-cond font-black uppercase leading-[0.9] text-balance", claimed ? "text-[2rem] text-bone lg:text-[2.5rem]" : "text-[1.5rem] text-steel lg:text-[1.75rem]")}>
           {claimed ? props.team : props.via}
         </p>
         <p className="text-sm leading-snug text-steel">

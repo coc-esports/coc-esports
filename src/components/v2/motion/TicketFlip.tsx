@@ -28,7 +28,7 @@ export function TicketFlip({ seats }: { seats: TicketCardProps[] }) {
   });
 
   return (
-    <div ref={root} className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
+    <div ref={root} className="grid grid-cols-2 gap-3 sm:grid-cols-4">
       {seats.map((s) =>
         s.state === "claimed" ? (
           <div key={s.seat} className="[perspective:1000px]">
