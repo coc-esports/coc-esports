@@ -15,7 +15,7 @@ export function TeamPoster({ team }: { team: Team }) {
       )}
     >
       <div className="flex items-start justify-between gap-2">
-        <Label tone={team.qualified ? "bolt" : "steel"}>{team.qualified ? "Golden Ticket" : "LCQ contender"}</Label>
+        <Label tone={team.qualified ? "bolt" : "steel"}>{team.qualified ? "Ticket" : "Contender"}</Label>
         <span className="font-data text-label tabular-nums text-steel">#{String(team.rank).padStart(2, "0")}</span>
       </div>
       <TeamMark team={team} size="lg" morph />

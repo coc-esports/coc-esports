@@ -19,7 +19,7 @@ export function StageRow({ stage }: { stage: Stage }) {
       </div>
       <div className="grid min-w-0 gap-2">
         <div className="flex flex-wrap items-center gap-3">
-          <Link href={`/stages/${stage.slug}`} className="font-cond text-h2 font-black uppercase text-bone hover:text-bolt">
+          <Link href={`/stages/${stage.slug}`} className="inline-flex min-h-11 items-center font-cond text-h2 font-black uppercase text-bone hover:text-bolt">
             {stage.name}
           </Link>
           <StatusTag status={status} />

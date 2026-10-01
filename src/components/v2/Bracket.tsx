@@ -36,7 +36,7 @@ function Match({ match, hovered, onHover, hideScore, final = false }: { match: B
   const decided = match.scoreA !== undefined && match.scoreB !== undefined;
   return (
     <div className="relative w-56">
-      <span className="absolute -top-2.5 right-2 z-10 bg-ink px-1 font-data text-[0.6875rem] text-steel" aria-hidden>
+      <span className="absolute -top-2.5 right-2 z-10 bg-ink px-1 font-data text-label text-steel" aria-hidden>
         {match.id}
       </span>
       <div className={cn("overflow-hidden rounded-hair border bg-graphite", final ? "border-bolt/60" : "border-rule")}>

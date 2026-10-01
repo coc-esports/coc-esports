@@ -38,7 +38,7 @@ export function NextUp() {
                   )}
                 </span>
               </span>
-              <StatusTag status="upcoming" />
+              <StatusTag status="upcoming" className="w-fit" />
             </li>
           ))}
         </ol>

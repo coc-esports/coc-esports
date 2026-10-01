@@ -41,7 +41,7 @@ export default function AboutPage() {
           <ul className="grid gap-2">
             {sources.map((s) => (
               <li key={s.href}>
-                <a href={s.href} target="_blank" rel="noopener noreferrer" className={link}>
+                <a href={s.href} target="_blank" rel="noopener noreferrer" className={`${link} inline-flex min-h-11 items-center`}>
                   {s.label}
                 </a>
               </li>

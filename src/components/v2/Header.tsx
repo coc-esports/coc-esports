@@ -1,10 +1,10 @@
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { CommandMenu } from "@/components/CommandMenu";
 import { mainNav } from "@/config/nav";
 import { getStage, season } from "@/data/season";
 import { cn } from "@/lib/cn";
@@ -14,6 +14,12 @@ import { SpoilerSwitch } from "./Spoilers";
 
 // The one main action changes with time: "Watch live" from 24 h before an event until it ends,
 // "Add to calendar" the rest of the time (docs/plan.md). Decided in the browser so it's always current.
+// Search (cmdk + dialog) loads only after the page is interactive, so it stays out of the first-load JS.
+const CommandMenu = dynamic(() => import("@/components/CommandMenu").then((m) => m.CommandMenu), {
+  ssr: false,
+  loading: () => <span aria-hidden className="block size-11" />,
+});
+
 function useLiveWindow() {
   const [live, setLive] = useState(false);
   useEffect(() => {
@@ -99,7 +105,7 @@ export function Header() {
                   href={n.href}
                   data-active={active(n.href)}
                   aria-current={active(n.href) ? "page" : undefined}
-                  className="nav-link font-text text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-steel transition-colors hover:text-bone data-[active=true]:text-bone"
+                  className="nav-link inline-flex h-11 min-w-11 items-center justify-center font-text text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-steel transition-colors hover:text-bone data-[active=true]:text-bone"
                 >
                   {n.label}
                 </Link>

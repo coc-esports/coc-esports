@@ -16,7 +16,7 @@ export default function TeamsPage() {
       <PageIntro label={`Season leaderboard · ${standingsAsOf}`} title="Teams" intro="Ordered by season points. Teams with a Golden Ticket are already booked for the World Finals; the rest fight for the last seats." />
       <Container>
         <Section id="qualified" label={`${qualified.length} booked`} title="Golden Ticket teams">
-          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {qualified.map((t) => (
               <li key={t.slug} className="grid">
                 <TeamPoster team={t} />

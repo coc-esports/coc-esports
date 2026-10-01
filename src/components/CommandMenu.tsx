@@ -30,7 +30,7 @@ function SearchIcon() {
 const itemClass =
   "flex cursor-pointer items-center justify-between gap-4 rounded-hair px-3 py-2.5 text-sm text-bone/85 hover:bg-plate/60 hover:text-bone data-[selected=true]:bg-plate data-[selected=true]:text-bone";
 const groupClass =
-  "[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:pb-1 [&_[cmdk-group-heading]]:pt-3 [&_[cmdk-group-heading]]:text-[11px] [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.18em] [&_[cmdk-group-heading]]:text-steel";
+  "[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:pb-1 [&_[cmdk-group-heading]]:pt-3 [&_[cmdk-group-heading]]:font-data [&_[cmdk-group-heading]]:text-label [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:text-steel";
 
 // Site search (PLAN.md §6 #20): Ctrl+K / ⌘K or the search button. Opens instantly, no animation,
 // because it's a tool people reach for often.
@@ -91,7 +91,7 @@ export function CommandMenu() {
             placeholder="Search teams, stages, news…"
             className="h-14 flex-1 bg-transparent text-base text-bone outline-none placeholder:text-steel"
           />
-          <kbd className="rounded-hair border border-rule px-1.5 py-0.5 text-[11px]">Esc</kbd>
+          <kbd className="rounded-hair border border-rule px-1.5 py-0.5 font-data text-label">Esc</kbd>
         </div>
         <Command.List data-lenis-prevent className="max-h-[60vh] overflow-y-auto overscroll-contain p-2 outline-none">
           <Command.Empty className="px-3 py-8 text-center text-sm text-steel">

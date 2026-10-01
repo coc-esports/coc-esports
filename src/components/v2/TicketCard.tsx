@@ -19,7 +19,7 @@ export function TicketCard(props: TicketCardProps) {
       )}
     >
       <div className="flex items-start justify-between gap-2">
-        <Label tone={claimed ? "bolt" : "steel"}>{claimed ? "Golden Ticket" : "Open seat"}</Label>
+        <Label tone={claimed ? "bolt" : "steel"}>{claimed ? "Ticket" : "Open"}</Label>
         <span className="font-data text-label text-steel tabular-nums">{String(props.seat).padStart(2, "0")}/08</span>
       </div>
       <div className="grid gap-2">
@@ -35,7 +35,7 @@ export function TicketCard(props: TicketCardProps) {
   );
   if (claimed && props.href) {
     return (
-      <Link href={props.href} className="block rounded-hair" aria-label={`${props.team}, ${props.via}`}>
+      <Link href={props.href} className="block rounded-hair">
         {body}
       </Link>
     );

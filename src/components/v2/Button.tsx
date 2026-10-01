@@ -17,7 +17,7 @@ const base =
 const variants: Record<Variant, string> = {
   solid: "h-12 rounded-hair bg-bone px-6 text-ink hover:bg-white",
   outline: "h-12 rounded-hair border border-rule px-6 text-bone hover:border-steel hover:bg-graphite",
-  text: "h-auto text-bone underline decoration-bolt decoration-2 underline-offset-[6px] hover:text-bolt",
+  text: "min-h-11 text-bone underline decoration-bolt decoration-2 underline-offset-[6px] hover:text-bolt",
 };
 
 export function Button({ variant = "solid", className, children, ...rest }: ButtonProps) {

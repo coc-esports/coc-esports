@@ -10,7 +10,7 @@ const components: MDXComponents = {
   ul: (props) => <ul className="mt-5 list-disc space-y-2 pl-6 text-lead text-bone/85 marker:text-bolt" {...props} />,
   ol: (props) => <ol className="mt-5 list-decimal space-y-2 pl-6 text-lead text-bone/85 marker:font-data marker:text-bolt" {...props} />,
   strong: (props) => <strong className="font-semibold text-bone" {...props} />,
-  blockquote: (props) => <blockquote className="mt-8 border-l-2 border-bolt pl-5 font-cond text-h3 font-bold uppercase text-bone" {...props} />,
+  blockquote: (props) => <blockquote className="mt-8 border-l-2 border-bolt pl-5 font-cond text-h3 font-black uppercase text-bone" {...props} />,
   a: ({ href = "", ...props }) =>
     href.startsWith("/") ? (
       <Link href={href} className={linkClass} {...props} />

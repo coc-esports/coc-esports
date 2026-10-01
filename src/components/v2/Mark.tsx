@@ -16,7 +16,7 @@ export function GMark({ className, title }: { className?: string; title?: string
 
 export function Wordmark({ onClick, className }: { onClick?: () => void; className?: string }) {
   return (
-    <Link href="/" onClick={onClick} className={cn("group flex items-center gap-2.5", className)} aria-label={`${site.name} home`}>
+    <Link href="/" onClick={onClick} className={cn("group flex h-11 items-center gap-2.5", className)} aria-label={`${site.name} home`}>
       <GMark className="h-7 w-auto transition-transform duration-300 ease-expo group-hover:-rotate-3" />
       <span className="font-cond text-[1.625rem] font-black uppercase leading-none tracking-[0.02em] text-bone">{site.name}</span>
     </Link>

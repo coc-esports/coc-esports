@@ -41,7 +41,7 @@ export function Section({
         {href ? (
           <Link
             href={href}
-            className="font-text text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-bone underline decoration-bolt decoration-2 underline-offset-[6px] hover:text-bolt"
+            className="inline-flex h-11 items-center font-text text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-bone underline decoration-bolt decoration-2 underline-offset-[6px] hover:text-bolt"
           >
             {linkLabel ?? "See all"}
           </Link>

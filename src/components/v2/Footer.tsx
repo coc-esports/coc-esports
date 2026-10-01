@@ -35,15 +35,15 @@ export function Footer() {
           {footerNav.map((col) => (
             <nav key={col.title} aria-label={col.title} className="grid content-start gap-4">
               <Label>{col.title}</Label>
-              <ul className="grid gap-2.5">
+              <ul className="grid">
                 {col.links.map((l) => (
                   <li key={l.href}>
                     {l.external ? (
-                      <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-bone/85 hover:text-bone">
+                      <a href={l.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-bone/85 hover:text-bone">
                         {l.label} <span aria-hidden>↗</span>
                       </a>
                     ) : (
-                      <Link href={l.href} className="text-bone/85 hover:text-bone">
+                      <Link href={l.href} className="inline-flex min-h-11 min-w-11 items-center text-bone/85 hover:text-bone">
                         {l.label}
                       </Link>
                     )}
