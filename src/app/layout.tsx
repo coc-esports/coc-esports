@@ -11,7 +11,8 @@ import "./globals.css";
 
 // v2 type system (Direction A). Self-hosted at build time: visitors never contact Google.
 // Only the weights the design uses, so the first view downloads as little as possible.
-// The display face is preloaded (it is the largest text on screen); text and data faces swap in after.
+// Display and text faces are preloaded (largest text on screen, and the body text whose late swap re-wrapped
+// lines and shifted the layout); the mono data face swaps in after.
 const sofiaCond = Sofia_Sans_Extra_Condensed({
   variable: "--font-sofia-cond",
   subsets: ["latin"],
@@ -23,7 +24,6 @@ const hanken = Hanken_Grotesk({
   variable: "--font-hanken",
   subsets: ["latin"],
   weight: ["400", "600"],
-  preload: false,
 });
 
 const jetbrains = JetBrains_Mono({
