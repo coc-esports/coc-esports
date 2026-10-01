@@ -26,8 +26,10 @@ lcq.upper[0].matches[0] = { ...lcq.upper[0].matches[0], a: "tribe-gaming", b: "c
 
 **Add a roster:** in `teams.ts`, give the team `players: [{ name: "Player", tag: "#2PP" }, …]`. The team page lists them. Find tags in-game under the player's name.
 
-**Spoilers:** results are hidden behind "Reveal" when a visitor turns on "Hide results" in the header; nothing to edit, it works for every score.
+**Spoilers:** "Hide results" hides every winner, score and qualified team automatically. One thing to do by hand: if a news title names winners, also give it a `safeTitle` without the names (see `golden-tickets-so-far` in `news.ts`).
 
 **New team:** add it to `teams` in `teams.ts` with a unique `slug`, a 2–3 letter `short` code and a `color`.
 
 Tip: ask Claude "Read UPDATING.md, then mark the September final as won by X", and it will make the edits.
+
+**Check your change:** `npm run build` then `npm run test:qa` (the same checks also run on GitHub after every push).

@@ -11,5 +11,7 @@
 - Legal: never use "Clash"/"Supercell" in the brand/domain, no paid features, only Fan Kit assets (PLAN.md §2).
 - Clash of Clans API keys only on the server, in `.env.local` (git-ignored). Never in client components.
 - Every animation needs a `prefers-reduced-motion` fallback; animate only transform/opacity/clip-path. GSAP is never imported directly: use `useMotion()` / `loadMotion()` from `src/lib/motion.ts` so it loads after the page is up. At most 3 signature moments (HeroStage, TicketFlip, RoadTimeline).
+- Any result (winner, score, qualified team, standings) must respect "Hide results": wrap it in `HideResult` (server-safe, CSS-driven) or `Spoiler` (with a reveal button). Tests in `tests/qa.spec.ts` check this; run `npm run build && npm run test:qa`.
+- No labels above headings: info lines go under the title (Section/PageIntro `label`).
 - Log shipped work in `DONE.md`.
 - Esports content lives in `src/data` (TS) and `src/content/news` (MDX); `UPDATING.md` explains edits. Never invent results, scores or quotes: use TBD states and cite sources in `season.ts`.
