@@ -1,5 +1,16 @@
 # Where we left off (2026-10-01)
 
+## RESUME HERE (v3 "Will Call" build, 2026-10-01)
+Owner chose (delegated): Impeccable direction "Will Call" (Golden Ticket world). Rules: best of everything; strong 3D/motion only on key catchy moments, professional touches elsewhere (not "calm"); give time-left estimates per step.
+Done: step 1 (PRODUCT.md, direction contract in .impeccable/surfaces/src-app-page-tsx.md, fonts via scripts/fetch-fonts.mjs), step 2 (home: src/components/home/*; commit c89ecab).
+Next steps and estimates:
+3. Apply the world to every page (~2.5 h): header/footer as ticket parts, Worlds (seating chart, stubs), Schedule (stubs), stage pages (ticket + bracket), Teams (accreditation passes), team page (press credential), News/article (paper), Watch (passes), About, 404. Remove /lab/v3 and src/components/v3 (superseded by home). Restyle v2 components that still look v2.
+4. Impeccable finish review (impeccable-finish-reviewer agent with the contract + screenshots) + one fix round (~45 min).
+5. Lighthouse budget, tests at 5 sizes, keyboard/reduced motion (~30 min).
+6. DESIGN.md via impeccable-documenter, docs (NEXT/DONE/decisions/scorecard), push (~20 min).
+Open owner questions: LCQ projected field, roster source ("Other" answers never arrived); 21st.dev key (optional).
+
+
 Start the next session with: **"Read docs/NEXT.md and continue."**
 
 ## Status
