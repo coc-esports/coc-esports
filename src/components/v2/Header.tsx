@@ -85,7 +85,7 @@ export function Header() {
     setOpen(false);
   }
 
-  const active = (href: string) => pathname === href || pathname.startsWith(`${href}/`) || (href === "/worlds" && pathname.startsWith("/stages"));
+  const active = (href: string) => pathname === href || pathname.startsWith(`${href}/`) || (href === "/schedule" && pathname.startsWith("/stages"));
 
   return (
     <header

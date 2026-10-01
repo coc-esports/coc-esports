@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
@@ -57,7 +58,9 @@ export function Section({
   );
 }
 
-// Top of every inner page: breadcrumb, label, huge title, intro, actions, optional art on the right.
+// Top of every inner page: breadcrumb, huge title, info line, intro, actions, optional art on the right.
+// `backdrop`: a full-width Fan Kit scene behind the header, faded into ink so the text stays readable
+// (dark on the left where the text sits, and at the bottom where the page continues).
 export function PageIntro({
   crumbs,
   label,
@@ -65,6 +68,7 @@ export function PageIntro({
   intro,
   actions,
   aside,
+  backdrop,
 }: {
   crumbs?: { label: string; href: string }[];
   label?: ReactNode;
@@ -72,10 +76,18 @@ export function PageIntro({
   intro?: ReactNode;
   actions?: ReactNode;
   aside?: ReactNode;
+  backdrop?: { src: string; alt: string };
 }) {
   return (
-    <header className="border-b border-rule">
-      <Container className="grid items-end gap-10 pb-12 pt-[calc(var(--nav-h)+3rem)] sm:pb-16 lg:grid-cols-[minmax(0,1fr)_auto]">
+    <header className={cn("relative isolate border-b border-rule", backdrop && "overflow-hidden")}>
+      {backdrop ? (
+        <div className="absolute inset-0 -z-10">
+          <Image src={backdrop.src} alt={backdrop.alt} fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover object-[65%_45%]" />
+          <div aria-hidden className="absolute inset-0 bg-ink/75 lg:bg-[linear-gradient(90deg,var(--ink)_15%,color-mix(in_oklab,var(--ink)_80%,transparent)_45%,color-mix(in_oklab,var(--ink)_15%,transparent)_85%)]" />
+          <div aria-hidden className="absolute inset-0 bg-[linear-gradient(0deg,var(--ink),transparent_45%)]" />
+        </div>
+      ) : null}
+      <Container className={cn("grid items-end gap-10 pb-12 pt-[calc(var(--nav-h)+3rem)] sm:pb-16 lg:grid-cols-[minmax(0,1fr)_auto]", backdrop && "lg:min-h-[34rem] lg:pt-[calc(var(--nav-h)+5rem)]")}>
         <div className="grid min-w-0 gap-5">
           {crumbs?.length ? (
             <nav aria-label="Breadcrumb" className="-my-3 flex flex-wrap items-center gap-2 font-data text-label uppercase text-steel">

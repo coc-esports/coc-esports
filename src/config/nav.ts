@@ -19,7 +19,6 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
     links: [
       { label: "World Championship", href: "/worlds" },
       { label: "Schedule", href: "/schedule" },
-      { label: "Stages", href: "/stages" },
       { label: "Teams", href: "/teams" },
     ],
   },

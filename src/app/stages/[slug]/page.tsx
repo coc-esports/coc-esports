@@ -43,8 +43,7 @@ export default async function StagePage({ params }: PageProps<"/stages/[slug]">)
     <>
       <PageIntro
         crumbs={[
-          { label: "Worlds", href: "/worlds" },
-          { label: "Stages", href: "/stages" },
+          { label: "Schedule", href: "/schedule" },
         ]}
         label={<StatusTag status={status} />}
         title={stage.name}
@@ -105,7 +104,7 @@ export default async function StagePage({ params }: PageProps<"/stages/[slug]">)
           )}
         </Section>
 
-        <Section id="more" title="More stages" href="/stages" linkLabel="All stages">
+        <Section id="more" title="More stages" href="/schedule" linkLabel="Full schedule">
           <ol className="border-t border-rule">
             {others.map((s) => (
               <StageRow key={s.slug} stage={s} />

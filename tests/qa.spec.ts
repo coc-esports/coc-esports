@@ -5,7 +5,6 @@ const pages = [
   "/",
   "/worlds",
   "/schedule",
-  "/stages",
   "/stages/june-2026",
   "/stages/lcq-2026",
   "/teams",
@@ -113,6 +112,10 @@ test("security headers and old-URL redirects", async ({ request }) => {
     expect.soft(h[name], name).toBeTruthy();
   }
   expect.soft(h["x-powered-by"], "x-powered-by hidden").toBeUndefined();
+  for (const from of ["/stages"]) {
+    const r = await request.get(from, { maxRedirects: 0 });
+    expect.soft(r.headers()["location"], `${from} redirect`).toContain("/schedule");
+  }
   const old = await request.get("/leaderboards", { maxRedirects: 0 });
   expect.soft(old.status()).toBeGreaterThanOrEqual(300);
   expect.soft(old.headers()["location"]).toContain("/teams");
@@ -120,7 +123,7 @@ test("security headers and old-URL redirects", async ({ request }) => {
 
 // "Hide results" on: no winner or qualified team may be readable on the main pages, from the first paint.
 const winners = ["ZOOS Esports", "Repotted Gaming", "Vatic"];
-for (const path of ["/", "/worlds", "/schedule", "/stages", "/stages/june-2026", "/news", "/teams/zoos-esports"]) {
+for (const path of ["/", "/worlds", "/schedule", "/stages/june-2026", "/news", "/teams/zoos-esports"]) {
   test(`hide results ${path}`, async ({ page }) => {
     await page.addInitScript(() => localStorage.setItem("gildra-hide-results", "1"));
     await page.goto(path, { waitUntil: "domcontentloaded" });

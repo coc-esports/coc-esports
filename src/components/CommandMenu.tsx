@@ -14,7 +14,6 @@ const pages = [
   { label: "Home", href: "/" },
   { label: "World Championship", href: "/worlds" },
   ...mainNav.filter((n) => n.href !== "/worlds").map((n) => ({ label: n.label, href: n.href })),
-  { label: "All stages", href: "/stages" },
   { label: "About", href: "/about" },
 ];
 

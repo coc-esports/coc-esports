@@ -40,6 +40,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/leaderboards", destination: "/teams", permanent: true },
       { source: "/players/:tag*", destination: "/teams", permanent: true },
+      // The stages list merged into Schedule (2026-10-01, owner decision); stage pages stay at /stages/<slug>.
+      { source: "/stages", destination: "/schedule", permanent: true },
     ];
   },
 };

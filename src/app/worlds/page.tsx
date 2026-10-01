@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { Bracket } from "@/components/v2/Bracket";
 import { Button } from "@/components/v2/Button";
@@ -34,7 +33,7 @@ export default function WorldsPage() {
             </Button>
           </>
         }
-        aside={<Image src="/art/legend-badge.webp" alt="Legend League badge (Supercell Fan Kit)" width={600} height={600} loading="eager" fetchPriority="high" className="mx-auto h-auto w-56 lg:w-72" />}
+        backdrop={{ src: "/art/th18-warmap.webp", alt: "The Town Hall 18 war map every World Championship war is played on (Supercell Fan Kit)" }}
       />
       <Container>
         <div className="pt-12">

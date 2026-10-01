@@ -12,7 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/worlds", 0.9),
     page("/schedule", 0.8),
     page("/teams", 0.8),
-    page("/stages", 0.7),
     page("/news", 0.7),
     page("/watch", 0.5),
     page("/about", 0.3),
