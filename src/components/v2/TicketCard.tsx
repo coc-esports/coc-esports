@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
+import { HideResult } from "./HideResult";
 import { Label } from "./Type";
 
 // One of the eight World Finals seats. Claimed: team + how it was won. Open: how it will be won (never an empty box).
@@ -24,11 +25,11 @@ export function TicketCard(props: TicketCardProps) {
       </div>
       <div className="grid gap-2">
         <p className={cn("font-cond font-black uppercase leading-[0.9] text-balance", claimed ? "text-[2rem] text-bone lg:text-[2.5rem]" : "text-[1.5rem] text-steel lg:text-[1.75rem]")}>
-          {claimed ? props.team : props.via}
+          {claimed ? <HideResult safe="Ticket claimed">{props.team}</HideResult> : props.via}
         </p>
         <p className="text-sm leading-snug text-steel">
           {claimed ? props.via : (props.when ?? "Decided later in the season")}
-          {claimed && props.rank ? ` · Season #${props.rank}${props.points ? ` · ${props.points} pts` : ""}` : ""}
+          {claimed && props.rank ? <HideResult safe="">{` · Season #${props.rank}${props.points ? ` · ${props.points} pts` : ""}`}</HideResult> : null}
         </p>
       </div>
     </div>

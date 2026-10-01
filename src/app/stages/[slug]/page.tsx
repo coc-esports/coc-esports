@@ -11,6 +11,7 @@ import { StatusTag } from "@/components/v2/Status";
 import { TeamMark } from "@/components/v2/TeamMark";
 import { getStage, sources, stages } from "@/data/season";
 import { findTeam } from "@/data/teams";
+import { PageArt } from "@/components/v2/PageArt";
 
 export const dynamicParams = false;
 
@@ -47,6 +48,7 @@ export default async function StagePage({ params }: PageProps<"/stages/[slug]">)
         ]}
         label={<StatusTag status={status} />}
         title={stage.name}
+        aside={<PageArt name={stage.kind === "lcq" ? "champion" : stage.kind === "china" ? "queen" : stage.kind === "worlds" ? "th18" : "king"} />}
         intro={stage.format}
         actions={
           <>
@@ -72,7 +74,7 @@ export default async function StagePage({ params }: PageProps<"/stages/[slug]">)
         </div>
 
         {winner || stage.winnerNote ? (
-          <Section id="champion" label="Golden Ticket" title="Champion">
+          <Section id="champion" title="Champion">
             {winner ? (
               <Spoiler label="Show the champion">
                 <Link href={`/teams/${winner.slug}`} className="group flex items-center gap-6 rounded-hair border border-bolt/50 bg-[linear-gradient(90deg,#101a2b,var(--graphite))] p-6 hover:border-bolt">
@@ -89,7 +91,7 @@ export default async function StagePage({ params }: PageProps<"/stages/[slug]">)
           </Section>
         ) : null}
 
-        <Section id="bracket" label="Bracket" title={stage.bracket ? "Double elimination" : "Match results"} intro={stage.bracket ? "Matchups appear as soon as they’re set. Hover a team to follow its path." : undefined}>
+        <Section id="bracket" title={stage.bracket ? "Double elimination" : "Match results"} intro={stage.bracket ? <>Matchups appear as soon as they’re set.<span className="hidden [@media(hover:hover)]:inline"> Hover a team to follow its path.</span></> : undefined}>
           {stage.bracket ? (
             <Bracket bracket={stage.bracket} label={`${stage.name} bracket`} />
           ) : (
@@ -103,7 +105,7 @@ export default async function StagePage({ params }: PageProps<"/stages/[slug]">)
           )}
         </Section>
 
-        <Section id="more" label="Season 2026" title="More stages" href="/stages" linkLabel="All stages">
+        <Section id="more" title="More stages" href="/stages" linkLabel="All stages">
           <ol className="border-t border-rule">
             {others.map((s) => (
               <StageRow key={s.slug} stage={s} />

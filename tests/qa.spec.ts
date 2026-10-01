@@ -65,12 +65,27 @@ for (const path of pages) {
         if (parseFloat(getComputedStyle(el).fontSize) < 12) tiny.add(label(el));
       }
 
+      // Every control sits fully on screen (unless it lives in its own sideways-scrolling box, like the bracket).
+      const scrollsX = (el: Element) => {
+        if (el.closest("[data-scroll-track]")) return true; // pinned sideways timeline (keyboard focus scrolls it into view)
+        for (let a = el.parentElement; a; a = a.parentElement) if (/(auto|scroll)/.test(getComputedStyle(a).overflowX)) return true;
+        return false;
+      };
+      const offscreen = [...document.querySelectorAll("a, button, [role=button], input, select, summary")]
+        .filter(visible)
+        .filter((el) => {
+          const r = el.getBoundingClientRect();
+          return (r.left < -1 || r.right > innerWidth + 1) && !scrollsX(el);
+        })
+        .map(label);
+
       const broken = [...document.images].filter((i) => i.complete && i.naturalWidth === 0 && visible(i)).map((i) => i.currentSrc || i.src);
 
       return {
         overflow: document.documentElement.scrollWidth - innerWidth,
         h1: document.querySelectorAll("h1").length,
         small,
+        offscreen,
         tiny: [...tiny],
         broken,
       };
@@ -79,6 +94,7 @@ for (const path of pages) {
     expect.soft(report.overflow, "page scrolls sideways").toBeLessThanOrEqual(0);
     expect.soft(report.h1, "exactly one h1").toBe(1);
     expect.soft(report.small, "tap targets under 44px").toEqual([]);
+    expect.soft(report.offscreen, "controls pushed off screen").toEqual([]);
     expect.soft(report.tiny, "text under 12px").toEqual([]);
     expect.soft(report.broken, "broken images").toEqual([]);
     expect.soft(errors, "console errors").toEqual([]);
@@ -97,4 +113,37 @@ test("security headers and old-URL redirects", async ({ request }) => {
   const old = await request.get("/leaderboards", { maxRedirects: 0 });
   expect.soft(old.status()).toBeGreaterThanOrEqual(300);
   expect.soft(old.headers()["location"]).toContain("/teams");
+});
+
+// "Hide results" on: no winner or qualified team may be readable on the main pages, from the first paint.
+const winners = ["ZOOS Esports", "Repotted Gaming", "Vatic"];
+for (const path of ["/", "/worlds", "/schedule", "/stages", "/stages/june-2026", "/news", "/teams/zoos-esports"]) {
+  test(`hide results ${path}`, async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem("gildra-hide-results", "1"));
+    await page.goto(path, { waitUntil: "domcontentloaded" });
+    const firstPaint = await page.locator("main").innerText();
+    await page.waitForLoadState("networkidle");
+    const settled = await page.locator("main").innerText();
+    // A team's own page names the team; only its results must be hidden there.
+    const names = path.startsWith("/teams/") ? winners.filter((w) => !w.startsWith("ZOOS")) : winners;
+    for (const name of names) {
+      expect.soft(firstPaint, `"${name}" visible before load`).not.toContain(name);
+      expect.soft(settled, `"${name}" visible`).not.toContain(name);
+    }
+    if (path.startsWith("/teams/")) expect.soft(settled).not.toContain("Golden Ticket · World Finals");
+  });
+}
+
+// Keyboard: tabbing to the last card of the pinned timeline brings it on screen (desktop only, where it pins).
+test("timeline cards come into view on keyboard focus", async ({ page }, info) => {
+  test.skip(!["laptop", "desktop"].includes(info.project.name), "the timeline only pins on wide screens");
+  await page.goto("/worlds", { waitUntil: "networkidle" });
+  await page.waitForTimeout(800);
+  const last = page.locator("[data-scroll-track] a").last();
+  await last.focus();
+  await page.waitForTimeout(1200);
+  const box = await last.boundingBox();
+  const width = page.viewportSize()!.width;
+  expect(box!.x).toBeGreaterThanOrEqual(0);
+  expect(box!.x + box!.width).toBeLessThanOrEqual(width + 1);
 });

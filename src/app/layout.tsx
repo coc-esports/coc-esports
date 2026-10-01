@@ -4,6 +4,7 @@ import { ViewTransition } from "react";
 import { Header } from "@/components/v2/Header";
 import { Footer } from "@/components/v2/Footer";
 import { SpoilerProvider } from "@/components/v2/Spoilers";
+import { SPOILER_BOOT } from "@/lib/spoilers";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { site } from "@/config/site";
 import "./globals.css";
@@ -53,7 +54,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${sofiaCond.variable} ${hanken.variable} ${jetbrains.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        {/* Applies the visitor's "Hide results" choice before the first paint, so results never flash. */}
+        <script dangerouslySetInnerHTML={{ __html: SPOILER_BOOT }} />
+      </head>
       <body className="flex min-h-full flex-col bg-ink text-bone">
         <SpoilerProvider>
         <SmoothScroll />

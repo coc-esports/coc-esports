@@ -4,11 +4,16 @@ import { cn } from "@/lib/cn";
 import { DisplayHeading, Label } from "./Type";
 
 // Page width + side gutters used by every v2 page.
-export function Container({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn("mx-auto w-full max-w-page px-4 sm:px-8", className)}>{children}</div>;
+export function Container({ children, className, id }: { children: ReactNode; className?: string; id?: string }) {
+  return (
+    <div id={id} className={cn("mx-auto w-full max-w-page px-4 sm:px-8", className)}>
+      {children}
+    </div>
+  );
 }
 
-// A titled band of a page: data label, condensed title, optional "see all" link.
+// A titled band of a page: condensed title, optional facts line under it (never a label above the
+// title: the heading carries itself), optional intro and "see all" link.
 export function Section({
   id,
   label,
@@ -29,13 +34,13 @@ export function Section({
   className?: string;
 }) {
   return (
-    <section id={id} aria-labelledby={id ? `${id}-title` : undefined} className={cn("grid gap-8 py-16 sm:py-24", className)}>
+    <section id={id} aria-labelledby={id ? `${id}-title` : undefined} className={cn("grid scroll-mt-16 gap-8 py-16 sm:py-20", className)}>
       <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
         <div className="grid gap-3">
-          {label ? <Label tone="bolt">{label}</Label> : null}
           <h2 id={id ? `${id}-title` : undefined} className="font-cond text-h1 font-black uppercase text-bone text-balance">
             {title}
           </h2>
+          {label ? <Label>{label}</Label> : null}
           {intro ? <div className="max-w-[60ch] text-lead text-steel">{intro}</div> : null}
         </div>
         {href ? (
@@ -84,8 +89,8 @@ export function PageIntro({
               ))}
             </nav>
           ) : null}
-          {label ? <div>{typeof label === "string" ? <Label tone="bolt">{label}</Label> : label}</div> : null}
           <DisplayHeading as="h1" size="hero" lines={[[title]]} />
+          {label ? <div className="font-data text-label uppercase text-steel">{label}</div> : null}
           {intro ? <div className="max-w-[62ch] text-lead text-steel">{intro}</div> : null}
           {actions ? <div className="flex flex-wrap gap-3 pt-2">{actions}</div> : null}
         </div>

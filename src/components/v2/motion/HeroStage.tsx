@@ -34,10 +34,10 @@ export function HeroStage({ children, art = "/art/th18-cold.webp", artAlt = "Tow
   return (
     <div ref={stage} className="grid items-end gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
       <div className="min-w-0">{children}</div>
-      <div className="relative order-first mx-auto w-full max-w-[34rem] [perspective:900px] lg:order-none">
+      <div className="relative order-first mx-auto w-full max-w-[14rem] sm:max-w-[24rem] lg:max-w-[34rem] [perspective:900px] lg:order-none">
         <div aria-hidden className="hero-strike absolute inset-[14%_10%] -z-0 rounded-full bg-[radial-gradient(closest-side,rgba(91,155,255,0.45),transparent)] opacity-55 blur-2xl" />
         <div data-tilt className="relative [transform-style:preserve-3d]">
-          <Image src={art} alt={artAlt} width={1400} height={1400} loading="eager" fetchPriority="high" sizes="(min-width: 1024px) 34rem, 90vw" className="hero-rise relative h-auto w-full" />
+          <Image src={art} alt={artAlt} width={1400} height={1400} loading="eager" fetchPriority="high" sizes="(min-width: 1024px) 34rem, (min-width: 640px) 24rem, 14rem" className="hero-rise relative h-auto w-full" />
         </div>
       </div>
     </div>

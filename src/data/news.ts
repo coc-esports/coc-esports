@@ -25,6 +25,7 @@ export const articles: Article[] = [
   {
     slug: "golden-tickets-so-far",
     title: "Golden Tickets so far: ZOOS, Repotted and Vatic",
+    safeTitle: "Golden Tickets so far: the first three seats",
     category: "Teams",
     date: "2026-09-28",
     excerpt: "Three monthly champions have booked their seats at the World Finals. A look at how they got there.",

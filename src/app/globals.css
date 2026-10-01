@@ -273,3 +273,9 @@ body {
     transform: translateY(14px);
   }
 }
+
+/* "Hide results": both versions are in the HTML; the <html> attribute (set before paint) picks one. */
+html[data-hide-results] .sp-real,
+html:not([data-hide-results]) .sp-safe {
+  display: none !important;
+}

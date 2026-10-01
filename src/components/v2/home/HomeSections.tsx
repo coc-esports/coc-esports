@@ -12,6 +12,8 @@ import { StatusTag } from "../Status";
 import { Label } from "../Type";
 import { RoadTimeline } from "../motion/RoadTimeline";
 import { TicketFlip } from "../motion/TicketFlip";
+import { ArticleTitle } from "../ArticleTitle";
+import { ExternalIcon } from "../Icons";
 
 // Next up: the event days of the next stage. Individual match times aren't published yet, so the page
 // shows the days and the official start time instead of inventing matchups (CLAUDE.md: never invent results).
@@ -21,7 +23,7 @@ export function NextUp() {
   const rounds = stage?.bracket ? [...stage.bracket.upper.map((r) => r.name), ...stage.bracket.lower.map((r) => r.name), stage.bracket.final.name] : [];
   return (
     <Container>
-      <Section id="next" label="Next up" title={event.name} href="/schedule" linkLabel="Full schedule">
+      <Section id="next" title={`Next up: ${event.name}`} href="/schedule" linkLabel="Full schedule">
         <ol className="grid border-t border-rule">
           {(stage?.schedule ?? [{ label: "Starts", dates: stage?.dateLabel ?? "TBA" }]).map((day, i) => (
             <li key={day.label} className="grid items-center gap-x-6 gap-y-2 border-b border-rule py-5 sm:grid-cols-[10rem_minmax(0,1fr)_auto]">
@@ -43,13 +45,14 @@ export function NextUp() {
           ))}
         </ol>
         {rounds.length ? (
-          <p className="max-w-[70ch] text-steel">
-            Format: {rounds.join(" → ")}. Matchups appear on the{" "}
-            <Link href={event.href} className="text-bone underline decoration-bolt underline-offset-4 hover:text-bolt">
-              bracket
-            </Link>{" "}
-            as soon as they&apos;re set.
-          </p>
+          <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3">
+            <p className="max-w-[62ch] text-steel">
+              Double elimination: lose once and you drop to the lower bracket, lose twice and you&apos;re out. Matchups appear as soon as they&apos;re set.
+            </p>
+            <Button href={event.href} variant="text">
+              See the bracket
+            </Button>
+          </div>
         ) : null}
       </Section>
     </Container>
@@ -61,7 +64,6 @@ export function ChosenEightBand() {
     <Container>
       <Section
         id="chosen-eight"
-        label="Golden Tickets"
         title="The Chosen Eight"
         href="/worlds"
         linkLabel="How teams qualify"
@@ -76,7 +78,7 @@ export function ChosenEightBand() {
 export function RoadBand() {
   return (
     <Container className="py-16 sm:py-24">
-      <RoadTimeline stops={roadStops()} label="The season" title="Road to Worlds" />
+      <RoadTimeline stops={roadStops()} title="Road to Worlds" />
     </Container>
   );
 }
@@ -91,7 +93,7 @@ export function HowItWorks() {
   ];
   return (
     <Container>
-      <Section id="how" label="New here?" title="From 128 teams to one champion" href="/news/how-worlds-2026-works" linkLabel="Read the explainer">
+      <Section id="how" title="New here? How Worlds works" intro="From 128 teams to one champion, in three steps." href="/news/how-worlds-2026-works" linkLabel="Read the explainer">
         <ol className="grid gap-px overflow-hidden rounded-hair border border-rule bg-rule md:grid-cols-3">
           {steps.map((s) => (
             <li key={s.n} className="grid content-start gap-4 bg-ink p-6 sm:p-8">
@@ -110,7 +112,7 @@ export function NewsBand() {
   const [lead, ...rest] = articles;
   return (
     <Container>
-      <Section id="news" label="News" title="Latest" href="/news" linkLabel="All news">
+      <Section id="news" title="Latest" href="/news" linkLabel="All news">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
           <Link href={`/news/${lead.slug}`} className="group grid gap-5">
             <div className="relative aspect-[16/9] overflow-hidden rounded-hair bg-graphite">
@@ -122,22 +124,22 @@ export function NewsBand() {
               <Label>
                 {lead.category} · {formatDate(lead.date)}
               </Label>
-              <h3 className="font-cond text-h2 font-black uppercase text-bone group-hover:text-bolt">{lead.title}</h3>
+              <h3 className="font-cond text-h2 font-black uppercase text-bone group-hover:text-bolt"><ArticleTitle article={lead} /></h3>
               <p className="max-w-[60ch] text-steel">{lead.excerpt}</p>
             </div>
           </Link>
-          <ul className="grid content-start border-t border-rule">
+          <ul className="grid gap-8">
             {rest.map((a) => (
               <li key={a.slug}>
-                <Link href={`/news/${a.slug}`} className="group grid grid-cols-[minmax(0,1fr)_6rem] items-center gap-5 border-b border-rule py-5">
+                <Link href={`/news/${a.slug}`} className="group grid gap-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:items-center lg:grid-cols-1">
+                  <span className="relative aspect-[16/9] overflow-hidden rounded-hair bg-graphite">
+                    {a.art ? <Image src={a.art.src} alt="" fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw" className="object-cover grayscale-[35%] transition-[transform,filter] duration-700 ease-expo group-hover:scale-[1.03] group-hover:grayscale-0" /> : null}
+                  </span>
                   <span className="grid gap-2">
                     <Label>
                       {a.category} · {formatDate(a.date)}
                     </Label>
-                    <span className="font-cond text-h3 font-black uppercase text-bone group-hover:text-bolt">{a.title}</span>
-                  </span>
-                  <span className="relative aspect-square overflow-hidden rounded-hair bg-graphite">
-                    {a.art ? <Image src={a.art.src} alt="" fill sizes="6rem" className="object-cover" /> : null}
+                    <span className="font-cond text-h3 font-black uppercase text-bone group-hover:text-bolt"><ArticleTitle article={a} /></span>
                   </span>
                 </Link>
               </li>
@@ -152,16 +154,16 @@ export function NewsBand() {
 export function WatchBand() {
   return (
     <Container>
-      <Section id="watch" label="Broadcasts" title="Watch it live" href="/watch" linkLabel="All videos">
+      <Section id="watch" title="Watch it live" href="/watch" linkLabel="All videos">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
           <div className="grid content-start gap-5">
             <p className="max-w-[46ch] text-lead text-steel">Every match streams on the official Clash of Clans channels. Gildra links straight to them: no re-streams, no ads.</p>
             <div className="flex flex-wrap gap-3">
               <Button href="https://www.youtube.com/@ClashofClans" target="_blank" rel="noopener noreferrer">
-                YouTube ↗
+                YouTube <ExternalIcon />
               </Button>
               <Button href="https://www.twitch.tv/clashofclans" variant="outline" target="_blank" rel="noopener noreferrer">
-                Twitch ↗
+                Twitch <ExternalIcon />
               </Button>
             </div>
           </div>
@@ -170,7 +172,7 @@ export function WatchBand() {
               <li key={v.id}>
                 <a href={v.href} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between gap-4 border-b border-rule py-4">
                   <span className="font-cond text-h3 font-black uppercase text-bone group-hover:text-bolt">{v.title}</span>
-                  <span className="shrink-0 font-data text-label uppercase text-steel">{v.meta} ↗</span>
+                  <span className="inline-flex shrink-0 items-center gap-2 font-data text-label uppercase text-steel transition-colors group-hover:text-bone">{v.meta} <ExternalIcon /></span>
                 </a>
               </li>
             ))}

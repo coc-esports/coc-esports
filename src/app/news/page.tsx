@@ -5,6 +5,7 @@ import { Container, PageIntro, Section } from "@/components/v2/Layout";
 import { Label } from "@/components/v2/Type";
 import { articles } from "@/data/news";
 import { formatDate } from "@/lib/format";
+import { ArticleTitle } from "@/components/v2/ArticleTitle";
 
 export const metadata: Metadata = {
   title: "News",
@@ -14,9 +15,9 @@ export const metadata: Metadata = {
 export default function NewsPage() {
   return (
     <>
-      <PageIntro label="Season 2026" title="News" intro="Previews, explainers and team stories. Facts are checked against the sources on each article." />
+      <PageIntro title="News" intro="Previews, explainers and team stories. Facts are checked against the sources on each article." />
       <Container>
-        <Section id="all" label={`${articles.length} articles`} title="Latest">
+        <Section id="all" title="Latest">
           <ul className="grid gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((a) => (
               <li key={a.slug}>
@@ -29,7 +30,7 @@ export default function NewsPage() {
                   <Label>
                     {a.category} · {formatDate(a.date)}
                   </Label>
-                  <h2 className="font-cond text-h2 font-black uppercase text-bone group-hover:text-bolt">{a.title}</h2>
+                  <h2 className="font-cond text-h2 font-black uppercase text-bone group-hover:text-bolt"><ArticleTitle article={a} /></h2>
                   <p className="text-steel">{a.excerpt}</p>
                 </Link>
               </li>

@@ -79,7 +79,7 @@ export function Bracket({ bracket, label }: { bracket: BracketData; label: strin
         </button>
       ) : null}
       <div role="region" aria-label={label} tabIndex={0} className="overflow-x-auto pb-4 [scrollbar-color:var(--rule)_transparent] [scrollbar-width:thin]">
-        <div className="flex w-max items-center gap-10">
+        <div className="flex w-max items-center gap-10 pr-6 pt-3">
           <div className="flex flex-col gap-12">
             <div>
               <h3 className="mb-5 font-cond text-h3 font-black uppercase text-bone">Upper bracket</h3>

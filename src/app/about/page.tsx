@@ -23,7 +23,7 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 export default function AboutPage() {
   return (
     <>
-      <PageIntro label="About" title={`About ${site.name}`} intro={`${site.tagline}. Built by fans, for fans.`} />
+      <PageIntro title={`About ${site.name}`} intro={`${site.tagline}. Built by fans, for fans.`} />
       <Container className="py-12">
         <Block title="Not official">
           <p>

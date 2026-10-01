@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Container, PageIntro, Section } from "@/components/v2/Layout";
 import { StageRow } from "@/components/v2/StageRow";
 import { stages } from "@/data/season";
+import { chronological } from "@/lib/season-view";
+import { PageArt } from "@/components/v2/PageArt";
 
 export const metadata: Metadata = {
   title: "Stages",
@@ -13,14 +15,14 @@ export default function StagesPage() {
     <>
       <PageIntro
         crumbs={[{ label: "Worlds", href: "/worlds" }]}
-        label="Season 2026"
         title="Stages"
+        aside={<PageArt name="champion" />}
         intro="Four Monthly Finals, the China Regional Qualifier and the Last Chance Qualifier decide the eight teams at the World Finals."
       />
       <Container>
-        <Section id="all" label="In order" title="Every stage">
+        <Section id="all" title="Every stage">
           <ol className="border-t border-rule">
-            {stages.map((s) => (
+            {chronological(stages).map((s) => (
               <StageRow key={s.slug} stage={s} />
             ))}
           </ol>

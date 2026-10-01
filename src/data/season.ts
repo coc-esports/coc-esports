@@ -39,7 +39,7 @@ export const stages: Stage[] = [
   {
     slug: "september-2026", name: "September Monthly Final", kind: "monthly", dateLabel: "Sep 26–27", status: "completed",
     schedule: [{ label: "Ladder", dates: "Sep 2–7" }, { label: "Qualifier", dates: "Sep 12–13" }, { label: "Final", dates: "Sep 26–27" }],
-    format: monthlyFormat, winnerNote: "Winner not yet confirmed here. Their Golden Ticket is the 4th Worlds slot.",
+    format: monthlyFormat, winnerNote: "Played Sep 26–27. We add the winner once the official result is published; they take the 4th Golden Ticket.",
   },
   {
     slug: "china-2026", name: "China Regional Qualifier", kind: "china", dateLabel: "Dates TBA", status: "upcoming",

@@ -14,7 +14,8 @@ export function StageRow({ stage }: { stage: Stage }) {
   return (
     <li className="grid gap-4 border-b border-rule py-7 md:grid-cols-[11rem_minmax(0,1fr)_auto] md:items-center md:gap-8">
       <div className="grid gap-1">
-        <span className="font-cond text-h3 font-black uppercase text-bone">{stage.dateLabel}</span>
+        {/* An undated event reads as a quiet label, so it never looks as loud as the next real date. */}
+        <span className={stage.startTime || stage.status === "completed" ? "font-cond text-h3 font-black uppercase text-bone" : "font-data text-label uppercase text-steel"}>{stage.dateLabel}</span>
         {stage.startTime ? <LocalTime iso={stage.startTime} className="font-data text-label uppercase text-steel" /> : null}
       </div>
       <div className="grid min-w-0 gap-2">

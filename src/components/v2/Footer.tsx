@@ -1,31 +1,19 @@
 import Link from "next/link";
 import { footerNav } from "@/config/nav";
 import { site } from "@/config/site";
-import { season, sources } from "@/data/season";
-import { Button } from "./Button";
+import { sources } from "@/data/season";
+import { ClosingBand } from "./ClosingBand";
 import { Wordmark } from "./Mark";
 import { Label } from "./Type";
+import { ExternalIcon } from "./Icons";
 
-// Closing band: one giant line + the next action (The Romans / Akufen pattern), then links, sources and the
+// Closing band (per page, see ClosingBand), then links, sources and the
 // Supercell disclaimer at a readable size (required on every page).
 export function Footer() {
-  const slug = season.nextEvent.href.split("/").pop();
   return (
     <footer className="mt-auto border-t border-rule bg-ink">
       <div className="mx-auto w-full max-w-page px-4 sm:px-8">
-        <div className="grid gap-8 py-16 sm:py-24">
-          <p className="font-cond text-mega font-black uppercase text-bone text-balance">
-            Follow the road <span className="italic text-steel">to Worlds.</span>
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Button href={`/calendar/${slug}`} prefetch={false} download>
-              Add {season.nextEvent.name} to calendar
-            </Button>
-            <Button href="/watch" variant="outline">
-              Where to watch
-            </Button>
-          </div>
-        </div>
+        <ClosingBand />
 
         <div className="grid gap-10 border-t border-rule py-12 md:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div className="grid content-start gap-4">
@@ -40,7 +28,7 @@ export function Footer() {
                   <li key={l.href}>
                     {l.external ? (
                       <a href={l.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-bone/85 hover:text-bone">
-                        {l.label} <span aria-hidden>↗</span>
+                        {l.label} <ExternalIcon />
                       </a>
                     ) : (
                       <Link href={l.href} className="inline-flex min-h-11 min-w-11 items-center text-bone/85 hover:text-bone">

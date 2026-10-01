@@ -116,7 +116,11 @@ export function Header() {
         <div className="ml-auto flex items-center gap-1 sm:gap-2">
           <SpoilerSwitch className="hidden md:flex" />
           <CommandMenu />
-          <MainCta live={live} className="ml-2 hidden h-11 px-5 sm:inline-flex" />
+          {/* Wide screens only: on phones and tablets the bar keeps logo, search and menu; the action lives in the menu.
+              Wrapped because Button sets its own display, which would override a "hidden" class. */}
+          <span className="ml-2 hidden lg:inline-flex">
+            <MainCta live={live} className="h-11 px-5" />
+          </span>
           <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger asChild>
               <button type="button" className="grid size-11 place-items-center rounded-hair text-bone hover:bg-graphite lg:hidden" aria-label="Open menu">

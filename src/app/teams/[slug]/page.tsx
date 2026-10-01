@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container, Facts, PageIntro, Section } from "@/components/v2/Layout";
+import { HiddenNote, HideResult } from "@/components/v2/HideResult";
 import { StageRow } from "@/components/v2/StageRow";
 import { TeamMark } from "@/components/v2/TeamMark";
 import { TeamPoster } from "@/components/v2/TeamPoster";
@@ -32,12 +33,19 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
     <>
       <PageIntro
         crumbs={[{ label: "Teams", href: "/teams" }]}
-        label={team.qualified ? "Golden Ticket · World Finals" : "LCQ contender"}
+        label={<HideResult safe="Season 2026 team">{team.qualified ? "Golden Ticket · World Finals" : "LCQ contender"}</HideResult>}
         title={team.name}
-        intro={team.qualified ? `${team.qualified}. Booked for the World Finals.` : "Chasing one of the last three Golden Tickets at the Last Chance Qualifier."}
-        aside={<TeamMark team={team} size="xl" morph />}
+        intro={<HideResult safe="Season standings and titles are hidden while “Hide results” is on.">{team.qualified ? `${team.qualified}. Booked for the World Finals.` : "Chasing one of the last three Golden Tickets at the Last Chance Qualifier."}</HideResult>}
+        aside={
+          // The team's own colour lights the header (our monogram system; no third-party logos).
+          <div className="relative grid place-items-center p-8">
+            <div aria-hidden className="absolute inset-0 rounded-full opacity-50 blur-3xl" style={{ background: `radial-gradient(closest-side, ${team.color}, transparent)` }} />
+            <TeamMark team={team} size="xl" morph className="relative" />
+          </div>
+        }
       />
       <Container>
+        <HideResult block safe={<div className="pt-12"><HiddenNote /></div>}>
         <div className="grid gap-3 pt-12">
           <Facts
             items={[
@@ -47,10 +55,12 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
               { label: "Titles 2026", value: wins.length },
             ]}
           />
-          <p className="font-data text-label uppercase text-steel">Leaderboard {standingsAsOf}</p>
+          <p className="font-data text-label text-steel">Leaderboard {standingsAsOf}</p>
         </div>
+        </HideResult>
 
-        <Section id="titles" label="2026" title="Titles this season">
+        <Section id="titles" title="Titles this season">
+          <HideResult block safe={<HiddenNote />}>
           {wins.length ? (
             <ol className="border-t border-rule">
               {wins.map((s) => (
@@ -66,9 +76,10 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
               .
             </p>
           )}
+          </HideResult>
         </Section>
 
-        <Section id="roster" label="Players" title="Roster">
+        <Section id="roster" title="Roster">
           {team.players?.length ? (
             <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
               {team.players.map((p) => (
@@ -90,7 +101,8 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
         </Section>
 
         {nearby.length ? (
-          <Section id="nearby" label="Standings" title="Nearby in the table" href="/worlds#standings" linkLabel="Full standings">
+          <Section id="nearby" title="Nearby in the table" href="/worlds#standings" linkLabel="Full standings">
+            <HideResult block safe={<HiddenNote />}>
             <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {nearby.map((t) => (
                 <li key={t.slug} className="grid">
@@ -98,6 +110,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
                 </li>
               ))}
             </ul>
+            </HideResult>
           </Section>
         ) : null}
       </Container>

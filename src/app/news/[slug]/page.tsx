@@ -7,6 +7,7 @@ import { DisplayHeading, Label } from "@/components/v2/Type";
 import { site } from "@/config/site";
 import { articles, getArticle } from "@/data/news";
 import { formatDate } from "@/lib/format";
+import { ArticleTitle } from "@/components/v2/ArticleTitle";
 
 export const dynamicParams = false;
 
@@ -59,7 +60,7 @@ export default async function ArticlePage({ params }: PageProps<"/news/[slug]">)
         </div>
       </Container>
       <Container>
-        <Section id="more" label="Keep reading" title="More news" href="/news" linkLabel="All news" className="border-t border-rule">
+        <Section id="more" title="More news" href="/news" linkLabel="All news" className="border-t border-rule">
           <ul className="grid gap-x-6 gap-y-10 md:grid-cols-2">
             {more.map((a) => (
               <li key={a.slug}>
@@ -67,7 +68,7 @@ export default async function ArticlePage({ params }: PageProps<"/news/[slug]">)
                   <Label>
                     {a.category} · {formatDate(a.date)}
                   </Label>
-                  <span className="font-cond text-h2 font-black uppercase text-bone group-hover:text-bolt">{a.title}</span>
+                  <span className="font-cond text-h2 font-black uppercase text-bone group-hover:text-bolt"><ArticleTitle article={a} /></span>
                   <span className="text-steel">{a.excerpt}</span>
                 </Link>
               </li>

@@ -37,7 +37,7 @@ export function DisplayHeading({
                   </em>
                 );
               return (
-                <span key={j} className="relative mx-[0.06em] inline-block h-[0.74em] w-[1.2em] overflow-hidden rounded-hair bg-graphite align-[-0.02em]">
+                <span key={j} className="relative mx-[0.06em] inline-block h-[0.74em] w-[1.2em] overflow-hidden align-[-0.02em]">
                   <Image src={part.image.src} alt={part.image.alt} fill sizes="12rem" className="object-cover" />
                 </span>
               );

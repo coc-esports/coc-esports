@@ -8,6 +8,7 @@ import { mainNav } from "@/config/nav";
 import { articles } from "@/data/news";
 import { stages } from "@/data/season";
 import { teams } from "@/data/teams";
+import { useSpoilers } from "@/components/v2/Spoilers";
 
 const pages = [
   { label: "Home", href: "/" },
@@ -36,6 +37,7 @@ const groupClass =
 // because it's a tool people reach for often.
 export function CommandMenu() {
   const router = useRouter();
+  const { hide } = useSpoilers();
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -118,8 +120,8 @@ export function CommandMenu() {
 
           <Command.Group heading="News" className={groupClass}>
             {articles.map((a) => (
-              <Command.Item key={a.slug} value={`news ${a.title}`} keywords={[a.category]} onSelect={() => go(`/news/${a.slug}`)} className={itemClass}>
-                <span className="truncate">{a.title}</span>
+              <Command.Item key={a.slug} value={`news ${hide && a.safeTitle ? a.safeTitle : a.title}`} keywords={[a.category]} onSelect={() => go(`/news/${a.slug}`)} className={itemClass}>
+                <span className="truncate">{hide && a.safeTitle ? a.safeTitle : a.title}</span>
               </Command.Item>
             ))}
           </Command.Group>

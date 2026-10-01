@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Bracket } from "@/components/v2/Bracket";
 import { Button } from "@/components/v2/Button";
 import { Container, Facts, PageIntro, Section } from "@/components/v2/Layout";
+import { HiddenNote, HideResult } from "@/components/v2/HideResult";
 import { TeamMark } from "@/components/v2/TeamMark";
 import { TicketFlip } from "@/components/v2/motion/TicketFlip";
 import { RoadTimeline } from "@/components/v2/motion/RoadTimeline";
@@ -45,15 +46,28 @@ export default function WorldsPage() {
               { label: "Played on", value: season.townHall },
             ]}
           />
+          <nav aria-label="On this page" className="mt-6 flex flex-wrap gap-x-6 font-data text-label uppercase text-steel">
+            {[
+              ["#qualified", "Chosen Eight"],
+              ["#road", "Road"],
+              ...(finals?.bracket ? [["#bracket", "Bracket"]] : []),
+              ["#standings", "Standings"],
+              ["#rules", "Rules"],
+            ].map(([href, label]) => (
+              <a key={href} href={href} className="inline-flex min-h-11 min-w-11 items-center justify-center hover:text-bone">
+                {label}
+              </a>
+            ))}
+          </nav>
         </div>
 
-        <Section id="qualified" label="Golden Tickets" title="The Chosen Eight" intro="Four Monthly Final winners, the China Regional champion and the top three of the Last Chance Qualifier.">
+        <Section id="qualified" title="The Chosen Eight" intro="Four Monthly Final winners, the China Regional champion and the top three of the Last Chance Qualifier.">
           <TicketFlip seats={seats()} />
         </Section>
       </Container>
 
-      <Container className="py-8">
-        <RoadTimeline stops={roadStops()} label="The season" title="Road to Worlds" />
+      <Container id="road" className="scroll-mt-24 py-8">
+        <RoadTimeline stops={roadStops()} title="Road to Worlds" />
       </Container>
 
       <Container>
@@ -63,7 +77,8 @@ export default function WorldsPage() {
           </Section>
         ) : null}
 
-        <Section id="standings" label="Season leaderboard" title="Standings" intro={`Top 11, ${standingsAsOf}.`}>
+        <Section id="standings" title="Standings" intro={`Top 11, ${standingsAsOf}.`}>
+          <HideResult block safe={<HiddenNote />}>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[34rem] border-collapse text-left">
               <thead>
@@ -91,9 +106,10 @@ export default function WorldsPage() {
               </tbody>
             </table>
           </div>
+          </HideResult>
         </Section>
 
-        <Section id="rules" label="Rulebook summary" title="How a war is won">
+        <Section id="rules" title="How a war is won">
           <div className="grid gap-px overflow-hidden rounded-hair border border-rule bg-rule md:grid-cols-2">
             {rules.map((r) => (
               <div key={r.title} className="grid content-start gap-3 bg-ink p-6">

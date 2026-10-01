@@ -13,17 +13,25 @@ export function seats(): TicketCardProps[] {
     }
     const lcq = s.via.startsWith("Last Chance");
     const china = s.via.startsWith("China");
-    return { state: "open", seat: i + 1, via: s.via, when: lcq ? "Decided Oct 10–11" : china ? "Dates TBA" : "Not yet confirmed here" };
+    return { state: "open", seat: i + 1, via: s.via, when: lcq ? "Decided Oct 10–11" : china ? "Dates TBA" : "Played Sep 26–27 · result pending" };
   });
+}
+
+// Stages in date order: finished ones first (already in order in the data), then dated upcoming events,
+// then events without a date yet ("TBA"), so "next" is always the next dated event. The sort is stable.
+export function chronological<T extends { startTime?: string; status: string }>(list: T[]): T[] {
+  const t = (s: T) => (s.status === "completed" ? -Infinity : s.startTime ? new Date(s.startTime).getTime() : Infinity);
+  return [...list].sort((a, b) => t(a) - t(b));
 }
 
 export function roadStops(): RoadStop[] {
   const nextSlug = season.nextEvent.href.split("/").pop();
-  return stages.map((s) => ({
+  return chronological(stages).map((s) => ({
     slug: s.slug,
     name: s.name,
     date: s.dateLabel,
     state: s.status === "completed" ? "done" : s.slug === nextSlug ? "next" : "later",
+    spoiler: s.status === "completed" && !!s.winner,
     note:
       s.status === "completed"
         ? s.winner

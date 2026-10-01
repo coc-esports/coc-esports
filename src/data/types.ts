@@ -55,6 +55,7 @@ export type Bracket = {
 export type Article = {
   slug: string;
   title: string;
+  safeTitle?: string; // shown in lists instead of `title` while "Hide results" is on (when the title names winners)
   category: string;
   date: string; // ISO
   excerpt: string;
