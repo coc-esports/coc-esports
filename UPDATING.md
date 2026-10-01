@@ -8,7 +8,7 @@ All esports content lives in `src/data` and `src/content`. Edit a file, save, an
 | The Chosen Eight slots | `src/data/season.ts` (`worldsSlots`) |
 | Teams, leaderboard points, ranks | `src/data/teams.ts` |
 | Bracket matchups and scores | `src/data/season.ts`, the stage's `bracket` (see below) |
-| News articles | add to `src/data/news.ts` **and** create `src/content/news/<slug>.mdx` |
+| News articles | add to `src/data/news.ts` (with `art`: an image from `public/art/` and its alt text) **and** create `src/content/news/<slug>.mdx` |
 | Video links | `src/data/samples.ts` (`vods`) |
 
 ## Common jobs
@@ -24,9 +24,9 @@ const lcq = doubleElim8();
 lcq.upper[0].matches[0] = { ...lcq.upper[0].matches[0], a: "tribe-gaming", b: "cb7-esports", scoreA: 2, scoreB: 1 };
 ```
 
-**Add a roster:** in `teams.ts`, give the team `players: [{ name: "Player", tag: "#2PP" }, …]`. Each player links to a live profile. Find tags in-game under the player's name.
+**Add a roster:** in `teams.ts`, give the team `players: [{ name: "Player", tag: "#2PP" }, …]`. The team page lists them. Find tags in-game under the player's name.
 
-**Live data stopped working (locally):** your home IP probably changed. Create a new key at developer.clashofclans.com with the new IP and paste it into `.env.local`.
+**Spoilers:** results are hidden behind "Reveal" when a visitor turns on "Hide results" in the header; nothing to edit, it works for every score.
 
 **New team:** add it to `teams` in `teams.ts` with a unique `slug`, a 2–3 letter `short` code and a `color`.
 
