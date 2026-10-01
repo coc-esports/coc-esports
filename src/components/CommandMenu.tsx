@@ -62,7 +62,7 @@ export function CommandMenu() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Search the site"
-        className="grid h-11 w-11 place-items-center rounded-hair text-bone/80 outline-none transition-[transform,color,background-color] duration-150 ease-expo hover:bg-plate hover:text-bone focus-visible:bg-plate focus-visible:text-bone active:scale-[0.94]"
+        className="grid h-11 w-11 place-items-center rounded-hair text-bone/80 transition-[transform,color,background-color] duration-150 ease-expo hover:bg-plate hover:text-bone focus-visible:text-bone active:scale-[0.94]"
       >
         <SearchIcon />
       </button>
