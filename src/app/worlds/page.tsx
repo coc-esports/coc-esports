@@ -6,10 +6,10 @@ import { Container, Facts, PageIntro, Section } from "@/components/v2/Layout";
 import { HiddenNote, HideResult } from "@/components/v2/HideResult";
 import { TeamMark } from "@/components/v2/TeamMark";
 import { TicketFlip } from "@/components/v2/motion/TicketFlip";
-import { RoadTimeline } from "@/components/v2/motion/RoadTimeline";
+import { SeasonRoad } from "@/components/home/HomeChapters";
 import { getStage, rules, season, sources } from "@/data/season";
 import { standingsAsOf, teams } from "@/data/teams";
-import { claimedCount, roadStops, seats } from "@/lib/season-view";
+import { claimedCount, seats } from "@/lib/season-view";
 
 export const metadata: Metadata = {
   title: "World Championship 2026",
@@ -65,9 +65,9 @@ export default function WorldsPage() {
         </Section>
       </Container>
 
-      <Container id="road" className="scroll-mt-24 py-8">
-        <RoadTimeline stops={roadStops()} title="Road to Worlds" />
-      </Container>
+      <div id="road" className="scroll-mt-16">
+        <SeasonRoad />
+      </div>
 
       <Container>
         {finals?.bracket ? (

@@ -10,12 +10,13 @@ export function ChapterMotion({ children }: { children: ReactNode }) {
     const mm = gsap.matchMedia();
     mm.add(MOTION_OK, () => {
       const war = { trigger: "[data-war]", start: "top bottom", end: "bottom top", scrub: true } as const;
+      const hasWar = !!root.current!.querySelector("[data-war]");
       // Key moment 2 (Town Hall 18): the render rises out of the war map while two giant lines cross.
       // Strong motion lives only in the three key moments (hero ticket, Town Hall, road); elsewhere just the reveal.
-      gsap.fromTo("[data-th]", { scale: 0.62, yPercent: 14 }, { scale: 1.05, yPercent: -6, ease: "none", scrollTrigger: war });
-      gsap.fromTo("[data-war-map]", { yPercent: -8 }, { yPercent: 8, ease: "none", scrollTrigger: war });
-      gsap.fromTo("[data-line-a]", { xPercent: 6 }, { xPercent: -24, ease: "none", scrollTrigger: war });
-      gsap.fromTo("[data-line-b]", { xPercent: -24 }, { xPercent: 6, ease: "none", scrollTrigger: war });
+      if (hasWar) gsap.fromTo("[data-th]", { scale: 0.62, yPercent: 14 }, { scale: 1.05, yPercent: -6, ease: "none", scrollTrigger: war });
+      if (hasWar) gsap.fromTo("[data-war-map]", { yPercent: -8 }, { yPercent: 8, ease: "none", scrollTrigger: war });
+      if (hasWar) gsap.fromTo("[data-line-a]", { xPercent: 6 }, { xPercent: -24, ease: "none", scrollTrigger: war });
+      if (hasWar) gsap.fromTo("[data-line-b]", { xPercent: -24 }, { xPercent: 6, ease: "none", scrollTrigger: war });
 
       // Professional touch on section titles: lines rise out of a mask as they enter.
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((h) => {

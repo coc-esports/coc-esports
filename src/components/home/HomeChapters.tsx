@@ -48,7 +48,7 @@ function WarChapter() {
   );
 }
 
-function RoadChapter() {
+export function RoadChapter() {
   const stops = roadStops();
   return (
     <section data-road className="relative h-[100svh] overflow-hidden bg-ink" aria-labelledby="road-title">
@@ -195,6 +195,15 @@ export function HomeChapters() {
       <RoadChapter />
       <PaperNews />
       <WatchPasses />
+    </ChapterMotion>
+  );
+}
+
+// The season road on its own (used on /worlds), with its pinned sideways scroll.
+export function SeasonRoad() {
+  return (
+    <ChapterMotion>
+      <RoadChapter />
     </ChapterMotion>
   );
 }
