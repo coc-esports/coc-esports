@@ -1,0 +1,53 @@
+# Automatic checks on every push and pull request (web-studio-playbook phase 9/12).
+# Free on GitHub Actions. No secrets needed: the site builds from the files in the repo.
+name: Checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NEXT_TELEMETRY_DISABLED: "1"
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+      - name: Build
+        run: npm run build
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Page tests (14 pages × 5 screen sizes)
+        run: |
+          npx playwright install --with-deps chromium
+          npm run test:qa
+      - name: Lighthouse budget (mobile, median of 3)
+        run: npx --yes @lhci/cli@0.15.x autorun
+
+      - name: Keep test report if something failed
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: |
+            test-results/
+            .lighthouseci/
+          retention-days: 7
