@@ -12,3 +12,4 @@
 | 2026-10-01 | Earlier picks (Gilded War Table, 3D options 1+2+5+6) are reconsidered in Step 4, not assumed | Claude (per rebuild-from-scratch decision) |
 | 2026-10-01 | Brief approved (docs/brief.md); Step 1 done | Owner |
 | 2026-10-01 | Research (docs/research.md) and plan (docs/plan.md) approved; Steps 2–3 done | Owner |
+| 2026-10-01 | Fan Kit starter set (18 official files: TH18 renders, loading-screen key art, heroes, Goblin, Legend League badge) downloaded by Claude at web size into References\gildra-fankit; used under the Supercell Fan Content Policy | Owner ("u do it") |
