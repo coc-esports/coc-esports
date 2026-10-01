@@ -33,7 +33,7 @@ export default function WorldsPage() {
             </Button>
           </>
         }
-        aside={<Image src="/art/legend-badge.webp" alt="Legend League badge (Supercell Fan Kit)" width={600} height={600} priority className="mx-auto h-auto w-56 lg:w-72" />}
+        aside={<Image src="/art/legend-badge.webp" alt="Legend League badge (Supercell Fan Kit)" width={600} height={600} loading="eager" fetchPriority="high" className="mx-auto h-auto w-56 lg:w-72" />}
       />
       <Container>
         <div className="pt-12">

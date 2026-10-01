@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRef } from "react";
-import { gsap, MOTION_OK, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { useMotion } from "@/lib/motion";
 import { cn } from "@/lib/cn";
 import { Label } from "../Type";
 
@@ -15,36 +15,33 @@ export function RoadTimeline({ stops, label, title }: { stops: RoadStop[]; label
   const wrap = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLOListElement>(null);
 
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
-      mm.add(`${MOTION_OK} and (min-width: 1024px)`, () => {
-        const t = track.current!;
-        // The track is wider than the screen; measure against the visible frame, not the track itself
-        // (a flex row inside a grid grows to its content, so its own clientWidth is not the viewport).
-        const distance = () => Math.max(0, t.scrollWidth - wrap.current!.clientWidth);
-        const tween = gsap.to(t, {
-          x: () => -distance(),
-          ease: "none",
-          scrollTrigger: {
-            trigger: wrap.current,
-            start: "center center",
-            end: () => "+=" + Math.min(distance(), innerHeight * 1.5),
-            pin: true,
-            scrub: 0.6,
-            invalidateOnRefresh: true,
-          },
-        });
-        gsap.fromTo("[data-progress]", { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: { trigger: wrap.current, start: "center center", end: () => "+=" + Math.min(distance(), innerHeight * 1.5), scrub: 0.6 } });
-        return () => {
-          tween.scrollTrigger?.kill();
-          ScrollTrigger.refresh();
-        };
+  useMotion(wrap, ({ gsap, MOTION_OK, ScrollTrigger }) => {
+    const mm = gsap.matchMedia();
+    mm.add(`${MOTION_OK} and (min-width: 1024px)`, () => {
+      const t = track.current!;
+      // The track is wider than the screen; measure against the visible frame, not the track itself
+      // (a flex row inside a grid grows to its content, so its own clientWidth is not the viewport).
+      const distance = () => Math.max(0, t.scrollWidth - wrap.current!.clientWidth);
+      const tween = gsap.to(t, {
+        x: () => -distance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: wrap.current,
+          start: "center center",
+          end: () => "+=" + Math.min(distance(), innerHeight * 1.5),
+          pin: true,
+          scrub: 0.6,
+          invalidateOnRefresh: true,
+        },
       });
-      return () => mm.revert();
-    },
-    { scope: wrap },
-  );
+      gsap.fromTo("[data-progress]", { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: { trigger: wrap.current, start: "center center", end: () => "+=" + Math.min(distance(), innerHeight * 1.5), scrub: 0.6 } });
+      return () => {
+        tween.scrollTrigger?.kill();
+        ScrollTrigger.refresh();
+      };
+    });
+    return () => mm.revert();
+  });
 
   return (
     <div ref={wrap} className="grid gap-6 overflow-hidden py-4">

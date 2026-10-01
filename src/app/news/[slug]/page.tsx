@@ -49,7 +49,7 @@ export default async function ArticlePage({ params }: PageProps<"/news/[slug]">)
         {article.art ? (
           <figure className="grid gap-2">
             <div className="relative aspect-[21/9] overflow-hidden rounded-hair bg-graphite">
-              <Image src={article.art.src} alt={article.art.alt} fill priority sizes="(min-width: 1024px) 64rem, 100vw" className="object-cover" />
+              <Image src={article.art.src} alt={article.art.alt} fill loading="eager" fetchPriority="high" sizes="(min-width: 1024px) 64rem, 100vw" className="object-cover" />
             </div>
             <figcaption className="font-data text-label uppercase text-steel">Art: Supercell Fan Kit</figcaption>
           </figure>
