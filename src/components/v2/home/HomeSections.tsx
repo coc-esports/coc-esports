@@ -4,13 +4,12 @@ import { articles } from "@/data/news";
 import { vods } from "@/data/samples";
 import { season, stages } from "@/data/season";
 import { formatDate } from "@/lib/format";
-import { nextEvent, roadStops, seats } from "@/lib/season-view";
+import { nextEvent, seats } from "@/lib/season-view";
 import { Button } from "../Button";
 import { Container, Section } from "../Layout";
 import { LocalTime } from "../LocalTime";
 import { StatusTag } from "../Status";
 import { Label } from "../Type";
-import { RoadTimeline } from "../motion/RoadTimeline";
 import { TicketFlip } from "../motion/TicketFlip";
 import { ArticleTitle } from "../ArticleTitle";
 import { ExternalIcon } from "../Icons";
@@ -71,14 +70,6 @@ export function ChosenEightBand() {
       >
         <TicketFlip seats={seats()} />
       </Section>
-    </Container>
-  );
-}
-
-export function RoadBand() {
-  return (
-    <Container className="py-16 sm:py-24">
-      <RoadTimeline stops={roadStops()} title="Road to Worlds" />
     </Container>
   );
 }

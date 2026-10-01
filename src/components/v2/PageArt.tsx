@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 // Official Fan Kit art for the right side of a page header, on a soft bolt glow (same light as the home hero).
-// From tablet width up: on phones the page's information comes first.
+// From tablet width up, capped in height: on these pages the information comes first, the art is a signature.
 // Characters are only ever used as Supercell drew them (Fan Content Policy); never redrawn or generated.
 export const art = {
   king: { src: "/art/king.webp", alt: "Barbarian King (Supercell Fan Kit)", w: 800, h: 722 },
@@ -14,9 +14,9 @@ export const art = {
 export function PageArt({ name, glow = "rgba(91,155,255,0.35)" }: { name: keyof typeof art; glow?: string }) {
   const a = art[name];
   return (
-    <div className="relative mx-auto hidden w-full max-w-[16rem] sm:block lg:max-w-[20rem]">
+    <div className="relative mx-auto hidden w-full max-w-[14rem] sm:block lg:max-w-[16rem]">
       <div aria-hidden className="absolute inset-[12%] rounded-full blur-2xl" style={{ background: `radial-gradient(closest-side, ${glow}, transparent)` }} />
-      <Image src={a.src} alt={a.alt} width={a.w} height={a.h} loading="eager" fetchPriority="high" sizes="(min-width: 1024px) 20rem, 16rem" className="relative h-auto w-full" />
+      <Image src={a.src} alt={a.alt} width={a.w} height={a.h} loading="eager" fetchPriority="high" sizes="16rem" className="relative mx-auto h-auto max-h-[15rem] w-auto" />
     </div>
   );
 }

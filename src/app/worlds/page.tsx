@@ -100,7 +100,7 @@ export default function WorldsPage() {
                       </Link>
                     </td>
                     <td className="py-3 pr-4 text-right font-data tabular-nums text-bone">{t.points}</td>
-                    <td className="py-3 font-data text-label uppercase">{t.qualified ? <span className="text-bolt">Golden Ticket</span> : <span className="text-steel">LCQ contender</span>}</td>
+                    <td className="py-3 font-data text-label uppercase">{t.qualified ? <span className="text-foil">Golden Ticket</span> : <span className="text-steel">LCQ contender</span>}</td>
                   </tr>
                 ))}
               </tbody>

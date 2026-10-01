@@ -71,8 +71,14 @@ export function Bracket({ bracket, label }: { bracket: BracketData; label: strin
   const [shown, setShown] = useState(false);
   const anyScore = [...bracket.upper, ...bracket.lower, bracket.final].some((r) => r.matches.some((m) => m.scoreA !== undefined));
   const hideScore = hide && !shown;
+  const seeded = [...bracket.upper, ...bracket.lower, bracket.final].some((r) => r.matches.some((m) => m.a || m.b));
   return (
     <div className="grid gap-4">
+      <p className="max-w-[70ch] text-sm text-steel">
+        {seeded ? null : <span className="text-bone">No teams seeded yet: names appear here once the field is confirmed. </span>}
+        Match codes: U = upper bracket, L = lower bracket, GF = Grand Final. &ldquo;Winner U5&rdquo; means the winner of match U5.
+        <span className="lg:hidden"> Scroll sideways to see the whole bracket.</span>
+      </p>
       {anyScore && hide && !shown ? (
         <button type="button" onClick={() => setShown(true)} className="h-11 w-fit rounded-hair border border-dashed border-rule px-4 font-data text-label uppercase text-steel hover:border-steel hover:text-bone">
           Show results

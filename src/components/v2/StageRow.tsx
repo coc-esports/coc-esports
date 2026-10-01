@@ -8,7 +8,8 @@ import { StatusTag } from "./Status";
 import { TeamMark } from "./TeamMark";
 
 // One stage in a list (schedule, stages index): date block, name + status, steps or winner, actions.
-export function StageRow({ stage }: { stage: Stage }) {
+// `asTitle`: on a team's own page the row is that team's title, so it says what was won instead of naming the team.
+export function StageRow({ stage, asTitle = false }: { stage: Stage; asTitle?: boolean }) {
   const winner = stage.winner ? findTeam(stage.winner) : undefined;
   const status = stage.status === "completed" ? "completed" : stage.status === "live" ? "live" : "upcoming";
   return (
@@ -25,7 +26,9 @@ export function StageRow({ stage }: { stage: Stage }) {
           </Link>
           <StatusTag status={status} />
         </div>
-        {winner ? (
+        {winner && asTitle ? (
+          <p className="text-sm text-foil">Champion · Golden Ticket to the World Finals</p>
+        ) : winner ? (
           <div className="flex flex-wrap items-center gap-2 text-sm text-steel">
             Won by{" "}
             <Spoiler label="Show winner">

@@ -77,7 +77,7 @@ export default async function StagePage({ params }: PageProps<"/stages/[slug]">)
           <Section id="champion" title="Champion">
             {winner ? (
               <Spoiler label="Show the champion">
-                <Link href={`/teams/${winner.slug}`} className="group flex items-center gap-6 rounded-hair border border-bolt/50 bg-[linear-gradient(90deg,#101a2b,var(--graphite))] p-6 hover:border-bolt">
+                <Link href={`/teams/${winner.slug}`} className="group flex items-center gap-6 rounded-hair border border-foil/50 bg-[linear-gradient(90deg,color-mix(in_oklab,var(--foil)_14%,var(--graphite)),var(--graphite)_70%)] p-6 hover:border-foil">
                   <TeamMark team={winner} size="lg" />
                   <span className="grid gap-2">
                     <span className="font-cond text-h1 font-black uppercase text-bone group-hover:text-bolt">{winner.name}</span>

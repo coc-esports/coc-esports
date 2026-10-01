@@ -6,7 +6,7 @@ const styles: Record<V2Status, { label: string; className: string; dot?: string 
   live: { label: "Live", className: "border-signal-live/50 text-bone", dot: "bg-signal-live" },
   upcoming: { label: "Upcoming", className: "border-rule text-steel" },
   completed: { label: "Final", className: "border-rule text-steel" },
-  ticket: { label: "Golden Ticket", className: "border-bolt/60 text-bolt" },
+  ticket: { label: "Golden Ticket", className: "border-foil/60 text-foil" },
   open: { label: "Open seat", className: "border-rule border-dashed text-steel" },
   tbd: { label: "TBD", className: "border-rule border-dashed text-steel" },
 };

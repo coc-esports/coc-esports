@@ -64,7 +64,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
           {wins.length ? (
             <ol className="border-t border-rule">
               {wins.map((s) => (
-                <StageRow key={s.slug} stage={s} />
+                <StageRow key={s.slug} stage={s} asTitle />
               ))}
             </ol>
           ) : (

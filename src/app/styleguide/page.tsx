@@ -21,7 +21,8 @@ const colors = [
   { name: "rule", hex: "#2A2F36", use: "Hairlines, borders" },
   { name: "steel", hex: "#8B929B", use: "Secondary text · 6.2:1 on ink" },
   { name: "bone", hex: "#F1F2F0", use: "Primary text, main button · 17.4:1 on ink" },
-  { name: "bolt", hex: "#5B9BFF", use: "The one accent: links, focus, Golden Tickets · 7.1:1 on ink" },
+  { name: "bolt", hex: "#5B9BFF", use: "The one accent: links, focus, next/now · 7.1:1 on ink" },
+  { name: "foil", hex: "#D9B45A", use: "Golden Ticket only: claimed seats and ticket labels · 9.9:1 on ink" },
   { name: "signal-live", hex: "#FF4D3D", use: "LIVE only (semantic)" },
 ];
 

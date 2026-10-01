@@ -12,7 +12,8 @@
   --rule: #2a2f36; /* hairlines and borders */
   --steel: #8b929b; /* secondary text (AA on ink: 6.2:1, on graphite 5.7:1) */
   --bone: #f1f2f0; /* primary text, primary button */
-  --bolt: #5b9bff; /* the one accent: TH18 lightning. Links, focus, Golden Ticket, "now" */
+  --bolt: #5b9bff; /* the one accent: TH18 lightning. Links, focus, "now" */
+  --foil: #d9b45a; /* Golden Ticket only (claimed seats, ticket labels). Never a general accent. 9.9:1 on ink, 9.1:1 on graphite */
   --bolt-ink: #0a1a33; /* text on bolt */
   --signal-live: #ff4d3d; /* LIVE only (semantic, not an accent) */
   --signal-win: #3ddc84; /* win/advanced marks inside brackets only */
@@ -26,6 +27,7 @@
   --color-steel: var(--steel);
   --color-bone: var(--bone);
   --color-bolt: var(--bolt);
+  --color-foil: var(--foil);
   --color-bolt-ink: var(--bolt-ink);
   --color-signal-live: var(--signal-live);
   --color-signal-win: var(--signal-win);
@@ -278,4 +280,21 @@ body {
 html[data-hide-results] .sp-real,
 html:not([data-hide-results]) .sp-safe {
   display: none !important;
+}
+
+/* A claimed Golden Ticket is cut like a ticket: notches on both sides and a perforation line between them. */
+.ticket-cut {
+  --notch: 0.55rem;
+  --tear: 3.1rem; /* just under the "Golden Ticket" row: that row reads as the stub */
+  mask:
+    radial-gradient(circle at 0 var(--tear), transparent var(--notch), #000 calc(var(--notch) + 0.5px)) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% var(--tear), transparent var(--notch), #000 calc(var(--notch) + 0.5px)) right / 51% 100% no-repeat;
+}
+.ticket-cut::after {
+  content: "";
+  position: absolute;
+  inset-inline: calc(var(--notch) + 0.4rem);
+  top: var(--tear);
+  border-top: 1px dashed color-mix(in oklab, var(--foil) 45%, transparent);
+  pointer-events: none;
 }

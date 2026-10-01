@@ -14,7 +14,7 @@ export function TeamPoster({ team, neutral = false }: { team: Team; neutral?: bo
       href={`/teams/${team.slug}`}
       className={cn(
         "group grid min-w-0 content-start gap-5 rounded-hair border p-5 transition-colors duration-300 ease-expo",
-        ticket ? "border-bolt/50 bg-[linear-gradient(180deg,#101a2b,var(--graphite))] hover:border-bolt" : "border-rule bg-graphite hover:border-steel",
+        ticket ? "border-foil/40 bg-[linear-gradient(160deg,color-mix(in_oklab,var(--foil)_12%,var(--graphite)),var(--graphite)_70%)] hover:border-foil" : "border-rule bg-graphite hover:border-steel",
       )}
     >
       <div className="flex items-start justify-between gap-3">
@@ -24,7 +24,7 @@ export function TeamPoster({ team, neutral = false }: { team: Team; neutral?: bo
       <div className="grid gap-1.5">
         <span className="font-cond text-h3 font-black uppercase leading-[0.95] text-bone group-hover:text-bolt">{team.name}</span>
         {neutral ? null : (
-          <Label tone={ticket ? "bolt" : "steel"}>
+          <Label tone={ticket ? "foil" : "steel"}>
             {ticket ? "Golden Ticket" : "Contender"} · {team.points} pts
           </Label>
         )}

@@ -104,7 +104,7 @@ export function CommandMenu() {
             {teams.map((t) => (
               <Command.Item key={t.slug} value={`team ${t.name}`} keywords={[t.short]} onSelect={() => go(`/teams/${t.slug}`)} className={itemClass}>
                 <span>{t.name}</span>
-                <span className="text-xs text-steel">{t.qualified ? "Qualified" : `#${t.rank}`}</span>
+                {hide ? null : <span className="text-xs text-steel">{t.qualified ? "Golden Ticket" : `#${t.rank}`}</span>}
               </Command.Item>
             ))}
           </Command.Group>

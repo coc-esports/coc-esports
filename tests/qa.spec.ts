@@ -83,6 +83,7 @@ for (const path of pages) {
 
       return {
         overflow: document.documentElement.scrollWidth - innerWidth,
+        layoutWidth: document.documentElement.scrollWidth,
         h1: document.querySelectorAll("h1").length,
         small,
         offscreen,
@@ -92,6 +93,8 @@ for (const path of pages) {
     });
 
     expect.soft(report.overflow, "page scrolls sideways").toBeLessThanOrEqual(0);
+    // Phones zoom a too-wide page out, which makes the window itself wider: compare with the real screen width.
+    expect.soft(report.layoutWidth, "page wider than the screen (phone zooms out)").toBeLessThanOrEqual(page.viewportSize()!.width);
     expect.soft(report.h1, "exactly one h1").toBe(1);
     expect.soft(report.small, "tap targets under 44px").toEqual([]);
     expect.soft(report.offscreen, "controls pushed off screen").toEqual([]);
