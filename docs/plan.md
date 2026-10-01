@@ -1,6 +1,6 @@
 # Gildra rebuild: Plan (Step 3: sitemap, content, copy)
 
-Status: **draft, waiting for owner approval** (2026-10-01). Facts come only from `src/data` (season.ts, teams.ts, news.ts); nothing invented. Anything unknown stays "TBA".
+Status: **approved by the owner** (2026-10-01). Facts come only from `src/data` (season.ts, teams.ts, news.ts); nothing invented. Anything unknown stays "TBA".
 
 ## Voice
 Short, confident, broadcast-energy; facts first (ESL/The Romans attitude, Riot clarity). Examples: "Three tickets left." · "Eight teams. One weekend." · "The road to Worlds runs through here."

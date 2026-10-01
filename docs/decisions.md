@@ -11,3 +11,4 @@
 | 2026-10-01 | Owner will download the Supercell Fan Kit for official art/characters | Owner |
 | 2026-10-01 | Earlier picks (Gilded War Table, 3D options 1+2+5+6) are reconsidered in Step 4, not assumed | Claude (per rebuild-from-scratch decision) |
 | 2026-10-01 | Brief approved (docs/brief.md); Step 1 done | Owner |
+| 2026-10-01 | Research (docs/research.md) and plan (docs/plan.md) approved; Steps 2–3 done | Owner |
