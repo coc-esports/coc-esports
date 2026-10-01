@@ -18,6 +18,63 @@
   --nav-h: 4rem;
 }
 
+/* ---------------------------------------------------------------------------------------------
+   Gildra v2 · Direction A "Broadcast Editorial" (docs/decisions.md, 2026-10-01).
+   Monochrome base + one accent (TH18 lightning blue). All other colour comes from Fan Kit art.
+   Old tokens above stay until every page is migrated in Step 5, then they are removed.
+   --------------------------------------------------------------------------------------------- */
+:root {
+  --ink: #0b0c0e; /* page background */
+  --graphite: #14171b; /* raised surfaces: cards, rows */
+  --plate: #1c2026; /* hover / pressed surfaces */
+  --rule: #2a2f36; /* hairlines and borders */
+  --steel: #8b929b; /* secondary text (AA on ink: 6.2:1, on graphite 5.7:1) */
+  --bone: #f1f2f0; /* primary text, primary button */
+  --bolt: #5b9bff; /* the one accent: TH18 lightning. Links, focus, Golden Ticket, "now" */
+  --bolt-ink: #0a1a33; /* text on bolt */
+  --signal-live: #ff4d3d; /* LIVE only (semantic, not an accent) */
+  --signal-win: #3ddc84; /* win/advanced marks inside brackets only */
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-graphite: var(--graphite);
+  --color-plate: var(--plate);
+  --color-rule: var(--rule);
+  --color-steel: var(--steel);
+  --color-bone: var(--bone);
+  --color-bolt: var(--bolt);
+  --color-bolt-ink: var(--bolt-ink);
+  --color-signal-live: var(--signal-live);
+  --color-signal-win: var(--signal-win);
+  --font-cond: var(--font-sofia-cond), "Arial Narrow", sans-serif;
+  --font-text: var(--font-hanken), "Segoe UI", system-ui, sans-serif;
+  --font-data: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+/* v2 type scale: condensed display is huge; text stays calm (>= 16px body, >= 12px labels). */
+@theme {
+  --text-mega: clamp(4rem, 2rem + 9vw, 9.5rem);
+  --text-mega--line-height: 0.82;
+  --text-mega--letter-spacing: -0.01em;
+  --text-hero: clamp(3rem, 1.6rem + 6vw, 7rem);
+  --text-hero--line-height: 0.85;
+  --text-h1: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+  --text-h1--line-height: 0.9;
+  --text-h2: clamp(2rem, 1.5rem + 2vw, 3rem);
+  --text-h2--line-height: 0.95;
+  --text-h3: 1.75rem;
+  --text-h3--line-height: 1;
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.5;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.08em;
+  --radius-hair: 2px;
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --container-page: 80rem;
+}
+
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -142,6 +199,35 @@ body {
   from {
     opacity: 0;
     transform: scale(0.94);
+  }
+}
+
+/* v2 display lines: each line rises out of its own mask on first paint (pure CSS, so it never delays LCP
+   and the text is always in the HTML). Clip extends above the line so tall capitals aren't cut. */
+.v2-line {
+  display: block;
+  clip-path: inset(-0.25em -0.25em 0 -0.25em);
+}
+.v2-line > span {
+  display: block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .v2-line > span {
+    animation: v2-rise 1s var(--ease-expo) both;
+    animation-delay: calc(80ms + var(--i, 0) * 90ms);
+  }
+  .v2-live-dot {
+    animation: v2-pulse 1.6s ease-in-out infinite;
+  }
+}
+@keyframes v2-rise {
+  from {
+    transform: translateY(108%);
+  }
+}
+@keyframes v2-pulse {
+  50% {
+    opacity: 0.35;
   }
 }
 

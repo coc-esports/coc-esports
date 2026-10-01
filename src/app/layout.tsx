@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Anton, Inter } from "next/font/google";
+import { Anton, Inter, Sofia_Sans_Extra_Condensed, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import { ViewTransition } from "react";
 import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
@@ -16,6 +16,23 @@ const inter = Inter({
 const anton = Anton({
   variable: "--font-anton",
   weight: "400",
+  subsets: ["latin"],
+});
+
+// v2 type system (Direction A). Self-hosted at build time: visitors never contact Google.
+const sofiaCond = Sofia_Sans_Extra_Condensed({
+  variable: "--font-sofia-cond",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+});
+
+const hanken = Hanken_Grotesk({
+  variable: "--font-hanken",
+  subsets: ["latin"],
+});
+
+const jetbrains = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
 });
 
@@ -39,7 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${anton.variable} h-full antialiased`}
+      className={`${inter.variable} ${anton.variable} ${sofiaCond.variable} ${hanken.variable} ${jetbrains.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <SmoothScroll />
