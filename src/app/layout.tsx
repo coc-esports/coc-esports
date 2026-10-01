@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Sofia_Sans_Extra_Condensed, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { ViewTransition } from "react";
 import { Header } from "@/components/v2/Header";
 import { Footer } from "@/components/v2/Footer";
@@ -9,27 +10,29 @@ import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { site } from "@/config/site";
 import "./globals.css";
 
-// v2 type system (Direction A). Self-hosted at build time: visitors never contact Google.
-// Only the weights the design uses, so the first view downloads as little as possible.
-// Display and text faces are preloaded (largest text on screen, and the body text whose late swap re-wrapped
-// lines and shifted the layout); the mono data face swaps in after.
-const sofiaCond = Sofia_Sans_Extra_Condensed({
-  variable: "--font-sofia-cond",
-  subsets: ["latin"],
-  weight: "900",
-  style: ["normal", "italic"],
-});
-
-const hanken = Hanken_Grotesk({
-  variable: "--font-hanken",
-  subsets: ["latin"],
-  weight: ["400", "600"],
-});
-
-const jetbrains = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
+// v3 type system ("Will Call"). Tanker and Satoshi come from Fontshare (ITF Free Font License): downloaded unmodified
+// at build time by scripts/fetch-fonts.mjs and self-hosted, never committed (the licence forbids public repositories).
+// Geist Mono is OFL, self-hosted by next/font. Visitors never contact a font server.
+const tanker = localFont({
+  src: "../fonts/fontshare/Tanker-Regular.woff2",
+  variable: "--font-tanker",
   weight: "400",
+  display: "swap",
+});
+
+const satoshi = localFont({
+  src: [
+    { path: "../fonts/fontshare/Satoshi-Variable.woff2", weight: "300 900", style: "normal" },
+    { path: "../fonts/fontshare/Satoshi-VariableItalic.woff2", weight: "300 900", style: "italic" },
+  ],
+  variable: "--font-satoshi",
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
   preload: false,
 });
 
@@ -45,7 +48,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0c0e",
+  themeColor: "#0d0a3d",
   colorScheme: "dark",
 };
 
@@ -53,7 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${sofiaCond.variable} ${hanken.variable} ${jetbrains.variable} h-full antialiased`}
+      className={`${tanker.variable} ${satoshi.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

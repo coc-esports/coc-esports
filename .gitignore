@@ -44,3 +44,9 @@ next-env.d.ts
 /test-results/
 /playwright-report/
 /.lighthouseci/
+
+# Fontshare fonts: downloaded at build time, never committed (ITF FFL forbids public repositories)
+/src/fonts/fontshare/
+/public/fonts/fontshare/
+/.impeccable/questions/
+/.impeccable/live/sessions/

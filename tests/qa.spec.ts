@@ -19,6 +19,12 @@ const pages = [
 
 for (const path of pages) {
   test(`page ${path}`, async ({ page }) => {
+    // The home page runs a 3D scene, which is slow in the test browser (software GPU): check its layout with
+    // reduced motion (one still 3D frame); the moving scene has its own check below.
+    if (path === "/") {
+      test.slow();
+      await page.emulateMedia({ reducedMotion: "reduce" });
+    }
     const errors: string[] = [];
     page.on("pageerror", (e) => errors.push(e.message));
     page.on("console", (m) => {
@@ -152,4 +158,15 @@ test("timeline cards come into view on keyboard focus", async ({ page }, info) =
   const width = page.viewportSize()!.width;
   expect(box!.x).toBeGreaterThanOrEqual(0);
   expect(box!.x + box!.width).toBeLessThanOrEqual(width + 1);
+});
+
+// The 3D hero renders on wide screens without errors (layout is covered above with reduced motion).
+test("home 3D hero renders", async ({ page }, info) => {
+  test.skip(info.project.name !== "laptop", "one viewport is enough for the 3D smoke test");
+  test.slow();
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  await page.goto("/", { waitUntil: "load" });
+  await expect(page.locator("canvas")).toBeVisible({ timeout: 30_000 });
+  expect(errors).toEqual([]);
 });

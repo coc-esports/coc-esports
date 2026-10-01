@@ -8,7 +8,9 @@
     "start": "next start",
     "preview": "next build && next start -p 3001 -H 127.0.0.1",
     "lint": "eslint",
-    "test:qa": "playwright test"
+    "test:qa": "playwright test",
+    "fonts": "node scripts/fetch-fonts.mjs",
+    "prebuild": "node scripts/fetch-fonts.mjs"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
