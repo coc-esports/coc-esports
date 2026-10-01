@@ -1,0 +1,152 @@
+<title>Gildra Wireframes</title>
+<style>
+/* Layout: one row per page; desktop frame (scaled 1440 grid) beside a phone frame; annotations below each. Grey only, by design. */
+:root {
+  --bg: #eef0f2; --paper: #ffffff; --block: #d9dde2; --block-2: #c4cad1; --ink: #1d2126; --muted: #5f6873; --line: #b7bec7; --note: #2b5fd9;
+  --display: "Archivo Narrow", "Arial Narrow", sans-serif; --body: "Archivo", "Segoe UI", sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15181c; --paper: #1d2126; --block: #2c3239; --block-2: #3a424b; --ink: #e8ebee; --muted: #9aa4ae; --line: #46505a; --note: #7aa2ff; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #15181c; --paper: #1d2126; --block: #2c3239; --block-2: #3a424b; --ink: #e8ebee; --muted: #9aa4ae; --line: #46505a; --note: #7aa2ff; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--body); padding: 32px 16px 64px; }
+.wrap { max-width: 1240px; margin: 0 auto; display: grid; gap: 56px }
+header.top h1 { font: 700 clamp(28px, 5vw, 44px)/1.05 var(--display); letter-spacing: -.01em; margin: 0 0 8px; text-transform: uppercase }
+header.top p { margin: 0; color: var(--muted); max-width: 70ch }
+.legend { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 16px; font-size: 13px; color: var(--muted) }
+.legend span { display: inline-flex; align-items: center; gap: 8px }
+.sw { width: 14px; height: 14px; border-radius: 2px; background: var(--block); border: 1px solid var(--line) }
+.sw.img { background: repeating-linear-gradient(45deg, var(--block) 0 6px, var(--block-2) 6px 12px) }
+.sw.note { background: var(--note); border-color: var(--note) }
+section.page { display: grid; gap: 16px }
+.page-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px }
+.page-head h2 { font: 700 26px/1.1 var(--display); text-transform: uppercase; margin: 0 }
+.page-head code { font: 13px var(--mono); color: var(--muted) }
+.frames { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 24px; align-items: start }
+@media (max-width: 860px) { .frames { grid-template-columns: minmax(0, 1fr) } .phone { max-width: 300px } }
+.frame { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; overflow: hidden }
+.frame .bar { display: flex; gap: 6px; padding: 8px 10px; border-bottom: 1px solid var(--line); font: 11px var(--mono); color: var(--muted); align-items: center }
+.frame .bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--block-2); display: inline-block }
+.canvas { padding: 12px; display: grid; gap: 10px }
+.phone .canvas { padding: 10px; gap: 8px }
+.b { background: var(--block); border-radius: 3px; padding: 10px 12px; font-size: 12px; color: var(--ink); position: relative; min-width: 0 }
+.b.img { background: repeating-linear-gradient(45deg, var(--block) 0 8px, var(--block-2) 8px 16px) }
+.b .t { font: 700 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); display: block; margin-bottom: 4px }
+.b .h { font: 700 clamp(20px, 3.2vw, 40px)/.95 var(--display); text-transform: uppercase; display: block; letter-spacing: -.01em }
+.phone .b .h { font-size: 26px }
+.b .n { position: absolute; top: 6px; right: 8px; width: 20px; height: 20px; border-radius: 50%; background: var(--note); color: #fff; font: 700 11px/20px var(--mono); text-align: center }
+.row { display: grid; gap: 10px; grid-template-columns: repeat(var(--c, 2), minmax(0, 1fr)) }
+.chip { display: inline-block; padding: 3px 8px; border: 1px solid var(--line); border-radius: 2px; font: 11px var(--mono); margin: 4px 4px 0 0; background: var(--paper) }
+.tall { min-height: 120px }
+.notes { display: grid; gap: 6px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); font-size: 13.5px; color: var(--muted); margin: 0; padding: 0; list-style: none }
+.notes li { display: grid; grid-template-columns: 22px 1fr; gap: 8px; align-items: start }
+.notes li b { color: var(--ink); font-weight: 600 }
+.notes .k { width: 20px; height: 20px; border-radius: 50%; background: var(--note); color: #fff; font: 700 11px/20px var(--mono); text-align: center }
+.ask { background: var(--paper); border: 1px solid var(--line); border-left: 4px solid var(--note); padding: 16px 20px; border-radius: 6px }
+.ask h3 { margin: 0 0 6px; font: 700 18px var(--display); text-transform: uppercase }
+.ask p { margin: 0; color: var(--muted) }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>Gildra rebuild · Wireframes</h1>
+    <p>Step 4 starts here: <b>where everything goes</b>, before any colour, font choice or animation. Grey boxes are content, striped boxes are images or official Fan Kit art, blue numbers point to the notes. Laptop on the left, phone on the right.</p>
+    <div class="legend"><span><i class="sw"></i>Text / data</span><span><i class="sw img"></i>Image / Fan Kit art</span><span><i class="sw note"></i>Note number</span></div>
+  </header>
+
+  <!-- HOME -->
+  <section class="page">
+    <div class="page-head"><h2>Home (LCQ week)</h2><code>/</code></div>
+    <div class="frames">
+      <div class="frame"><div class="bar"><i></i><i></i><i></i> gildra · desktop 1440</div>
+        <div class="canvas">
+          <div class="b"><span class="n">1</span><span class="t">Nav</span>Logo · Worlds · Schedule · Teams · News · Watch <span class="chip">Spoilers: off</span><span class="chip">Watch live / Add to calendar</span></div>
+          <div class="row" style="--c:2">
+            <div class="b tall"><span class="n">2</span><span class="t">Last Chance Qualifier · Oct 10–11</span><span class="h">Three tickets left.</span>Eight teams. Double elimination. The top three go to Worlds.<br><span class="chip">Countdown 08 d 14 h</span><span class="chip">Watch live</span><span class="chip">See the bracket</span></div>
+            <div class="b img tall"><span class="n">3</span><span class="t">Hero art</span>TH18 render or event key art (Fan Kit)</div>
+          </div>
+          <div class="b"><span class="n">4</span><span class="t">Next up</span><div class="row" style="--c:3"><div class="b" style="background:var(--paper)">Sat Oct 10 · 18:00 your time<br>TBD vs TBD</div><div class="b" style="background:var(--paper)">Sat Oct 10 · 19:00<br>TBD vs TBD</div><div class="b" style="background:var(--paper)">Sun Oct 11 · 18:00<br>TBD vs TBD</div></div></div>
+          <div class="b"><span class="n">5</span><span class="t">The Chosen Eight</span><div class="row" style="--c:8"><div class="b img" style="height:70px">ZOO</div><div class="b img" style="height:70px">RPG</div><div class="b img" style="height:70px">VAT</div><div class="b" style="height:70px;background:var(--paper)">Sep winner</div><div class="b" style="height:70px;background:var(--paper)">China</div><div class="b" style="height:70px;background:var(--paper)">LCQ 1</div><div class="b" style="height:70px;background:var(--paper)">LCQ 2</div><div class="b" style="height:70px;background:var(--paper)">LCQ 3</div></div></div>
+          <div class="b"><span class="n">6</span><span class="t">Road to Worlds (pinned while scrolling)</span>Jun ✓ — Jul ✓ — Aug ✓ — Sep (TBC) — China (TBA) — LCQ Oct 10–11 — World Finals (TBA)</div>
+          <div class="row" style="--c:3"><div class="b"><span class="n">7</span><span class="t">How it works · 1</span>128-team monthly qualifiers</div><div class="b"><span class="t">2</span>Golden Tickets: 8 seats</div><div class="b"><span class="t">3</span>World Finals · $700,000</div></div>
+          <div class="row" style="--c:3"><div class="b img tall" style="grid-column:span 2"><span class="n">8</span><span class="t">News · featured</span>LCQ preview</div><div class="b tall"><span class="t">News · list</span>How Worlds works<br>Golden Tickets so far</div></div>
+          <div class="b"><span class="n">9</span><span class="t">Watch it live</span>Official YouTube · Twitch · latest VODs (click to load)</div>
+          <div class="b"><span class="n">10</span><span class="t">Footer</span><span class="h" style="font-size:24px">Follow the road to Worlds.</span>Calendar · official channels · sources · Supercell disclaimer</div>
+        </div></div>
+      <div class="frame phone"><div class="bar"><i></i> phone 390</div>
+        <div class="canvas">
+          <div class="b"><span class="t">Nav</span>Logo · ☰ · Spoilers</div>
+          <div class="b"><span class="t">LCQ · Oct 10–11</span><span class="h">Three tickets left.</span><span class="chip">08 d 14 h</span><span class="chip">Watch live</span></div>
+          <div class="b img" style="height:110px">Hero art</div>
+          <div class="b"><span class="t">Next up</span>Sat 18:00 · TBD vs TBD<br>Sat 19:00 · TBD vs TBD</div>
+          <div class="b"><span class="t">Chosen Eight</span>swipe row of 8 tall cards →</div>
+          <div class="b"><span class="t">Road to Worlds</span>vertical timeline</div>
+          <div class="b"><span class="t">How it works</span>3 short steps</div>
+          <div class="b img" style="height:80px">News featured</div>
+          <div class="b"><span class="t">Watch</span>YouTube · Twitch</div>
+          <div class="b"><span class="t">Footer</span>disclaimer</div>
+        </div></div>
+    </div>
+    <ul class="notes">
+      <li><span class="k">1</span><span><b>Spoiler switch</b> in the nav hides every result site-wide. The main button changes: "Watch live" during an event, "Add to calendar" otherwise.</span></li>
+      <li><span class="k">2</span><span><b>Answer in under 5 seconds:</b> what's next, when (your time zone), where to watch.</span></li>
+      <li><span class="k">3</span><span><b>One hero visual</b> from the Fan Kit. The candidate for the 3D "wow" moment is decided in the design directions.</span></li>
+      <li><span class="k">4</span><span>Matches grouped by day, in the visitor's time zone (Riot pattern). Shows TBD until teams are set; never invented.</span></li>
+      <li><span class="k">5</span><span><b>Tall cards</b> (Riot). Open seats say how they're won instead of looking empty (critique fix).</span></li>
+      <li><span class="k">6</span><span>The season as a timeline you can tap. Candidate for a pinned scroll moment.</span></li>
+      <li><span class="k">7</span><span>For curious players: the whole format in 3 steps, linking to the explainer.</span></li>
+      <li><span class="k">8</span><span>One featured story and a short list instead of a grid of equal cards.</span></li>
+      <li><span class="k">9</span><span>Embeds load only on click (speed + privacy).</span></li>
+      <li><span class="k">10</span><span>Giant closing line (The Romans / Akufen pattern) + required disclaimer at a readable size.</span></li>
+    </ul>
+  </section>
+
+  <!-- WORLDS -->
+  <section class="page">
+    <div class="page-head"><h2>Worlds</h2><code>/worlds</code></div>
+    <div class="frames">
+      <div class="frame"><div class="bar"><i></i><i></i><i></i> desktop</div><div class="canvas">
+        <div class="row" style="--c:2"><div class="b tall"><span class="t">World Championship 2026</span><span class="h">$1,000,000</span>$700,000 at the World Finals · 8 teams · Town Hall 18</div><div class="b img tall">Trophy / TH18 art</div></div>
+        <div class="b"><span class="t">Golden Tickets · 3 of 8</span><div class="row" style="--c:4"><div class="b img" style="height:90px">ZOOS · June</div><div class="b img" style="height:90px">Repotted · July</div><div class="b img" style="height:90px">Vatic · August</div><div class="b" style="height:90px;background:var(--paper)">September winner</div></div></div>
+        <div class="b tall"><span class="t">World Finals bracket</span>8-team double elimination · TBD until set · spoiler-aware</div>
+        <div class="row" style="--c:2"><div class="b"><span class="t">How teams qualify</span>Monthly winners · China champion · LCQ top 3</div><div class="b"><span class="t">Rules</span>5v5 Esports Mode · timers · tiebreaks · rosters</div></div>
+        <div class="b"><span class="t">Sources</span>Clash Worlds tracker · Liquipedia (CC-BY-SA)</div>
+      </div></div>
+      <div class="frame phone"><div class="bar"><i></i> phone</div><div class="canvas">
+        <div class="b"><span class="h">$1,000,000</span>8 teams · TH18</div><div class="b img" style="height:90px">Art</div>
+        <div class="b"><span class="t">Golden Tickets</span>2-column cards</div><div class="b"><span class="t">Bracket</span>scrolls sideways inside its box</div><div class="b"><span class="t">Rules</span>accordion</div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section class="page">
+    <div class="page-head"><h2>Schedule</h2><code>/schedule</code></div>
+    <div class="frames">
+      <div class="frame"><div class="bar"><i></i><i></i><i></i> desktop</div><div class="canvas">
+        <div class="b"><span class="t">Filter</span><span class="chip">All stages</span><span class="chip">LCQ</span><span class="chip">World Finals</span><span class="chip">Times: your time zone</span><span class="chip">Add to calendar</span></div>
+        <div class="b"><span class="t">Saturday, October 10</span><div class="row" style="--c:1"><div class="b" style="background:var(--paper)">18:00 · LCQ Upper R1 · TBD vs TBD · Watch</div><div class="b" style="background:var(--paper)">19:00 · LCQ Upper R1 · TBD vs TBD · Watch</div></div></div>
+        <div class="b"><span class="t">Sunday, October 11</span><div class="b" style="background:var(--paper)">18:00 · LCQ Lower Final · TBD vs TBD · result hidden (tap to reveal)</div></div>
+      </div></div>
+      <div class="frame phone"><div class="bar"><i></i> phone</div><div class="canvas">
+        <div class="b">Filter chips (scroll)</div><div class="b"><span class="t">Sat Oct 10</span>18:00 TBD vs TBD<br>19:00 TBD vs TBD</div><div class="b"><span class="t">Sun Oct 11</span>18:00 · tap to reveal</div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- STAGE + TEAMS -->
+  <section class="page">
+    <div class="page-head"><h2>Stage · Teams · Team</h2><code>/stages/lcq-2026 · /teams · /teams/zoos-esports</code></div>
+    <div class="frames">
+      <div class="frame"><div class="bar"><i></i><i></i><i></i> desktop</div><div class="canvas">
+        <div class="row" style="--c:2"><div class="b tall"><span class="t">Stage header</span><span class="h">Last Chance Qualifier</span>Oct 10–11 · $80,000 · Upcoming<br>Format in one paragraph · Day 1 / Day 2</div><div class="b tall"><span class="t">Bracket</span>Upper · Lower · Final (spoiler-aware)</div></div>
+        <div class="b"><span class="t">Teams · by season rank</span><div class="row" style="--c:6"><div class="b img" style="height:110px">#1 ZOOS · 350+ · Ticket</div><div class="b img" style="height:110px">#2 Repotted · Ticket</div><div class="b img" style="height:110px">#3 Vatic · Ticket</div><div class="b img" style="height:110px">#4 Tribe</div><div class="b img" style="height:110px">#5 Win Or Die</div><div class="b img" style="height:110px">#6 MG</div></div></div>
+        <div class="row" style="--c:3"><div class="b tall" style="grid-column:span 2"><span class="t">Team page</span><span class="h">ZOOS Esports</span>Golden Ticket · June Monthly Final winner · Season #1 · 350+ pts<br>Roster names · results · links</div><div class="b img tall">Team mark (grows from the card: page transition)</div></div>
+      </div></div>
+      <div class="frame phone"><div class="bar"><i></i> phone</div><div class="canvas">
+        <div class="b"><span class="h">LCQ</span>Oct 10–11</div><div class="b">Bracket (sideways scroll)</div><div class="b"><span class="t">Teams</span>2-column tall cards</div><div class="b"><span class="t">Team</span>mark · status · roster</div>
+      </div></div>
+    </div>
+  </section>
+
+  <div class="ask"><h3>What I need from you</h3><p>Is everything in the right place and order? If the layout is approved, the next part of Step 4 is <b>2–3 complete visual directions</b> (fonts, colours, the 3D and motion feel) applied to this same home page, for you to pick one. News, Watch and About follow the same pattern and will be wireframed with the page build.</p></div>
+</div>
