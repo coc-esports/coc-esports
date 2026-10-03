@@ -86,7 +86,7 @@ function Face({ kicker, title, sub, color, big = false }: { kicker: string; titl
   const L = -W / 2 + 0.3;
   return (
     <group position={[0, 0, FRONT]}>
-      <Text font={DISPLAY} fontSize={title.length > 12 ? (big ? 0.34 : 0.3) : big ? 0.46 : 0.4} maxWidth={STUB - L - 0.18} lineHeight={0.92} color={color} anchorX="left" anchorY="middle" position={[L, 0.12, 0]}>
+      <Text font={DISPLAY} fontSize={title.length > 18 ? (big ? 0.27 : 0.27) : title.length > 12 ? (big ? 0.32 : 0.3) : big ? 0.46 : 0.4} maxWidth={STUB - L - 0.18} lineHeight={0.92} color={color} anchorX="left" anchorY="top" position={[L, H / 2 - 0.2, 0]}>
         {title.toUpperCase()}
       </Text>
       <Text font={DISPLAY} fontSize={big ? 0.16 : 0.1} maxWidth={STUB - L - 0.18} letterSpacing={0.08} lineHeight={1.1} color={color} anchorX="left" anchorY="bottom" position={[L, -H / 2 + 0.2, 0]}>
