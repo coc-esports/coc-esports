@@ -27,7 +27,7 @@ export function ChapterMotion({ children }: { children: ReactNode }) {
       const frame = root.current!.querySelector<HTMLElement>("[data-road]");
       if (track && frame) {
         const dist = () => Math.max(0, track.scrollWidth - frame.clientWidth);
-        const tween = gsap.to(track, { x: () => -dist(), ease: "none", scrollTrigger: { trigger: frame, start: "top top", end: () => "+=" + dist(), pin: true, scrub: 0.6, invalidateOnRefresh: true } });
+        const tween = gsap.to(track, { x: () => -dist(), ease: "none", scrollTrigger: { trigger: frame, start: "top top", end: () => "+=" + dist(), pin: true, pinSpacing: true, scrub: 0.6, invalidateOnRefresh: true } });
         // Key moment 3 (the road): each stub is dealt onto the table as it arrives.
         gsap.utils.toArray<HTMLElement>(".stub-card").forEach((card, i) => {
           gsap.fromTo(card, { rotate: i % 2 ? 5 : -5, y: 60 }, { rotate: 0, y: 0, ease: "none", scrollTrigger: { trigger: card, containerAnimation: tween, start: "left 100%", end: "left 65%", scrub: true } });

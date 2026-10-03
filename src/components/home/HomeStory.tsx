@@ -134,7 +134,9 @@ export function HomeStory({ data }: { data: HeroData }) {
     mm.add(MOTION_OK, () => {
       const tl = gsap.timeline({
         defaults: { ease: "none" },
-        scrollTrigger: { trigger: hero.current, start: "top top", end: "+=250%", pin: true, scrub: 0.8, onUpdate: (self) => void (story.p = self.progress) },
+        // pinSpacing must be explicit: GSAP turns it off by default when the pinned element's parent is a flex
+        // container (the layout's <main> wrapper is), which collapsed the whole story to zero scroll distance.
+        scrollTrigger: { trigger: hero.current, start: "top top", end: "+=250%", pin: true, pinSpacing: true, scrub: 0.8, onUpdate: (self) => void (story.p = self.progress) },
       });
       tl.to("[data-act1]", { yPercent: -16, opacity: 0, duration: 0.2 }, 0.26)
         .to("[data-hero-ui]", { opacity: 0, y: 24, duration: 0.12 }, 0.22)

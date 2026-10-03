@@ -170,3 +170,16 @@ test("home 3D hero renders", async ({ page }, info) => {
   await expect(page.locator("canvas")).toBeVisible({ timeout: 30_000 });
   expect(errors).toEqual([]);
 });
+
+// The home story must keep its scroll distance: the hero stays pinned for well over two screens
+// (a pin with no spacing collapses the ticket story to nothing, as happened once inside a flex parent).
+test("home hero story keeps its pinned distance", async ({ page }, info) => {
+  test.skip(info.project.name !== "laptop", "one viewport is enough");
+  test.slow();
+  await page.addInitScript(() => sessionStorage.setItem("gildra-intro", "1"));
+  await page.goto("/", { waitUntil: "load" });
+  await expect.poll(async () => page.evaluate(() => {
+    const spacer = document.querySelector("section[aria-labelledby='home-title']")?.parentElement;
+    return spacer?.classList.contains("pin-spacer") ? spacer.offsetHeight / innerHeight : 0;
+  }), { timeout: 30_000 }).toBeGreaterThan(2.5);
+});
