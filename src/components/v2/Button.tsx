@@ -8,7 +8,7 @@ type LinkRest = { href: string } & Omit<ComponentProps<typeof Link>, "href" | "c
 type ButtonRest = { href?: never } & Omit<ComponentProps<"button">, "className" | "children">;
 export type ButtonProps = Common & (LinkRest | ButtonRest);
 
-// "Will Call" buttons are ticket parts (globals.css): solid = the foil tear-off stub (the one main action per view),
+// "Will Call" buttons are ticket parts (globals.css): solid = the bone tear-off stub (the one main action per view; foil is kept for won tickets),
 // outline = an engraved hairline field, text = inline link with a halo underline. All >= 44px tall.
 const base =
   "inline-flex items-center justify-center gap-2 select-none whitespace-nowrap font-text text-[0.8125rem] font-semibold uppercase tracking-[0.08em] " +

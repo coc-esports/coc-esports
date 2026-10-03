@@ -1,0 +1,559 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-03T03:52:31.688Z",
+  "title": "Design System: Gildra",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ticket Ink",
+        "canonical": "oklch(19.5% 0.093 276.0)",
+        "tonalRamp": [
+          "oklch(15% 0.093 276.0)",
+          "oklch(25% 0.093 276.0)",
+          "oklch(35% 0.093 276.0)",
+          "oklch(45% 0.093 276.0)",
+          "oklch(58% 0.093 276.0)",
+          "oklch(70% 0.093 276.0)",
+          "oklch(82% 0.093 276.0)",
+          "oklch(95% 0.040 276.0)"
+        ]
+      },
+      "graphite": {
+        "role": "neutral",
+        "displayName": "Ticket Stock",
+        "canonical": "oklch(30.3% 0.167 272.6)",
+        "tonalRamp": [
+          "oklch(15% 0.167 272.6)",
+          "oklch(25% 0.167 272.6)",
+          "oklch(35% 0.167 272.6)",
+          "oklch(45% 0.167 272.6)",
+          "oklch(58% 0.167 272.6)",
+          "oklch(70% 0.167 272.6)",
+          "oklch(82% 0.167 272.6)",
+          "oklch(95% 0.040 272.6)"
+        ]
+      },
+      "plate": {
+        "role": "neutral",
+        "displayName": "Pressed Stock",
+        "canonical": "oklch(36.2% 0.199 272.5)",
+        "tonalRamp": [
+          "oklch(15% 0.199 272.5)",
+          "oklch(25% 0.199 272.5)",
+          "oklch(35% 0.199 272.5)",
+          "oklch(45% 0.199 272.5)",
+          "oklch(58% 0.199 272.5)",
+          "oklch(70% 0.199 272.5)",
+          "oklch(82% 0.199 272.5)",
+          "oklch(95% 0.040 272.5)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Engraved Hairline",
+        "canonical": "oklch(41.8% 0.190 276.8)",
+        "tonalRamp": [
+          "oklch(15% 0.190 276.8)",
+          "oklch(25% 0.190 276.8)",
+          "oklch(35% 0.190 276.8)",
+          "oklch(45% 0.190 276.8)",
+          "oklch(58% 0.190 276.8)",
+          "oklch(70% 0.190 276.8)",
+          "oklch(82% 0.190 276.8)",
+          "oklch(95% 0.040 276.8)"
+        ]
+      },
+      "steel": {
+        "role": "neutral",
+        "displayName": "Mist",
+        "canonical": "oklch(80.7% 0.081 288.4)",
+        "tonalRamp": [
+          "oklch(15% 0.081 288.4)",
+          "oklch(25% 0.081 288.4)",
+          "oklch(35% 0.081 288.4)",
+          "oklch(45% 0.081 288.4)",
+          "oklch(58% 0.081 288.4)",
+          "oklch(70% 0.081 288.4)",
+          "oklch(82% 0.081 288.4)",
+          "oklch(95% 0.040 288.4)"
+        ]
+      },
+      "bone": {
+        "role": "neutral",
+        "displayName": "Bone",
+        "canonical": "oklch(96.7% 0.018 296.6)",
+        "tonalRamp": [
+          "oklch(15% 0.018 296.6)",
+          "oklch(25% 0.018 296.6)",
+          "oklch(35% 0.018 296.6)",
+          "oklch(45% 0.018 296.6)",
+          "oklch(58% 0.018 296.6)",
+          "oklch(70% 0.018 296.6)",
+          "oklch(82% 0.018 296.6)",
+          "oklch(95% 0.018 296.6)"
+        ]
+      },
+      "bolt": {
+        "role": "primary",
+        "displayName": "Halo Lavender",
+        "canonical": "oklch(75.4% 0.132 285.7)",
+        "tonalRamp": [
+          "oklch(15% 0.132 285.7)",
+          "oklch(25% 0.132 285.7)",
+          "oklch(35% 0.132 285.7)",
+          "oklch(45% 0.132 285.7)",
+          "oklch(58% 0.132 285.7)",
+          "oklch(70% 0.132 285.7)",
+          "oklch(82% 0.132 285.7)",
+          "oklch(95% 0.040 285.7)"
+        ]
+      },
+      "foil": {
+        "role": "secondary",
+        "displayName": "Foil Gold",
+        "canonical": "oklch(80.2% 0.134 83.3)",
+        "tonalRamp": [
+          "oklch(15% 0.134 83.3)",
+          "oklch(25% 0.134 83.3)",
+          "oklch(35% 0.134 83.3)",
+          "oklch(45% 0.134 83.3)",
+          "oklch(58% 0.134 83.3)",
+          "oklch(70% 0.134 83.3)",
+          "oklch(82% 0.134 83.3)",
+          "oklch(95% 0.040 83.3)"
+        ]
+      },
+      "foil-deep": {
+        "role": "secondary",
+        "displayName": "Deep Foil",
+        "canonical": "oklch(51.4% 0.103 74.1)",
+        "tonalRamp": [
+          "oklch(15% 0.103 74.1)",
+          "oklch(25% 0.103 74.1)",
+          "oklch(35% 0.103 74.1)",
+          "oklch(45% 0.103 74.1)",
+          "oklch(58% 0.103 74.1)",
+          "oklch(70% 0.103 74.1)",
+          "oklch(82% 0.103 74.1)",
+          "oklch(95% 0.040 74.1)"
+        ]
+      },
+      "bolt-ink": {
+        "role": "neutral",
+        "displayName": "Ink on Fills",
+        "canonical": "oklch(19.5% 0.093 276.0)",
+        "tonalRamp": [
+          "oklch(15% 0.093 276.0)",
+          "oklch(25% 0.093 276.0)",
+          "oklch(35% 0.093 276.0)",
+          "oklch(45% 0.093 276.0)",
+          "oklch(58% 0.093 276.0)",
+          "oklch(70% 0.093 276.0)",
+          "oklch(82% 0.093 276.0)",
+          "oklch(95% 0.040 276.0)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Programme Paper",
+        "canonical": "oklch(94.9% 0.014 88.7)",
+        "tonalRamp": [
+          "oklch(15% 0.014 88.7)",
+          "oklch(25% 0.014 88.7)",
+          "oklch(35% 0.014 88.7)",
+          "oklch(45% 0.014 88.7)",
+          "oklch(58% 0.014 88.7)",
+          "oklch(70% 0.014 88.7)",
+          "oklch(82% 0.014 88.7)",
+          "oklch(95% 0.014 88.7)"
+        ]
+      },
+      "paper-ink": {
+        "role": "neutral",
+        "displayName": "Paper Ink",
+        "canonical": "oklch(19.6% 0.058 282.6)",
+        "tonalRamp": [
+          "oklch(15% 0.058 282.6)",
+          "oklch(25% 0.058 282.6)",
+          "oklch(35% 0.058 282.6)",
+          "oklch(45% 0.058 282.6)",
+          "oklch(58% 0.058 282.6)",
+          "oklch(70% 0.058 282.6)",
+          "oklch(82% 0.058 282.6)",
+          "oklch(95% 0.040 282.6)"
+        ]
+      },
+      "paper-ink-2": {
+        "role": "neutral",
+        "displayName": "Paper Ink Secondary",
+        "canonical": "oklch(41.7% 0.069 287.4)",
+        "tonalRamp": [
+          "oklch(15% 0.069 287.4)",
+          "oklch(25% 0.069 287.4)",
+          "oklch(35% 0.069 287.4)",
+          "oklch(45% 0.069 287.4)",
+          "oklch(58% 0.069 287.4)",
+          "oklch(70% 0.069 287.4)",
+          "oklch(82% 0.069 287.4)",
+          "oklch(95% 0.040 287.4)"
+        ]
+      },
+      "signal-live": {
+        "role": "tertiary",
+        "displayName": "Live Red",
+        "canonical": "oklch(68.6% 0.203 28.9)",
+        "tonalRamp": [
+          "oklch(15% 0.203 28.9)",
+          "oklch(25% 0.203 28.9)",
+          "oklch(35% 0.203 28.9)",
+          "oklch(45% 0.203 28.9)",
+          "oklch(58% 0.203 28.9)",
+          "oklch(70% 0.203 28.9)",
+          "oklch(82% 0.203 28.9)",
+          "oklch(95% 0.040 28.9)"
+        ]
+      },
+      "signal-win": {
+        "role": "tertiary",
+        "displayName": "Win Green",
+        "canonical": "oklch(85.7% 0.169 155.9)",
+        "tonalRamp": [
+          "oklch(15% 0.169 155.9)",
+          "oklch(25% 0.169 155.9)",
+          "oklch(35% 0.169 155.9)",
+          "oklch(45% 0.169 155.9)",
+          "oklch(58% 0.169 155.9)",
+          "oklch(70% 0.169 155.9)",
+          "oklch(82% 0.169 155.9)",
+          "oklch(95% 0.040 155.9)"
+        ]
+      }
+    },
+    "paperModeOverrides": {
+      "ink": "#f2eee4",
+      "graphite": "#e8e2d4",
+      "plate": "#ddd5c5",
+      "rule": "#cbc2ae",
+      "steel": "#4a4670",
+      "bone": "#12102e",
+      "bolt": "#1b1580",
+      "foil": "#74500c",
+      "bolt-ink": "#f2eee4"
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display (Tanker)",
+        "purpose": "Largest page statements; the home hero extends it to clamp(4.25rem, 17.5vw, 17rem)."
+      },
+      "hero": {
+        "displayName": "Hero",
+        "purpose": "Inner page titles."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card titles and large values."
+      },
+      "title-sm": {
+        "displayName": "Title small",
+        "purpose": "Facts values, match names."
+      },
+      "lead": {
+        "displayName": "Lead (Satoshi)",
+        "purpose": "Intros, 40-62ch."
+      },
+      "body": {
+        "displayName": "Body (Satoshi)",
+        "purpose": "Reading text, never below 16px."
+      },
+      "action": {
+        "displayName": "Action",
+        "purpose": "Stub button and chapter links; inline buttons and nav use 600, 0.8125rem, 0.08em."
+      },
+      "label": {
+        "displayName": "Label (Geist Mono)",
+        "purpose": "Printed data only: serials, seats, times, dates, statuses."
+      },
+      "data-countdown": {
+        "displayName": "Countdown",
+        "purpose": "Doors-open countdown digits, tabular."
+      }
+    },
+    "shadows": [
+      {
+        "name": "engraved-inset",
+        "value": "inset 0 0 0 1px var(--rule)",
+        "purpose": "Printed outline of ticket fields and row tickets."
+      },
+      {
+        "name": "engraved-inset-focus",
+        "value": "inset 0 0 0 2px var(--bolt)",
+        "purpose": "Row ticket with keyboard focus inside."
+      },
+      {
+        "name": "lifted-pass",
+        "value": "0 30px 60px -28px rgba(5,3,30,0.95)",
+        "purpose": "Broadcast passes, the only hovering 2D object."
+      },
+      {
+        "name": "object-drop",
+        "value": "drop-shadow(0 50px 90px rgba(5,3,30,0.7))",
+        "purpose": "Fan Kit render (Town Hall 18), as a filter."
+      },
+      {
+        "name": "header-frost",
+        "value": "color-mix(in oklab, var(--ink) 82%, transparent) + backdrop-filter: blur(12px)",
+        "purpose": "Header background once scrolled."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default easing for every entrance, hover and state change."
+      },
+      {
+        "name": "line-rise",
+        "value": "1s ease-expo, delay 80ms + i*90ms, translateY(108%) -> 0",
+        "purpose": "Display lines rise out of their mask on first paint (CSS; never delays LCP)."
+      },
+      {
+        "name": "reveal-line",
+        "value": "GSAP yPercent 110 -> 0, 1.1s expo.out, stagger 0.08, start top 85%",
+        "purpose": "Section headline reveal on enter."
+      },
+      {
+        "name": "stub-hover",
+        "value": "300ms ease-expo, translateY(-2px) rotate(-1.5deg)",
+        "purpose": "Primary stub hover."
+      },
+      {
+        "name": "pass-hover",
+        "value": "500ms ease-expo, translateY(-6px) rotate(-2deg)",
+        "purpose": "Broadcast pass hover."
+      },
+      {
+        "name": "nav-underline",
+        "value": "200ms ease-expo, scaleX(0 -> 1) from left",
+        "purpose": "Nav link hover and current page."
+      },
+      {
+        "name": "page-fade",
+        "value": "old 90ms / new 140ms ease-out opacity, no movement",
+        "purpose": "View transition between pages."
+      },
+      {
+        "name": "morph",
+        "value": "320ms ease-expo with 3px mid blur",
+        "purpose": "Team marks and article art glide from card to detail."
+      },
+      {
+        "name": "hero-story",
+        "value": "GSAP pin +=250%, scrub 0.8",
+        "purpose": "Key moment 1: the hero ticket story (tear the stub, pull back to the eight seats)."
+      },
+      {
+        "name": "war-parallax",
+        "value": "scrub: TH18 scale 0.62 -> 1.05, two lines cross +/-8%",
+        "purpose": "Key moment 2: the Town Hall 18 chapter."
+      },
+      {
+        "name": "road-scroll",
+        "value": "pinned horizontal scrub 0.6; stubs dealt from rotate +/-5deg, y 60",
+        "purpose": "Key moment 3: the road of stubs."
+      },
+      {
+        "name": "validity-band",
+        "value": "70s linear infinite, translateX(-50%)",
+        "purpose": "Ticket-edge band drift."
+      },
+      {
+        "name": "credential-settle",
+        "value": "1.6s ease-expo swing -7deg -> 3 -> -1 -> 0",
+        "purpose": "Team credential settles on its lanyard."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animations and transitions 0.01ms; 3D one still frame (frameloop demand); no pins; road becomes a scroll-snap row",
+        "purpose": "The still version of every effect."
+      },
+      {
+        "name": "3d-boot",
+        "value": "load + 3.5s + requestIdleCallback (2s timeout), or the first pointer/key/wheel/touch",
+        "purpose": "WebGL never competes with first paint or first tap."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "container",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Stub Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one main action per view: a bone tear-off stub notched on both sides; turns halo on hover.",
+      "html": "<a href=\"#\" class=\"ds-stub\">Where to watch</a>",
+      "css": ".ds-stub{--n:8px;display:inline-flex;min-height:3.25rem;align-items:center;gap:1rem;padding:0 1.75rem;background:var(--bone,#f5f2ff);color:var(--ink,#0d0a3d);font-family:Satoshi, \"Segoe UI\", system-ui, sans-serif;font-size:.875rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:transform 300ms cubic-bezier(.16,1,.3,1),background-color 300ms cubic-bezier(.16,1,.3,1);mask:radial-gradient(circle at 0 50%, transparent var(--n), #000 calc(var(--n) + 0.5px)) left / 51% 100% no-repeat, radial-gradient(circle at 100% 50%, transparent var(--n), #000 calc(var(--n) + 0.5px)) right / 51% 100% no-repeat;}.ds-stub:hover{transform:translateY(-2px) rotate(-1.5deg);background:var(--bolt,#a8a2ff);}.ds-stub:focus-visible{outline:2px solid var(--ink,#0d0a3d);outline-offset:-7px;}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action: an engraved hairline field on translucent ink.",
+      "html": "<button class=\"ds-btn-outline\">Add to calendar</button>",
+      "css": ".ds-btn-outline{display:inline-flex;align-items:center;height:3rem;padding:0 1.5rem;border:1px solid var(--rule,#3a33b0);background:color-mix(in oklab,var(--ink,#0d0a3d) 40%,transparent);color:var(--bone,#f5f2ff);font-family:Satoshi, \"Segoe UI\", system-ui, sans-serif;font-size:.8125rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color 200ms cubic-bezier(.16,1,.3,1),color 200ms cubic-bezier(.16,1,.3,1);}.ds-btn-outline:hover{border-color:var(--bolt,#a8a2ff);color:var(--bolt,#a8a2ff);}.ds-btn-outline:active{transform:translateY(1px);}.ds-btn-outline:focus-visible{outline:2px solid var(--bolt,#a8a2ff);outline-offset:3px;}"
+    },
+    {
+      "name": "Action Link",
+      "kind": "button",
+      "refersTo": "link-action",
+      "description": "Inline action: bone uppercase text with a 2px halo underline.",
+      "html": "<a href=\"#\" class=\"ds-link\">See the bracket</a>",
+      "css": ".ds-link{display:inline-flex;min-height:2.75rem;align-items:center;color:var(--bone,#f5f2ff);font-family:Satoshi, \"Segoe UI\", system-ui, sans-serif;font-size:.875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:underline;text-decoration-color:var(--bolt,#a8a2ff);text-decoration-thickness:2px;text-underline-offset:6px;}.ds-link:hover{color:var(--bolt,#a8a2ff);}.ds-link:focus-visible{outline:2px solid var(--bolt,#a8a2ff);outline-offset:3px;}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Header links in mist; a halo underline grows from the left on hover and stays on the current page.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-link\" data-active=\"true\">Worlds</a><a href=\"#\" class=\"ds-nav-link\">Schedule</a><a href=\"#\" class=\"ds-nav-link\">Teams</a><a href=\"#\" class=\"ds-nav-link\">News</a></nav>",
+      "css": ".ds-nav{display:flex;gap:1.75rem;padding:0 1rem;background:var(--ink,#0d0a3d);}.ds-nav-link{position:relative;display:inline-flex;height:2.75rem;align-items:center;color:var(--steel,#bdb8f2);font-family:Satoshi, \"Segoe UI\", system-ui, sans-serif;font-size:.8125rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:color 200ms;}.ds-nav-link::after{content:\"\";position:absolute;inset-inline:0;bottom:4px;height:2px;background:var(--bolt,#a8a2ff);transform:scaleX(0);transform-origin:left;transition:transform 200ms cubic-bezier(.16,1,.3,1);}.ds-nav-link:hover,.ds-nav-link[data-active=\"true\"]{color:var(--bone,#f5f2ff);}.ds-nav-link:hover::after,.ds-nav-link[data-active=\"true\"]::after{transform:scaleX(1);}.ds-nav-link:focus-visible{outline:2px solid var(--bolt,#a8a2ff);outline-offset:3px;}"
+    },
+    {
+      "name": "Status Tag",
+      "kind": "chip",
+      "refersTo": "status-tag",
+      "description": "State shown by form and text: pulsing dot for live, dashed for open, foil only for Golden Ticket.",
+      "html": "<span class=\"ds-tag ds-tag--live\"><span class=\"ds-dot\"></span>Live</span> <span class=\"ds-tag\">Upcoming</span> <span class=\"ds-tag ds-tag--open\">Open seat</span> <span class=\"ds-tag ds-tag--ticket\">Golden Ticket</span>",
+      "css": ".ds-tag{display:inline-flex;height:1.75rem;align-items:center;gap:.5rem;padding:0 .625rem;border:1px solid var(--rule,#3a33b0);border-radius:2px;color:var(--steel,#bdb8f2);font-family:\"Geist Mono\", ui-monospace, monospace;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;}.ds-tag--live{border-color:color-mix(in oklab,var(--signal-live,#ff5a4a) 50%,transparent);color:var(--bone,#f5f2ff);}.ds-dot{width:8px;height:8px;border-radius:50%;background:var(--signal-live,#ff5a4a);animation:ds-pulse 1.6s ease-in-out infinite;}.ds-tag--open{border-style:dashed;}.ds-tag--ticket{border-color:color-mix(in oklab,var(--foil,#e8b64c) 60%,transparent);color:var(--foil,#e8b64c);}@keyframes ds-pulse{50%{opacity:.35}}@media (prefers-reduced-motion:reduce){.ds-dot{animation:none}}"
+    },
+    {
+      "name": "Golden Ticket Card",
+      "kind": "card",
+      "refersTo": "ticket-card-claimed",
+      "description": "A won seat, cut like a real ticket with a foil perforation. Open seats use a dashed hairline on stock and mist text.",
+      "html": "<a href=\"#\" class=\"ds-ticket\"><span class=\"ds-ticket-top\"><span class=\"ds-foil\">Golden Ticket</span><span>01/08</span></span><span><span class=\"ds-ticket-team\">Team name</span><span class=\"ds-ticket-via\">June Monthly Final winner</span></span></a>",
+      "css": ".ds-ticket{--notch:.55rem;--tear:3.1rem;position:relative;display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:3/4.2;width:14rem;padding:1rem;border:1px solid color-mix(in oklab,var(--foil,#e8b64c) 50%,transparent);border-radius:2px;background:linear-gradient(160deg,color-mix(in oklab,var(--foil,#e8b64c) 16%,var(--graphite,#1b1580)),var(--graphite,#1b1580) 70%);color:var(--bone,#f5f2ff);text-decoration:none;transition:border-color 300ms cubic-bezier(.16,1,.3,1);mask:radial-gradient(circle at 0 var(--tear), transparent var(--notch), #000 calc(var(--notch) + 0.5px)) left / 51% 100% no-repeat, radial-gradient(circle at 100% var(--tear), transparent var(--notch), #000 calc(var(--notch) + 0.5px)) right / 51% 100% no-repeat;}.ds-ticket::after{content:\"\";position:absolute;inset-inline:calc(var(--notch) + .4rem);top:var(--tear);border-top:1px dashed color-mix(in oklab,var(--foil,#e8b64c) 45%,transparent);}.ds-ticket:hover{border-color:var(--foil,#e8b64c);}.ds-ticket:focus-visible{outline:2px solid var(--bolt,#a8a2ff);outline-offset:-6px;}.ds-ticket-top{display:flex;justify-content:space-between;font-family:\"Geist Mono\", ui-monospace, monospace;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--steel,#bdb8f2);}.ds-foil{color:var(--foil,#e8b64c);}.ds-ticket-team{display:block;font-family:Tanker, \"Arial Black\", sans-serif;font-size:2rem;line-height:.9;text-transform:uppercase;}.ds-ticket-via{display:block;margin-top:.5rem;font-family:Satoshi, \"Segoe UI\", system-ui, sans-serif;font-size:.875rem;opacity:.8;}"
+    },
+    {
+      "name": "Printed Field",
+      "kind": "custom",
+      "refersTo": "ticket-field",
+      "description": "Hairline box with four punched corners holding the doors-open countdown and event line.",
+      "html": "<div class=\"ds-field\"><div class=\"ds-count\">07<span>:</span>14<span>:</span>32<span>:</span>09</div><p>Doors open · Last Chance Qualifier · Oct 10</p></div>",
+      "css": ".ds-field{--c:9px;display:inline-grid;gap:.5rem;padding:1rem 1.25rem;background:color-mix(in oklab,var(--ink,#0d0a3d) 55%,transparent);box-shadow:inset 0 0 0 1px var(--rule,#3a33b0);mask:radial-gradient(circle at 0 0, transparent var(--c), #000 calc(var(--c) + .5px)) top left / 51% 51% no-repeat, radial-gradient(circle at 100% 0, transparent var(--c), #000 calc(var(--c) + .5px)) top right / 51% 51% no-repeat, radial-gradient(circle at 0 100%, transparent var(--c), #000 calc(var(--c) + .5px)) bottom left / 51% 51% no-repeat, radial-gradient(circle at 100% 100%, transparent var(--c), #000 calc(var(--c) + .5px)) bottom right / 51% 51% no-repeat;}.ds-count{font-family:\"Geist Mono\", ui-monospace, monospace;font-weight:500;font-size:clamp(2rem,4vw,3.25rem);line-height:1;font-variant-numeric:tabular-nums;color:var(--bone,#f5f2ff);}.ds-count span{margin-left:.25rem;color:color-mix(in oklab,var(--steel,#bdb8f2) 60%,transparent);}.ds-field p{margin:0;font-family:\"Geist Mono\", ui-monospace, monospace;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--steel,#bdb8f2);}"
+    },
+    {
+      "name": "Season Stub Card",
+      "kind": "card",
+      "refersTo": "stub-card",
+      "description": "A stage on the road to Worlds: notched at the dashed tear line above a 5rem stub with serial and state.",
+      "html": "<a href=\"#\" class=\"ds-stubcard\"><span class=\"ds-stub-main\"><span class=\"ds-stub-date\">Oct 10</span><span class=\"ds-stub-name\">Last Chance Qualifier</span></span><span class=\"ds-stub-foot\"><span>No. 05 · GLD-2026</span><span class=\"ds-next\">Next</span></span></a>",
+      "css": ".ds-stubcard{--n:12px;--tear:calc(100% - 5rem);display:grid;grid-template-rows:1fr auto;width:18rem;height:22rem;background:linear-gradient(160deg,#3a2fd6,var(--graphite,#1b1580));color:var(--bone,#f5f2ff);text-decoration:none;transition:transform 300ms cubic-bezier(.16,1,.3,1);mask:radial-gradient(circle at 0 var(--tear), transparent var(--n), #000 calc(var(--n) + 0.5px)) left / 51% 100% no-repeat, radial-gradient(circle at 100% var(--tear), transparent var(--n), #000 calc(var(--n) + 0.5px)) right / 51% 100% no-repeat;}.ds-stubcard:hover{transform:translateY(-4px);}.ds-stubcard:focus-visible{outline:2px solid var(--bolt,#a8a2ff);outline-offset:-6px;}.ds-stub-main{display:grid;align-content:end;gap:1rem;padding:1.5rem;}.ds-stub-date{font-family:Tanker, \"Arial Black\", sans-serif;font-size:4.5rem;line-height:.85;text-transform:uppercase;color:var(--bolt,#a8a2ff);}.ds-stub-name{font-family:Tanker, \"Arial Black\", sans-serif;font-size:1.875rem;line-height:1;text-transform:uppercase;}.ds-stub-foot{display:flex;height:5rem;align-items:center;justify-content:space-between;padding:0 1.5rem;border-top:1px dashed var(--rule,#3a33b0);font-family:\"Geist Mono\", ui-monospace, monospace;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--steel,#bdb8f2);}.ds-next{color:var(--bolt,#a8a2ff);}"
+    },
+    {
+      "name": "Broadcast Pass",
+      "kind": "card",
+      "refersTo": "broadcast-pass",
+      "description": "An official channel link as a bone credential with lanyard slot, serial footer; tilts on hover.",
+      "html": "<a href=\"#\" class=\"ds-pass\"><span class=\"ds-slot\"></span><span class=\"ds-pass-name\">YouTube</span><span class=\"ds-pass-foot\"><span>Broadcast pass · 2026</span><span>BP-01</span></span></a>",
+      "css": ".ds-pass{display:grid;width:15rem;background:var(--bone,#f5f2ff);color:var(--ink,#0d0a3d);text-decoration:none;box-shadow:0 30px 60px -28px rgba(5,3,30,.95);transition:transform 500ms cubic-bezier(.16,1,.3,1);}.ds-pass:hover{transform:translateY(-6px) rotate(-2deg);}.ds-pass:focus-visible{outline:2px solid var(--bolt,#a8a2ff);outline-offset:3px;}.ds-slot{margin:.75rem auto 0;width:3rem;height:.625rem;border-radius:999px;background:var(--ink,#0d0a3d);}.ds-pass-name{padding:2rem 1.25rem 1.25rem;font-family:Tanker, \"Arial Black\", sans-serif;font-size:3rem;line-height:1;text-transform:uppercase;}.ds-pass-foot{display:flex;justify-content:space-between;padding:.75rem 1.25rem;background:var(--ink,#0d0a3d);color:var(--steel,#bdb8f2);font-family:\"Geist Mono\", ui-monospace, monospace;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Will-Call Window",
+    "overview": "Gildra is the window where you collect your seat for the World Finals. Every surface is ticket stock: a drenched royal ultramarine engraved with fine guilloche security rosettes, cut into stubs, perforations, punched printed fields, serials, barcodes and validity bands. The season is the queue for eight Golden Tickets, so the one precious material, foil gold, exists only on tickets a team has actually won. Everything else is ultramarine, a pale lavender \"halo\", and bone.\n\nThe world is dense with type and almost empty of chrome. Giant one-weight condensed capitals (Tanker) carry every heading, a calm grotesk (Satoshi) carries reading text, and a mono (Geist Mono) is reserved for the printed data of a ticket: serials, seat numbers, times, dates. Long-form reading moves onto bone paper through a perforated edge, so news and About read like the printed programme tucked inside the ticket wallet.\n\nMotion is concentrated, not sprinkled. Three key moments carry strong 3D or pinned scroll (the hero ticket story, the Town Hall 18 war chapter, the road of stubs); everywhere else the touches are refined: headline lines rising out of masks, stubs tilting on hover, a validity band drifting along an edge. Every one of them has a still, complete reduced-motion version. The world refuses the category default of a dark key-art hero, cards and a neon accent.",
+    "keyCharacteristics": [
+      "Drenched ultramarine ticket stock with guilloche security print as the ground of every page.",
+      "Foil gold is a state, not a colour: it means \"Golden Ticket won\".",
+      "Components are ticket parts: notched stubs, perforations, punched fields, serials, barcodes.",
+      "Tanker capitals at extreme scale; Geist Mono only for printed data.",
+      "Bone paper reading mode entered through a perforated edge.",
+      "Strong motion in three key moments only; every effect has a still version."
+    ],
+    "rules": [
+      {
+        "name": "The Won-Only Foil Rule",
+        "body": "Foil gold appears only on a Golden Ticket that a team has won. Never on buttons, headings, decoration or \"premium\" emphasis. If nothing on the screen has been won, nothing on the screen is gold.",
+        "section": "colors"
+      },
+      {
+        "name": "The Halo Accent Rule",
+        "body": "Every accent (links, focus, now/next, stressed headline words) uses the halo lavender. There is no second accent hue; red and green are signals, not accents.",
+        "section": "colors"
+      },
+      {
+        "name": "The Paper Remap Rule",
+        "body": "Reading surfaces (news list, articles, About) wrap in the paper mode, which redefines the shared token names in place: ink becomes paper (#f2eee4), graphite #e8e2d4, plate #ddd5c5, rule #cbc2ae, steel #4a4670, bone #12102e, bolt #1b1580, foil #74500c, bolt-ink #f2eee4. Components never get a paper variant of their own; they read the remapped tokens.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Weight Rule",
+        "body": "Tanker ships a single weight and `font-synthesis` is off site-wide. Never set Tanker bold or italic, and never set italic Satoshi; emphasis in a display line is colour (halo) or an outline stroke, not weight.",
+        "section": "typography"
+      },
+      {
+        "name": "The Info Line Under Rule",
+        "body": "Headings carry themselves. The facts line (category, date, stage) sits under the title, never as a label above it.",
+        "section": "typography"
+      },
+      {
+        "name": "The Printed Data Rule",
+        "body": "Geist Mono is only for what a ticket would print: serials, seats, times, dates, statuses. Never for prose or headings.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Stock Rule",
+        "body": "Ticket stock is flat. A shadow appears only under a physical object (a pass, a Fan Kit render), never under a card or a section.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Mask-Cut Rule",
+        "body": "Because masks clip everything outside the shape, focus rings on cut shapes are drawn inside them (negative outline offset), never outside.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** keep foil gold (#e8b64c) for won Golden Tickets only; use deep foil (#8a5d10) when gold text sits on paper.",
+      "**Do** make the primary action the bone tear-off stub, one per view, turning halo on hover.",
+      "**Do** use the halo lavender (#a8a2ff) for every accent: links, focus, now/next, stressed headline words.",
+      "**Do** wrap news, articles and About in the paper reading mode, entered through a perforated edge, and let components read the remapped tokens.",
+      "**Do** put info lines (category, date, stage) under titles.",
+      "**Do** reserve strong 3D and pinned motion for the three key moments (hero ticket story, Town Hall 18 chapter, road of stubs) and use refined touches elsewhere (masked headline reveals with expo-out `cubic-bezier(0.16, 1, 0.3, 1)`, stub and pass hovers).",
+      "**Do** give every effect a reduced-motion version: one still 3D frame, no pins, the road as a scroll-snap row.",
+      "**Do** boot 3D after idle or the first interaction, so first paint and first tap never wait on WebGL.",
+      "**Do** wrap every result in Hide Results (HideResult or the Spoiler switch).",
+      "**Do** cut shapes with notches and perforations; square corners otherwise."
+    ],
+    "donts": [
+      "**Don't** use foil gold on buttons, headings, borders or decoration.",
+      "**Don't** set Tanker bold or italic, or turn `font-synthesis` back on.",
+      "**Don't** put a label or kicker above a heading.",
+      "**Don't** use rounded cards or soft pill shapes; the 2px hair radius is for small tags only.",
+      "**Don't** add shadows under cards or sections; only physical objects (passes, Fan Kit renders) cast them.",
+      "**Don't** add a second accent hue; red is LIVE only, green is bracket wins only.",
+      "**Don't** add strong motion outside the three key moments, or any animation without a still version.",
+      "**Don't** show a result anywhere without the Hide Results wrapper."
+    ]
+  }
+}

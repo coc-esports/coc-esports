@@ -22,6 +22,14 @@
   --paper-ink-2: #4a4670; /* secondary on paper: 7.5:1 */
   --signal-live: #ff5a4a; /* LIVE only: 6.0:1 on ink */
   --signal-win: #5ff0a0; /* bracket wins only */
+  /* Stock shades used by the hero, road stubs and validity band (named so nothing is hard-coded). */
+  --stock-glow: #2a22b8; /* lit centre of the stock */
+  --stock-top: #14107a; /* top of the hero gradient */
+  --stub-next: #3a2fd6; /* the NEXT stub */
+  --stub-done: #151070; /* played stubs */
+  --stub-later: #120e5c; /* later stubs */
+  --band: #0b0833; /* validity band */
+  --paper-shade: #ddd6c6; /* image wells on paper */
 }
 
 @theme inline {
@@ -81,7 +89,7 @@ html {
 body {
   background: var(--ink);
   color: var(--bone);
-  font-family: var(--font-hanken), "Segoe UI", system-ui, sans-serif;
+  font-family: var(--font-satoshi), "Segoe UI", system-ui, sans-serif;
 }
 
 /* Keyboard focus ring. In the base layer so a component's own focus style (a Tailwind utility)

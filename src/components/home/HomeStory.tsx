@@ -164,7 +164,7 @@ export function HomeStory({ data }: { data: HeroData }) {
       {intro ? <Intro onDone={() => setIntro(false)} /> : null}
       <section ref={hero} className="relative h-[100svh] overflow-hidden bg-ink" aria-labelledby="home-title">
         {/* Ticket stock: deep ultramarine engraved with a guilloche rosette (scripts/guilloche.mjs) */}
-        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_42%,#2a22b8,transparent_72%),linear-gradient(180deg,#14107a,#0d0a3d)]" />
+        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_42%,var(--stock-glow),transparent_72%),linear-gradient(180deg,var(--stock-top),#0d0a3d)]" />
         <div aria-hidden className="guilloche-rosette absolute left-1/2 top-[44%] size-[min(115vmin,1100px)] -translate-x-1/2 -translate-y-1/2" />
 
         <div data-act1 className="pointer-events-none absolute inset-0 flex flex-col items-center justify-start px-4 pt-[calc(var(--nav-h)+0.5rem)] text-center lg:pt-[calc(var(--nav-h)+1.5rem)]">
@@ -221,7 +221,7 @@ export function HomeStory({ data }: { data: HeroData }) {
         </div>
 
         {/* Validity band: the event in the visitor's own time, like the printed strip along a ticket's edge */}
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-9 overflow-hidden border-t border-rule bg-[#0b0833]">
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-9 overflow-hidden border-t border-rule bg-[var(--band)]">
           <div className="validity-band flex h-full w-max items-center whitespace-nowrap font-data text-label uppercase text-steel">
             {Array.from({ length: 2 }, (_, k) => (
               <span key={k} className="flex gap-10 pr-10">

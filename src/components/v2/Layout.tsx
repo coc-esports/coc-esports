@@ -79,7 +79,7 @@ export function PageIntro({
   backdrop?: { src: string; alt: string };
 }) {
   return (
-    <header className="relative isolate overflow-hidden border-b border-rule bg-[radial-gradient(60%_80%_at_80%_30%,#2a22b8,transparent_70%),linear-gradient(180deg,#14107a,var(--ink))]">
+    <header className="relative isolate overflow-hidden border-b border-rule bg-[radial-gradient(60%_80%_at_80%_30%,var(--stock-glow),transparent_70%),linear-gradient(180deg,var(--stock-top),var(--ink))]">
       {/* Ticket stock: every inner page opens on the engraved security print (scripts/guilloche.mjs). */}
       <div aria-hidden className="guilloche-rosette absolute -right-[18vmin] top-[55%] -z-20 size-[min(95vmin,900px)] -translate-y-1/2 opacity-45" />
       {backdrop ? (

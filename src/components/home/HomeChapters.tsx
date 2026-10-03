@@ -64,7 +64,7 @@ export function RoadChapter() {
       </div>
       <ol data-road-track data-scroll-track className={`flex h-full w-max items-center gap-6 pt-16 ${pad}`}>
         {stops.map((s, i) => (
-          <li key={s.slug} className={`stub-card relative grid h-[min(26rem,58svh)] w-[min(78vw,22rem)] shrink-0 grid-rows-[1fr_auto] ${s.state === "next" ? "bg-[linear-gradient(160deg,#3a2fd6,#1b1580)]" : s.state === "done" ? "bg-[#151070]" : "bg-[#120e5c]"}`}>
+          <li key={s.slug} className={`stub-card relative grid h-[min(26rem,58svh)] w-[min(78vw,22rem)] shrink-0 grid-rows-[1fr_auto] ${s.state === "next" ? "bg-[linear-gradient(160deg,var(--stub-next),var(--graphite))]" : s.state === "done" ? "bg-[var(--stub-done)]" : "bg-[var(--stub-later)]"}`}>
             <Link href={`/stages/${s.slug}`} className="grid content-end gap-4 p-6 outline-none">
               <span className={`font-cond text-[clamp(3.5rem,6vw,5.5rem)] uppercase leading-[0.85] ${s.state === "next" ? "text-bolt" : s.state === "done" ? "text-steel" : "text-bone"}`}>{s.date}</span>
               <span className="font-cond text-3xl uppercase leading-none text-bone">{s.name}</span>
@@ -100,16 +100,16 @@ function PaperNews() {
             <span className="reveal-line"><span>From the</span></span>
             <span className="reveal-line"><span>press box</span></span>
           </h2>
-          <Link href="/news" className="inline-flex min-h-11 items-center font-text text-sm font-semibold uppercase tracking-[0.12em] underline decoration-[#1b1580] decoration-2 underline-offset-[6px] hover:text-[#1b1580]">
+          <Link href="/news" className="inline-flex min-h-11 items-center font-text text-sm font-semibold uppercase tracking-[0.12em] underline decoration-[var(--graphite)] decoration-2 underline-offset-[6px] hover:text-[var(--graphite)]">
             All news
           </Link>
         </div>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
           <Link href={`/news/${lead.slug}`} className="group grid content-start gap-5">
-            <span className="relative aspect-[16/9] overflow-hidden bg-[#ddd6c6]">
+            <span className="relative aspect-[16/9] overflow-hidden bg-[var(--paper-shade)]">
               {lead.art ? <Image src={lead.art.src} alt={lead.art.alt} fill sizes="(min-width: 1024px) 60vw, 100vw" className="object-cover transition-transform duration-700 ease-expo group-hover:scale-[1.03]" /> : null}
             </span>
-            <span className="font-cond text-[clamp(2.25rem,4vw,3.5rem)] uppercase leading-[0.9] group-hover:text-[#1b1580]">
+            <span className="font-cond text-[clamp(2.25rem,4vw,3.5rem)] uppercase leading-[0.9] group-hover:text-[var(--graphite)]">
               <ArticleTitle article={lead} />
             </span>
             <span className="font-data text-label uppercase text-paper-ink-2">
@@ -121,11 +121,11 @@ function PaperNews() {
             {rest.map((a) => (
               <li key={a.slug}>
                 <Link href={`/news/${a.slug}`} className="group grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-                  <span className="relative aspect-[16/9] overflow-hidden bg-[#ddd6c6]">
+                  <span className="relative aspect-[16/9] overflow-hidden bg-[var(--paper-shade)]">
                     {a.art ? <Image src={a.art.src} alt="" fill sizes="(min-width: 1024px) 30vw, 50vw" className="object-cover transition-transform duration-700 ease-expo group-hover:scale-[1.03]" /> : null}
                   </span>
                   <span className="grid content-start gap-2">
-                    <span className="font-cond text-[1.9rem] uppercase leading-[0.92] group-hover:text-[#1b1580]">
+                    <span className="font-cond text-[1.9rem] uppercase leading-[0.92] group-hover:text-[var(--graphite)]">
                       <ArticleTitle article={a} />
                     </span>
                     <span className="font-data text-label uppercase text-paper-ink-2">

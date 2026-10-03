@@ -1,15 +1,14 @@
 # Where we left off (2026-10-01)
 
-## RESUME HERE (v3 "Will Call" build, 2026-10-01)
-Owner chose (delegated): Impeccable direction "Will Call" (Golden Ticket world). Rules: best of everything; strong 3D/motion only on key catchy moments, professional touches elsewhere (not "calm"); give time-left estimates per step.
-Done: step 1 (PRODUCT.md, direction contract in .impeccable/surfaces/src-app-page-tsx.md, fonts via scripts/fetch-fonts.mjs), step 2 (home: src/components/home/*; commit c89ecab).
-Next steps and estimates:
-3. Apply the world to every page (~2.5 h): header/footer as ticket parts, Worlds (seating chart, stubs), Schedule (stubs), stage pages (ticket + bracket), Teams (accreditation passes), team page (press credential), News/article (paper), Watch (passes), About, 404. Remove /lab/v3 and src/components/v3 (superseded by home). Restyle v2 components that still look v2.
-4. Impeccable finish review (impeccable-finish-reviewer agent with the contract + screenshots) + one fix round (~45 min).
-5. Lighthouse budget, tests at 5 sizes, keyboard/reduced motion (~30 min).
-6. DESIGN.md via impeccable-documenter, docs (NEXT/DONE/decisions/scorecard), push (~20 min).
-Open owner questions: LCQ projected field, roster source ("Other" answers never arrived); 21st.dev key (optional).
-
+## RESUME HERE (v3 "Will Call", updated 2026-10-03)
+**v3 build complete** on branch `rebuild/v2` (preview link below). Impeccable flow done: PRODUCT.md, direction contract (.impeccable/surfaces/src-app-page-tsx.md), build, finish review (2 fix rounds, all items resolved), DESIGN.md + .impeccable/design.json.
+Numbers: Lighthouse home 78 (real 3D kept), inner pages 90–94, a11y 100, CLS ≤ 0.06; 104 Playwright tests; detector 0 findings.
+Open for the owner:
+- Review the preview on phone and desktop (one consolidated feedback list).
+- Speed choice for the home page: keep 78 with the 3D, or add a still poster of the ticket so the first paint is lighter (more work), or show 3D only on desktop.
+- LCQ projected field and roster source (earlier "Other" answers never arrived).
+- 21st.dev: add API_KEY_21ST to .env.local when you want components from it.
+Then Step 7: LCQ results on `main` if asked (Oct 10–11), merge after Oct 11, launch checklist.
 
 Start the next session with: **"Read docs/NEXT.md and continue."**
 

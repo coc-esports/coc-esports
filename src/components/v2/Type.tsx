@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-// Data label: mono, uppercase, tracked. Used for eyebrows, dates, times, stage names.
+// Data label: mono, uppercase, tracked. Info lines under titles, dates, times, stage names (never above a heading).
 export function Label({ children, tone = "steel", className }: { children: ReactNode; tone?: "steel" | "bolt" | "bone" | "foil"; className?: string }) {
   const color = { steel: "text-steel", bolt: "text-bolt", bone: "text-bone", foil: "text-foil" }[tone];
   return <span className={cn("font-data text-label uppercase", color, className)}>{children}</span>;
