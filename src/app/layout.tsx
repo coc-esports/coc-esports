@@ -5,6 +5,7 @@ import { ViewTransition } from "react";
 import { Header } from "@/components/v2/Header";
 import { Footer } from "@/components/v2/Footer";
 import { SpoilerProvider } from "@/components/v2/Spoilers";
+import { SpoilerHint } from "@/components/v2/SpoilerHint";
 import { SPOILER_BOOT } from "@/lib/spoilers";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { site } from "@/config/site";
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </ViewTransition>
         </main>
         <Footer />
+        <SpoilerHint />
         </SpoilerProvider>
       </body>
     </html>

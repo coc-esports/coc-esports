@@ -527,3 +527,16 @@ html {
     transform: translateY(-50%);
   }
 }
+
+/* The one-time "Hide results" hint slides up into view. */
+@media (prefers-reduced-motion: no-preference) {
+  .hint-in {
+    animation: hint-in 600ms var(--ease-expo) both;
+  }
+}
+@keyframes hint-in {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+}

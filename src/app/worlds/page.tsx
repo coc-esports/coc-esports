@@ -45,7 +45,7 @@ export default function WorldsPage() {
               { label: "Played on", value: season.townHall },
             ]}
           />
-          <nav aria-label="On this page" className="mt-6 flex flex-wrap gap-x-6 font-data text-label uppercase text-steel">
+          <nav aria-label="On this page" className="sticky top-0 z-20 -mx-4 mt-6 flex flex-wrap gap-x-6 bg-ink/90 px-4 font-data text-label uppercase text-steel backdrop-blur sm:-mx-8 sm:px-8">
             {[
               ["#qualified", "Chosen Eight"],
               ["#road", "Road"],

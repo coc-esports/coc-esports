@@ -184,9 +184,9 @@ function Story({ seats }: { seats: SceneSeat[] }) {
 
   useFrame((state, dt) => {
     const p = story.p;
-    if (!gridOn && p > 0.18) setGridOn(true);
+    if (!gridOn && p > 0.1) setGridOn(true);
     const cam = state.camera;
-    const pull = span(p, 0.36, 0.66);
+    const pull = span(p, 0.28, 0.56);
     cam.position.z = THREE.MathUtils.damp(cam.position.z, layout.zHero + pull * (layout.zGrid - layout.zHero), 6, dt);
     cam.position.x = THREE.MathUtils.damp(cam.position.x, pointer.x * 0.6, 3, dt);
     cam.position.y = THREE.MathUtils.damp(cam.position.y, -pointer.y * 0.4, 3, dt);
@@ -194,8 +194,8 @@ function Story({ seats }: { seats: SceneSeat[] }) {
 
     if (hero.current && heroStub.current) {
       const turn = span(p, 0.02, 0.2);
-      const tear = span(p, 0.18, 0.36);
-      const out = span(p, 0.34, 0.56);
+      const tear = span(p, 0.14, 0.3);
+      const out = span(p, 0.28, 0.48);
       hero.current.rotation.y = THREE.MathUtils.damp(hero.current.rotation.y, -0.35 + turn * 0.55 + pointer.x * 0.45, 5, dt);
       hero.current.rotation.x = THREE.MathUtils.damp(hero.current.rotation.x, 0.1 + pointer.y * 0.28, 5, dt);
       hero.current.position.set(0, layout.heroY + out * 6.5, -out * 4);
@@ -206,10 +206,11 @@ function Story({ seats }: { seats: SceneSeat[] }) {
     }
     grid.current.forEach((g, i) => {
       if (!g) return;
-      const t = span(p, 0.44 + i * 0.025, 0.7 + i * 0.025);
-      g.scale.setScalar(0.001 + t * 0.92);
-      g.position.copy(layout.slots[i]).setZ(-(1 - t) * 6);
-      g.rotation.y = (1 - t) * Math.PI * 0.9 + ((i % layout.cols) - (layout.cols - 1) / 2) * 0.09 + Math.sin(state.clock.elapsedTime * 0.5 + i) * 0.04;
+      const t = span(p, 0.32 + i * 0.022, 0.56 + i * 0.022);
+      // Seats arrive almost face-on (a short drop and a light turn), so no dark backs show mid-flight.
+      g.scale.setScalar(0.55 + t * 0.37);
+      g.position.copy(layout.slots[i]).setZ(-(1 - t) * 2.5);
+      g.rotation.y = (1 - t) * 0.5 + ((i % layout.cols) - (layout.cols - 1) / 2) * 0.09 + Math.sin(state.clock.elapsedTime * 0.5 + i) * 0.04;
       g.rotation.x = -0.16 + Math.floor(i / layout.cols) * 0.06;
       g.visible = t > 0.001;
     });

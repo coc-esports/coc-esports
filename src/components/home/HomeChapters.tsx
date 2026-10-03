@@ -25,7 +25,7 @@ function WarChapter() {
     ["1 base", `Everyone plays the same max-level ${season.townHall}.`],
   ];
   return (
-    <section data-war className="relative overflow-hidden bg-ink py-[16vh]" aria-labelledby="war-title">
+    <section data-war className="relative scroll-mt-0 overflow-hidden bg-ink py-[16vh]" aria-labelledby="war-title">
       <div aria-hidden className="absolute inset-0">
         <Image data-war-map src="/art/th18-warmap.webp" alt="" fill sizes="100vw" className="scale-110 object-cover opacity-35 mix-blend-luminosity" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,var(--ink),transparent_30%,transparent_70%,var(--ink))]" />
@@ -80,7 +80,7 @@ export function RoadChapter() {
                   <HideResult safe="Winner hidden">{s.note.replace("Won by ", "Admitted: ")}</HideResult>
                 </span>
               ) : (
-                <span className="truncate text-sm text-steel">{s.note}</span>
+                <span className="text-sm text-steel">{s.state === "done" ? "Result pending" : s.note}</span>
               )}
             </div>
           </li>
@@ -125,7 +125,7 @@ function PaperNews() {
                     {a.art ? <Image src={a.art.src} alt="" fill sizes="(min-width: 1024px) 30vw, 50vw" className="object-cover transition-transform duration-700 ease-expo group-hover:scale-[1.03]" /> : null}
                   </span>
                   <span className="grid content-start gap-2">
-                    <span className="font-cond text-[1.9rem] uppercase leading-[0.92] group-hover:text-[var(--graphite)]">
+                    <span className="font-cond text-h3 uppercase leading-[0.92] group-hover:text-[var(--graphite)]">
                       <ArticleTitle article={a} />
                     </span>
                     <span className="font-data text-label uppercase text-paper-ink-2">
@@ -192,7 +192,7 @@ function WatchPasses() {
             <li key={v.id}>
               <a href={v.href} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between gap-4 border-b border-rule py-5">
                 <span className="grid gap-1">
-                  <span className="font-cond text-[1.9rem] uppercase leading-none text-bone group-hover:text-bolt">{v.title}</span>
+                  <span className="font-cond text-h3 uppercase leading-none text-bone group-hover:text-bolt">{v.title}</span>
                   <span className="font-data text-label uppercase text-steel">{v.meta}</span>
                 </span>
                 <span className="inline-flex h-11 shrink-0 items-center gap-2 border border-rule px-4 font-text text-xs font-semibold uppercase tracking-[0.12em] text-bone transition-colors group-hover:border-bolt group-hover:text-bolt">

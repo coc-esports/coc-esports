@@ -1,7 +1,8 @@
 import { getStage, season, stages, worldsSlots } from "@/data/season";
 import { findTeam } from "@/data/teams";
 import type { TicketCardProps } from "@/components/v2/TicketCard";
-import type { RoadStop } from "@/components/v2/motion/RoadTimeline";
+// One stop on the season road (home and /worlds ticket-stub road).
+export type RoadStop = { slug: string; name: string; date: string; state: "done" | "next" | "later"; note: string; spoiler?: boolean };
 
 // Shapes the season data for the v2 views. Facts only come from src/data; unknowns stay "TBA".
 

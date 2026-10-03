@@ -39,7 +39,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
         aside={<TeamCredential team={team} />}
       />
       <Container>
-        <HideResult block safe={<div className="pt-12"><HiddenNote /></div>}>
+        <HideResult block safe={<div className="pt-12"><HiddenNote>This team&apos;s titles, standing and rivals are hidden while “Hide results” is on.</HiddenNote></div>}>
         <div className="grid gap-3 pt-12">
           <Facts
             items={[
@@ -53,8 +53,9 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
         </div>
         </HideResult>
 
+        <HideResult block safe={null}>
         <Section id="titles" title="Titles this season">
-          <HideResult block safe={<HiddenNote />}>
+          <div>
           {wins.length ? (
             <ol className="grid">
               {wins.map((s) => (
@@ -70,8 +71,9 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
               .
             </p>
           )}
-          </HideResult>
+          </div>
         </Section>
+        </HideResult>
 
         <Section id="roster" title="Roster">
           {team.players?.length ? (
@@ -95,8 +97,8 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
         </Section>
 
         {nearby.length ? (
+          <HideResult block safe={null}>
           <Section id="nearby" title="Nearby in the table" href="/worlds#standings" linkLabel="Full standings">
-            <HideResult block safe={<HiddenNote />}>
             <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {nearby.map((t) => (
                 <li key={t.slug} className="grid">
@@ -104,8 +106,8 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
                 </li>
               ))}
             </ul>
-            </HideResult>
           </Section>
+          </HideResult>
         ) : null}
       </Container>
     </>

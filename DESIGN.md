@@ -71,6 +71,33 @@ typography:
     fontWeight: 500
     lineHeight: 1
     fontFeature: "\"tnum\" 1"
+  action-nav:
+    fontFamily: "Satoshi, Segoe UI, system-ui, sans-serif"
+    fontSize: "0.8125rem"
+    fontWeight: 600
+    letterSpacing: "0.08em"
+  wordmark:
+    fontFamily: "Tanker, Arial Black, sans-serif"
+    fontSize: "1.625rem"
+    fontWeight: 400
+  monogram-xs:
+    fontFamily: "Tanker, Arial Black, sans-serif"
+    fontSize: "0.8rem"
+  monogram-sm:
+    fontFamily: "Tanker, Arial Black, sans-serif"
+    fontSize: "1.1rem"
+  monogram-md:
+    fontFamily: "Tanker, Arial Black, sans-serif"
+    fontSize: "1.6rem"
+  monogram-lg:
+    fontFamily: "Tanker, Arial Black, sans-serif"
+    fontSize: "2.4rem"
+  monogram-xl:
+    fontFamily: "Tanker, Arial Black, sans-serif"
+    fontSize: "3.2rem"
+  monogram-xl-wide:
+    fontFamily: "Tanker, Arial Black, sans-serif"
+    fontSize: "4.4rem"
 rounded:
   none: "0px"
   hair: "2px"

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Button } from "@/components/v2/Button";
+import { NextBroadcast } from "@/components/v2/NextBroadcast";
 import { Container, PageIntro, Section } from "@/components/v2/Layout";
 import { TwitchEmbed } from "@/components/v2/TwitchEmbed";
 import { vods } from "@/data/samples";
@@ -18,19 +18,12 @@ export default function WatchPage() {
       <PageIntro
         aside={<PageArt name="th18" />}
         title="Watch"
-        intro={`Every stage streams on the official Clash of Clans channels. Next up: the ${season.nextEvent.name}.`}
-        actions={
-          <>
-            <Button href="https://www.youtube.com/@ClashofClans" target="_blank" rel="noopener noreferrer">
-              YouTube <ExternalIcon />
-            </Button>
-            <Button href="https://www.twitch.tv/clashofclans" variant="outline" target="_blank" rel="noopener noreferrer">
-              Twitch <ExternalIcon />
-            </Button>
-          </>
-        }
+        intro="Every stage streams on the official Clash of Clans channels. Gildra links straight to them: no re-streams, no ads."
       />
       <Container>
+        <div className="pt-12">
+          <NextBroadcast name={season.nextEvent.name} startTime={season.nextEvent.startTime} calendarHref={`/calendar/${season.nextEvent.href.split("/").pop()}`} />
+        </div>
         <Section id="live" title="Live on Twitch" intro="When nothing is live, the player shows the channel's offline screen. It opens muted.">
           <div className="max-w-5xl">
             <TwitchEmbed channel="clashofclans" />

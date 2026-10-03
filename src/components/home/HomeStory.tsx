@@ -155,9 +155,9 @@ export function HomeStory({ data }: { data: HeroData }) {
         // container (the layout's <main> wrapper is), which collapsed the whole story to zero scroll distance.
         scrollTrigger: { trigger: hero.current, start: "top top", end: "+=250%", pin: true, pinSpacing: true, scrub: 0.8, onUpdate: (self) => void (story.p = self.progress) },
       });
-      tl.to("[data-act1]", { yPercent: -16, opacity: 0, duration: 0.2 }, 0.26)
+      tl.to("[data-act1]", { yPercent: -16, opacity: 0, duration: 0.14 }, 0.16)
         .to("[data-hero-ui]", { opacity: 0, y: 24, duration: 0.12 }, 0.22)
-        .fromTo("[data-act2]", { opacity: 0, yPercent: 18 }, { opacity: 1, yPercent: 0, duration: 0.16 }, 0.6)
+        .fromTo("[data-act2]", { opacity: 0, yPercent: 18 }, { opacity: 1, yPercent: 0, duration: 0.16 }, 0.46)
         .to({}, { duration: 0.24 });
     });
     return () => mm.revert();
@@ -204,18 +204,18 @@ export function HomeStory({ data }: { data: HeroData }) {
         </div>
 
         <div data-act2 className="pointer-events-none absolute inset-x-0 top-[calc(var(--nav-h)+1.5rem)] px-4 opacity-0 sm:px-8 lg:px-[max(2rem,calc((100vw-80rem)/2+2rem))]">
-          <p className="font-cond text-[clamp(3rem,7.5vw,7.5rem)] uppercase leading-[0.86] text-bone">
+          <h2 className="font-cond text-[clamp(3rem,7.5vw,7.5rem)] uppercase leading-[0.86] text-bone">
             Eight seats.
             <br />
             <span className="text-bolt">{open} still open.</span>
-          </p>
+          </h2>
           <p className="mt-4 max-w-[40ch] text-lead text-steel">
             Three were won at the Monthly Finals. The rest go to September&apos;s winner, the China Regional and the top three of the Last Chance Qualifier.
           </p>
         </div>
 
         <div data-hero-ui className="absolute inset-x-0 bottom-12 flex flex-wrap items-end justify-between gap-6 px-4 sm:bottom-14 sm:px-8 lg:px-[max(2rem,calc((100vw-80rem)/2+2rem))]">
-          <div className="ticket-field grid gap-2 px-5 py-4">
+          <div className="ticket-field grid max-w-[min(100%,27rem)] gap-2 px-5 py-4">
             <div className="flex gap-4 font-data text-[clamp(2rem,4vw,3.25rem)] font-medium leading-none tabular-nums text-bone" role="timer" aria-label={`Time until the ${data.event.name}`}>
               {(["d", "h", "m", "s"] as const).map((k, i) => (
                 <span key={k} className="grid gap-1">
@@ -228,12 +228,15 @@ export function HomeStory({ data }: { data: HeroData }) {
               ))}
             </div>
             <p className="font-data text-label uppercase text-steel">
-              Doors open · {data.event.name} · {data.event.dateLabel}
+              Until the first match · {data.event.name} · {local ? `${local} your time` : data.event.dateLabel}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-5">
-            <Link href="/news/how-worlds-2026-works" className="inline-flex min-h-11 items-center font-text text-sm font-semibold uppercase tracking-[0.12em] text-steel hover:text-bone">
-              New here?
+            <a href="#war-title" className="inline-flex min-h-11 items-center font-text text-sm font-semibold uppercase tracking-[0.12em] text-steel hover:text-bone">
+              Skip the story
+            </a>
+            <Link href="/news/how-worlds-2026-works" className="inline-flex min-h-11 items-center font-text text-sm font-semibold uppercase tracking-[0.12em] text-bone underline decoration-bolt decoration-2 underline-offset-[6px] hover:text-bolt">
+              How it works
             </Link>
             <Link href={data.event.href} className="inline-flex min-h-11 items-center font-text text-sm font-semibold uppercase tracking-[0.12em] text-bone underline decoration-bolt decoration-2 underline-offset-[6px] hover:text-bolt">
               See the bracket

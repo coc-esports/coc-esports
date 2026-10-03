@@ -21,7 +21,7 @@ export function TeamCredential({ team }: { team: Team }) {
         </div>
         <div className="grid gap-3 border-t border-dashed border-rule px-4 py-4">
           <span className="font-cond text-3xl uppercase leading-none text-bone">{team.name}</span>
-          <span className="flex items-center justify-between font-data text-label uppercase text-steel">
+          <span className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 font-data text-label uppercase text-steel">
             <span>Access: all areas</span>
             <span>GLD-{team.short}-26</span>
           </span>

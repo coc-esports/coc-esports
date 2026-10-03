@@ -25,7 +25,7 @@ export function TicketCard(props: TicketCardProps) {
         <span className="font-data text-label text-steel tabular-nums">{String(props.seat).padStart(2, "0")}/08</span>
       </div>
       <div className="grid gap-2">
-        <p className={cn("font-cond uppercase leading-[0.9] text-balance", claimed ? "text-[2rem] text-bone lg:text-[2.5rem]" : "text-[1.5rem] text-steel lg:text-[1.75rem]")}>
+        <p className={cn("font-cond uppercase leading-[0.9] text-balance", claimed ? "text-[2rem] text-bone lg:text-[2.5rem]" : "text-[1.75rem] text-steel lg:text-[1.75rem]")}>
           {claimed ? <HideResult safe="Ticket claimed">{props.team}</HideResult> : props.via}
         </p>
         <p className={cn("text-sm leading-snug", claimed ? "text-bone/80" : "text-steel")}>

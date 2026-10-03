@@ -37,7 +37,7 @@ export function MatchRow({
       <time dateTime={startTime} className="font-data text-sm tabular-nums text-bone" suppressHydrationWarning>
         {time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
       </time>
-      <div className="flex min-w-0 items-center gap-3 font-cond text-[1.375rem] uppercase leading-none text-bone">
+      <div className="flex min-w-0 items-center gap-3 font-cond text-h3 uppercase leading-none text-bone">
         <span className="truncate">{a}</span>
         <span className={cn("font-data text-sm tabular-nums", showScore ? "text-bone" : "text-steel")}>{showScore ? `${scoreA}–${scoreB}` : "vs"}</span>
         <span className="truncate">{b}</span>

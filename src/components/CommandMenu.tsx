@@ -63,9 +63,10 @@ export function CommandMenu() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Search the site"
-        className="grid h-11 w-11 place-items-center rounded-hair text-bone/80 transition-[transform,color,background-color] duration-150 ease-expo hover:bg-plate hover:text-bone focus-visible:text-bone active:scale-[0.94]"
+        className="flex h-11 min-w-11 items-center justify-center rounded-hair px-1 text-bone/80 transition-[transform,color,background-color] duration-150 ease-expo hover:bg-plate hover:text-bone focus-visible:text-bone active:scale-[0.94]"
       >
         <SearchIcon />
+        <kbd aria-hidden className="ml-2 hidden rounded-hair border border-rule px-1.5 py-0.5 font-data text-label text-steel xl:inline">Ctrl K</kbd>
       </button>
 
       <Command.Dialog
