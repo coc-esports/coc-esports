@@ -18,20 +18,20 @@ export default function SchedulePage() {
       <PageIntro
         title="Schedule"
         aside={<PageArt name="warden" />}
-        intro="Times show in your own time zone. Add any event to Google Calendar, Outlook or Apple Calendar. Switch on “Hide results” at the top of the page (in the menu on phones) to keep winners hidden until you tap."
+        intro="Every stage of the 2026 season, in your own time zone."
       />
       <Container>
         <Section id="upcoming" title="Upcoming">
           <ol className="grid">
             {upcoming.map((s) => (
-              <StageRow key={s.slug} stage={s} />
+              <StageRow key={s.slug} stage={s} chip={false} />
             ))}
           </ol>
         </Section>
         <Section id="completed" title="Completed">
           <ol className="grid">
             {completed.map((s) => (
-              <StageRow key={s.slug} stage={s} />
+              <StageRow key={s.slug} stage={s} chip={false} />
             ))}
           </ol>
         </Section>

@@ -228,18 +228,12 @@ export function HomeStory({ data }: { data: HeroData }) {
               ))}
             </div>
             <p className="font-data text-label uppercase text-steel">
-              Until the first match · {data.event.name} · {local ? `${local} your time` : data.event.dateLabel}
+              {data.event.name} · {local ? `${local} your time` : data.event.dateLabel}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-5">
-            <a href="#war-title" className="inline-flex min-h-11 items-center font-text text-sm font-semibold uppercase tracking-[0.12em] text-steel hover:text-bone">
-              Skip the story
-            </a>
             <Link href="/news/how-worlds-2026-works" className="inline-flex min-h-11 items-center font-text text-sm font-semibold uppercase tracking-[0.12em] text-bone underline decoration-bolt decoration-2 underline-offset-[6px] hover:text-bolt">
               How it works
-            </Link>
-            <Link href={data.event.href} className="inline-flex min-h-11 items-center font-text text-sm font-semibold uppercase tracking-[0.12em] text-bone underline decoration-bolt decoration-2 underline-offset-[6px] hover:text-bolt">
-              See the bracket
             </Link>
             <Link href="/watch" className="stub-button">
               Where to watch
@@ -247,6 +241,9 @@ export function HomeStory({ data }: { data: HeroData }) {
           </div>
         </div>
 
+        <a href="#war-title" data-hero-ui className="absolute bottom-[3.1rem] left-1/2 hidden min-h-11 -translate-x-1/2 items-center font-data text-label uppercase text-steel hover:text-bone lg:inline-flex">
+          Skip the story
+        </a>
         {/* Validity band: the event in the visitor's own time, like the printed strip along a ticket's edge */}
         <div aria-hidden className="absolute inset-x-0 bottom-0 h-9 overflow-hidden border-t border-rule bg-[var(--band)]">
           <div className="validity-band flex h-full w-max items-center whitespace-nowrap font-data text-label uppercase text-steel">

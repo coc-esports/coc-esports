@@ -42,8 +42,8 @@ export function SpoilerSwitch({ className }: { className?: string }) {
       onClick={toggle}
       className={cn("flex h-11 items-center gap-2.5 rounded-hair px-2 font-data text-label uppercase text-steel transition-colors hover:text-bone", className)}
     >
-      <span aria-hidden className={cn("relative h-4 w-7 rounded-full border transition-colors", hide ? "border-bolt bg-bolt/25" : "border-rule")}>
-        <span className={cn("absolute top-1/2 size-2.5 -translate-y-1/2 rounded-full transition-[left,background-color] duration-200 ease-expo", hide ? "left-[13px] bg-bolt" : "left-[2px] bg-steel")} />
+      <span aria-hidden className={cn("relative h-4 w-7 rounded-full border transition-colors", hide ? "border-bolt bg-bolt" : "border-steel/60")}>
+        <span className={cn("absolute top-1/2 size-2.5 -translate-y-1/2 rounded-full transition-[left,background-color] duration-200 ease-expo", hide ? "left-[13px] bg-ink" : "left-[2px] bg-steel")} />
       </span>
       Hide results
     </button>

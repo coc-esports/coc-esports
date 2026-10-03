@@ -15,8 +15,10 @@ export function TicketFlip({ seats }: { seats: TicketCardProps[] }) {
     mm.add(MOTION_OK, () => {
       const flips = gsap.utils.toArray<HTMLElement>("[data-flip]");
       if (!flips.length) return;
-      gsap.set(flips, { rotationY: 180 });
-      gsap.to(flips, {
+      // The won side is what renders by default (print, no-JS, fast scroll); the flip starts from the open side
+      // only when the cards actually scroll into view.
+      gsap.fromTo(flips, { rotationY: 180 }, {
+        immediateRender: false,
         rotationY: 0,
         duration: 1.1,
         ease: "expo.inOut",

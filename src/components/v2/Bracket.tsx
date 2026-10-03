@@ -17,6 +17,7 @@ function Slot({ slug, label, score, won, hovered, onHover, hideScore }: { slug?:
     <div
       onMouseEnter={() => team && onHover(team.slug)}
       onMouseLeave={() => onHover(null)}
+      onClick={() => team && onHover(hovered === team.slug ? null : team.slug)}
       className={cn("flex h-11 items-center gap-2.5 px-3 transition-[background-color,opacity] duration-150", lit && "bg-plate", dim && "opacity-45")}
     >
       {team ? (
@@ -72,10 +73,33 @@ export function Bracket({ bracket, label }: { bracket: BracketData; label: strin
   const anyScore = [...bracket.upper, ...bracket.lower, bracket.final].some((r) => r.matches.some((m) => m.scoreA !== undefined));
   const hideScore = hide && !shown;
   const seeded = [...bracket.upper, ...bracket.lower, bracket.final].some((r) => r.matches.some((m) => m.a || m.b));
+  const [openEmpty, setOpenEmpty] = useState(false);
+  if (!seeded && !openEmpty) {
+    // Before seeding, the placeholders would be ~30 "Seed TBD" boxes: show the format instead, the empty grid on request.
+    return (
+      <div className="ticket-field grid gap-5 p-6 sm:p-8">
+        <p className="font-cond text-h2 uppercase text-bone">Field to be announced</p>
+        <ol className="grid gap-3 sm:grid-cols-3">
+          {[
+            ["8 teams", "Seeded into an upper bracket of four matches."],
+            ["Two lives", "Lose once and drop to the lower bracket; lose twice and you're out."],
+            ["Grand Final", "Upper winner meets lower winner for the title."],
+          ].map(([t, d]) => (
+            <li key={t} className="grid gap-1 border-t border-rule pt-3">
+              <span className="font-cond text-h3 uppercase text-bone">{t}</span>
+              <span className="text-sm text-steel">{d}</span>
+            </li>
+          ))}
+        </ol>
+        <button type="button" onClick={() => setOpenEmpty(true)} className="inline-flex h-11 w-fit items-center border border-rule px-4 font-text text-sm font-semibold uppercase tracking-[0.12em] text-bone hover:border-bolt hover:text-bolt">
+          Show the empty bracket
+        </button>
+      </div>
+    );
+  }
   return (
     <div className="grid gap-4">
-      <p className="max-w-[62ch] text-sm text-steel">
-        {seeded ? null : <span className="text-bone">No teams seeded yet: names appear here once the field is confirmed. </span>}
+      <p className="max-w-[34rem] text-sm text-steel">
         Match codes: U = upper bracket, L = lower bracket, GF = Grand Final. &ldquo;Winner U5&rdquo; means the winner of match U5.
         <span className="lg:hidden"> Scroll sideways to see the whole bracket.</span>
       </p>

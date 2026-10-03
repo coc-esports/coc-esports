@@ -90,7 +90,7 @@ export default async function StagePage({ params }: PageProps<"/stages/[slug]">)
           </Section>
         ) : null}
 
-        <Section id="bracket" title={stage.bracket ? "Double elimination" : "Match results"} intro={stage.bracket ? <>Matchups appear as soon as they’re set.<span className="hidden [@media(hover:hover)]:inline"> Hover a team to follow its path.</span></> : undefined}>
+        <Section id="bracket" title={stage.bracket ? "Double elimination" : "Match results"} intro={stage.bracket ? <>Matchups appear as soon as they’re set. Point at or tap a team to follow its path.</> : undefined}>
           {stage.bracket ? (
             <Bracket bracket={stage.bracket} label={`${stage.name} bracket`} />
           ) : (

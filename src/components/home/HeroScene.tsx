@@ -88,7 +88,7 @@ function Face({ kicker, title, sub, color, big = false }: { kicker: string; titl
       <Text font={DISPLAY} fontSize={title.length > 18 ? (big ? 0.27 : 0.27) : title.length > 12 ? (big ? 0.32 : 0.3) : big ? 0.46 : 0.4} maxWidth={STUB - L - 0.18} lineHeight={0.92} color={color} anchorX="left" anchorY="top" position={[L, H / 2 - 0.2, 0]}>
         {title.toUpperCase()}
       </Text>
-      <Text font={DISPLAY} fontSize={big ? 0.22 : 0.1} maxWidth={STUB - L - 0.18} letterSpacing={0.08} lineHeight={1.1} color={color} anchorX="left" anchorY="bottom" position={[L, -H / 2 + 0.2, 0]}>
+      <Text font={DISPLAY} fontSize={big ? 0.22 : 0.125} maxWidth={STUB - L - 0.18} letterSpacing={0.08} lineHeight={1.1} color={color} anchorX="left" anchorY="bottom" position={[L, -H / 2 + 0.2, 0]}>
         {(big ? kicker : `${kicker} · ${sub}`).toUpperCase()}
       </Text>
     </group>
@@ -103,7 +103,7 @@ function StubFace({ seat, color }: { seat: number; color: string }) {
   );
 }
 
-function Gold({ rough = 0.24, env = 1.25 }: { rough?: number; env?: number }) {
+function Gold({ rough = 0.28, env = 1.0 }: { rough?: number; env?: number }) {
   return <meshPhysicalMaterial color={GOLD} metalness={1} roughness={rough} clearcoat={0.5} clearcoatRoughness={0.2} envMapIntensity={env} />;
 }
 

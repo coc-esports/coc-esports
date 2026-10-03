@@ -105,7 +105,7 @@ export function PageIntro({
           ) : null}
           <DisplayHeading as="h1" size="hero" lines={[[title]]} />
           {label ? <div className="font-data text-label uppercase text-steel">{label}</div> : null}
-          {intro ? <div className="max-w-[62ch] text-lead text-steel">{intro}</div> : null}
+          {intro ? <div className="max-w-[38rem] text-lead text-steel">{intro}</div> : null}
           {actions ? <div className="flex flex-wrap gap-3 pt-2">{actions}</div> : null}
         </div>
         {aside ? <div className="min-w-0">{aside}</div> : null}

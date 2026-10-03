@@ -42,7 +42,7 @@ function MainCta({ live, className }: { live: boolean; className?: string }) {
     </Button>
   ) : (
     <Button href={`/calendar/${slug}`} prefetch={false} download className={className}>
-      Add to calendar
+      Add the {season.nextEvent.name.replace("Last Chance Qualifier", "LCQ")} to calendar
     </Button>
   );
 }

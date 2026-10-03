@@ -2,6 +2,8 @@ import Image from "next/image";
 import { Button } from "@/components/v2/Button";
 import { DisplayHeading, Label } from "@/components/v2/Type";
 
+export const metadata = { title: "Page not found" };
+
 export default function NotFound() {
   return (
     <section className="mx-auto grid w-full max-w-page flex-1 items-center gap-10 px-4 pb-20 pt-[calc(var(--nav-h)+3rem)] sm:px-8 md:grid-cols-[minmax(0,1fr)_auto]">

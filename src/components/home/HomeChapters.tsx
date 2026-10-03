@@ -66,7 +66,7 @@ export function RoadChapter() {
         {stops.map((s, i) => (
           <li key={s.slug} className={`stub-card relative grid h-[min(26rem,58svh)] w-[min(78vw,22rem)] shrink-0 grid-rows-[1fr_auto] ${s.state === "next" ? "bg-[linear-gradient(160deg,var(--stub-next),var(--graphite))]" : s.state === "done" ? "bg-[var(--stub-done)]" : "bg-[var(--stub-later)]"}`}>
             <Link href={`/stages/${s.slug}`} className="grid content-end gap-4 p-6 outline-none">
-              <span className={`font-cond text-[clamp(3.5rem,6vw,5.5rem)] uppercase leading-[0.85] ${s.state === "next" ? "text-bolt" : s.state === "done" ? "text-steel" : "text-bone"}`}>{s.date}</span>
+              <span className={`font-cond text-[clamp(3.5rem,6vw,5.5rem)] uppercase leading-[0.85] ${s.state === "next" ? "text-bolt" : s.state === "done" ? "text-steel" : s.date.includes("TBA") ? "text-steel" : "text-bone"}`}>{s.date.includes("TBA") ? "TBA" : s.date}</span>
               <span className="font-cond text-3xl uppercase leading-none text-bone">{s.name}</span>
             </Link>
             {/* below the tear line: the stub */}

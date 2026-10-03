@@ -9,7 +9,8 @@ import { TeamMark } from "./TeamMark";
 
 // One stage in a list (schedule, stages index): date block, name + status, steps or winner, actions.
 // `asTitle`: on a team's own page the row is that team's title, so it says what was won instead of naming the team.
-export function StageRow({ stage, asTitle = false }: { stage: Stage; asTitle?: boolean }) {
+// `chip`: off inside lists already grouped by status (Schedule's Upcoming/Completed); live and pending still show.
+export function StageRow({ stage, asTitle = false, chip = true }: { stage: Stage; asTitle?: boolean; chip?: boolean }) {
   const winner = stage.winner ? findTeam(stage.winner) : undefined;
   const status = stage.status === "completed" ? "completed" : stage.status === "live" ? "live" : "upcoming";
   return (
@@ -24,7 +25,11 @@ export function StageRow({ stage, asTitle = false }: { stage: Stage; asTitle?: b
           <Link href={`/stages/${stage.slug}`} className="inline-flex min-h-11 items-center font-cond text-h2 uppercase text-bone hover:text-bolt">
             {stage.name}
           </Link>
-          <StatusTag status={status} />
+          {stage.status === "completed" && !winner ? (
+            <StatusTag status="tbd">Result pending</StatusTag>
+          ) : chip || status === "live" ? (
+            <StatusTag status={status} />
+          ) : null}
         </div>
         {winner && asTitle ? (
           <p className="text-sm text-foil">Champion · Golden Ticket to the World Finals</p>
