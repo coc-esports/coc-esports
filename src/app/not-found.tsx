@@ -16,7 +16,13 @@ export default function NotFound() {
           </Button>
         </div>
       </div>
-      <Image src="/art/goblin-sign.webp" alt="A Goblin holding up a blank sign (Supercell Fan Kit)" width={800} height={1146} className="mx-auto h-auto w-48 md:w-64" />
+      {/* The Fan Kit Goblin is used as drawn; "404" is page text laid over the blank sign, not a change to the art. */}
+      <div className="relative mx-auto w-48 md:w-64">
+        <Image src="/art/goblin-sign.webp" alt="A Goblin holding up a sign that reads 404 (Supercell Fan Kit)" width={800} height={1146} className="h-auto w-full" />
+        <span aria-hidden className="absolute left-[21%] top-[3%] grid h-[25%] w-[57%] -rotate-2 place-items-center font-cond text-[clamp(2.5rem,6vw,4rem)] leading-none text-[#12102e]">
+          404
+        </span>
+      </div>
     </section>
   );
 }

@@ -24,7 +24,8 @@ export default function AboutPage() {
   return (
     <>
       <PageIntro title={`About ${site.name}`} intro={`${site.tagline}. Built by fans, for fans.`} />
-      <Container className="py-12">
+      <div className="on-paper perf-top flex-1">
+      <Container className="py-16">
         <Block title="Not official">
           <p>
             {site.disclaimer} {site.name} isn&apos;t affiliated with, endorsed by or connected to Supercell. Clash of Clans and its artwork are trademarks
@@ -59,6 +60,7 @@ export default function AboutPage() {
           <p>Team marks are simple monograms made for this site, not the teams&apos; own logos.</p>
         </Block>
       </Container>
+      </div>
     </>
   );
 }
