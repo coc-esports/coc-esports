@@ -6,7 +6,7 @@ Measured on a local production build (`next build` + `next start`). Lighthouse i
 
 | Gate | Target | Result | What we fixed |
 |---|---|---|---|
-| Design review | Impeccable finish review: ship | v3: finish review "fix" → round 1 resolved 6/8 (+2 partial, 2 regressions) → round 2 fixes; earlier v2 critiques 28/28/27 of 40. Reports in `.impeccable/` | Headline readable, reduced-motion road, kickers removed, foil discipline, readable phone seats, passes rebuilt, themed browser surfaces |
+| Design review | ≥ 32/40 | **32/40 met** (formal impeccable critique, 2026-10-03). History: v1 25 → v2 28/28/27 → v3 29 → 30 → **32** | Instant ticket poster, stakes headline, hint placement, one primary CTA, unseeded bracket format card, schedule chips, Watch next-broadcast card, single close |
 | AI-slop audit | No generic defaults | **Pass**: one accent (bolt blue from official TH18 art), real fonts (no Inter/Anton), real copy and TBD states, no card-grid filler, no stock gradients | Gold-on-dark "esports template" look from v1 removed entirely |
 | Lighthouse performance | ≥ 90 | **Home 78** (with the real 3D hero; was 57 before the boot fix) · inner pages **90–94** | 3D boots after idle (~3.5 s) or on first interaction; seat grid and its 3D text built on demand; lighter environment map; no bloom on phones; no italic font download |
 | Lighthouse a11y / best practices / SEO | ≥ 95 / 100 / 100 | **100 / 100 / 100** everywhere | Ticket link label matched its visible text |

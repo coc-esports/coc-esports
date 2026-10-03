@@ -2,7 +2,8 @@
 
 ## RESUME HERE (v3 "Will Call", updated 2026-10-03)
 **v3 build complete** on branch `rebuild/v2` (preview link below). Impeccable flow done: PRODUCT.md, direction contract (.impeccable/surfaces/src-app-page-tsx.md), build, finish review (2 fix rounds, all items resolved), DESIGN.md + .impeccable/design.json.
-Numbers: Lighthouse home 78 (real 3D kept), inner pages 90–94, a11y 100, CLS ≤ 0.06; 104 Playwright tests; detector 0 findings.
+Numbers (2026-10-03): design critique **32/40** (target met; v1 was 25); ticket visible at first paint 0.7 s on a mid-range phone (was 6 s); Lighthouse home 75 (lab, 3D kept), inner 90–94, a11y 100; 104 tests; detector 0.
+Next design wins (from the last critique): mobile road as native swipe below 768 px; seat labels as DOM text on phones; tighter section rhythm; a signature element per inner page (/teams, /schedule); small polish (date breaks, serial wrap, format-box corners).
 Open for the owner:
 - Review the preview on phone and desktop (one consolidated feedback list).
 - Speed choice for the home page: keep 78 with the 3D, or add a still poster of the ticket so the first paint is lighter (more work), or show 3D only on desktop.
