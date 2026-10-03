@@ -30,7 +30,7 @@ function WarChapter() {
         <Image data-war-map src="/art/th18-warmap.webp" alt="" fill sizes="100vw" className="scale-110 object-cover opacity-35 mix-blend-luminosity" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,var(--ink),transparent_30%,transparent_70%,var(--ink))]" />
       </div>
-      <h2 id="war-title" className="relative z-10 px-4 font-cond text-[clamp(3.5rem,13vw,14rem)] uppercase leading-[0.84] text-bone sm:whitespace-nowrap sm:px-8 lg:px-[max(2rem,calc((100vw-80rem)/2+2rem))]">
+      <h2 id="war-title" className="relative z-10 px-4 font-cond text-[clamp(2.75rem,12vw,14rem)] uppercase leading-[0.84] text-bone sm:whitespace-nowrap sm:px-8 lg:px-[max(2rem,calc((100vw-80rem)/2+2rem))]">
         <span data-line-a className="block">Every war</span>
         <span data-line-b className="block text-right text-bolt">Town Hall 18</span>
       </h2>
