@@ -24,3 +24,9 @@
 | 2026-10-01 | **Foil gold (#d9b45a) added for the Golden Ticket only** (claimed seats cut like a ticket, ticket labels). Bolt blue stays the one general accent. Reason: the season's story had no visual form | Claude (delegated) |
 | 2026-10-01 | Road to Worlds timeline lives on /worlds only (home no longer repeats it) | Claude (delegated) |
 | 2026-10-01 | Open question for the owner: merge /stages into /schedule (reviewer: near-duplicate lists) | Pending owner |
+| 2026-10-01 | Impeccable adopted for design work; PRODUCT.md written from owner answers (edge: one place for everything + design and experience) | Owner |
+| 2026-10-01 | Direction **Will Call** (Golden Ticket world), chosen by Claude under the owner's delegation ("use the best of everything"), raised with ideas from the other dealt directions | Claude (delegated) |
+| 2026-10-01 | Fonts: Tanker + Satoshi (Fontshare, ITF FFL: self-hosted, fetched at build, never in the public repo), Geist Mono (OFL) | Claude (delegated) |
+| 2026-10-01 | Strong 3D/motion only on key moments (hero ticket story, Town Hall 18, road of stubs); refined touches elsewhere ("professional, not calm") | Owner |
+| 2026-10-03 | 3D boots after idle (~3.5 s) or on first interaction; seat grid built on demand. Home Lighthouse 78 with 3D kept (owner rule: never drop approved 3D for speed without asking) | Claude (delegated) |
+| 2026-10-03 | Foil gold strictly for won tickets; primary action is a bone stub; accents use the halo colour (finish review) | Claude (delegated) |

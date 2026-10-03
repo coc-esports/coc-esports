@@ -1,16 +1,18 @@
-# Step 6 scorecard: Gildra v2 (2026-10-01)
+# Scorecard: Gildra v3 "Will Call" (updated 2026-10-03)
+
+(v2 numbers kept below where they still apply; v3 rows updated.)
 
 Measured on a local production build (`next build` + `next start`). Lighthouse is the median of 3 runs, mobile, simulated throttling (the PageSpeed Insights method).
 
 | Gate | Target | Result | What we fixed |
 |---|---|---|---|
-| Design critique | ≥ 32/40, no P0/P1 | **Not met: 28 → 28 → 27/40** over three formal impeccable rounds (two independent reviewers + detector each; v1 was 25). P0 count 1 → 0. Reports in `.impeccable/critique/` | Fixed: phone menu, site-wide hide results, phone zoom-out, date order, labels above headings, Golden Ticket foil + ticket cut, colour meaning, bracket fit, contrast, art on headers. Remaining P1s are structure/content decisions for the owner (see docs/NEXT.md) |
+| Design review | Impeccable finish review: ship | v3: finish review "fix" → round 1 resolved 6/8 (+2 partial, 2 regressions) → round 2 fixes; earlier v2 critiques 28/28/27 of 40. Reports in `.impeccable/` | Headline readable, reduced-motion road, kickers removed, foil discipline, readable phone seats, passes rebuilt, themed browser surfaces |
 | AI-slop audit | No generic defaults | **Pass**: one accent (bolt blue from official TH18 art), real fonts (no Inter/Anton), real copy and TBD states, no card-grid filler, no stock gradients | Gold-on-dark "esports template" look from v1 removed entirely |
-| Lighthouse performance | ≥ 90 | **94–98** on all 5 audited pages (was 91–95) | Fonts 156 → 89 KB; search loads on demand; GSAP and Lenis load after the page is up (never on pages without effects, Lenis never on touch); hero rise in CSS; body font preloaded |
+| Lighthouse performance | ≥ 90 | **Home 78** (with the real 3D hero; was 57 before the boot fix) · inner pages **90–94** | 3D boots after idle (~3.5 s) or on first interaction; seat grid and its 3D text built on demand; lighter environment map; no bloom on phones; no italic font download |
 | Lighthouse a11y / best practices / SEO | ≥ 95 / 100 / 100 | **100 / 100 / 100** everywhere | Ticket link label matched its visible text |
-| LCP (lab, simulated slow 4G) | ≤ 2.5 s | **2.4–3.1 s** (team 2.4, news 2.7, worlds 2.8, schedule 2.8, home 3.1). **Partly met.** In Chrome without throttling the main content paints at about 0.4 s | Hero image at high priority; body font preloaded (its late swap was delaying LCP). The rest is the framework's own JavaScript on a simulated slow 4G link |
-| CLS / TBT | ≤ 0.1 / low | **0.00** / 35–58 ms | A font swap re-wrapped lines (CLS 0.05): fixed by preloading the body font |
-| Visual test | 5 sizes, no overflow, taps ≥ 44 px, text ≥ 12 px, controls on screen | **112/112 pass** (`tests/qa.spec.ts`: 14 pages × 5 sizes, controls-on-screen, hide-results on 7 pages, keyboard timeline), runs automatically on every push | Breadcrumb and table links to 44 px; off-screen phone menu button fixed and now tested |
+| LCP (lab, simulated slow 4G) | ≤ 2.5 s | **3.1–3.7 s**. Not met | New display/text fonts (Tanker, Satoshi) and the engraved background. Next lever: a poster image of the ticket and font subsetting is not allowed by the Fontshare licence, so consider preloading only Tanker |
+| CLS / TBT | ≤ 0.1 / low | CLS ≤ 0.06 · TBT home 0.45 s, inner 35–100 ms | Font preload; 3D deferred |
+| Visual test | 5 sizes, overflow, taps, text, on-screen controls | **104/104 pass** incl. hide-results, keyboard road, 3D smoke test and a pinned-story distance test | Pin-spacing bug (story had zero scroll distance) found by the review captures and fixed |
 | Keyboard & motion | Keyboard works, visible focus, reduced motion respected | **Pass**: skip link, blue ring on every control (none on mouse click), Ctrl+K search, Esc closes; reduced motion = fully still page | Search button had no visible ring: fixed |
 | Contrast | AA | **Pass**: steel 6.2:1, bone 17.4:1, bolt 7.1:1 on ink | — |
 | Security & privacy | Headers, no secrets, no trackers | **Pass**: CSP, HSTS, nosniff, frame and permissions policies, no `x-powered-by`; no keys in the browser bundle; 0 npm vulnerabilities; no analytics or cookies; privacy section on /about | — |

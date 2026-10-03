@@ -271,7 +271,9 @@ export default function HeroScene({ seats, active, still, onReady }: { seats: Sc
     setFx(false);
   };
   return (
-    <Canvas dpr={dpr} frameloop={!active ? "never" : still ? "demand" : "always"} gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }} camera={{ position: [0, 0, 6.4], fov: 32 }} onCreated={() => onReady()} aria-hidden>
+    // `flat` (no tone mapping) everywhere: the bloom pass already renders without it on desktop, so phones (no bloom)
+    // get the same saturated gold instead of a washed-out cream.
+    <Canvas flat dpr={dpr} frameloop={!active ? "never" : still ? "demand" : "always"} gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }} camera={{ position: [0, 0, 6.4], fov: 32 }} onCreated={() => onReady()} aria-hidden>
       <PerformanceMonitor onDecline={lower} onIncline={() => setDpr(1.5)} flipflops={3} onFallback={lower} />
       <Studio />
       <ambientLight intensity={0.15} />
