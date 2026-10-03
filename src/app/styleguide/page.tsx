@@ -13,17 +13,18 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-// Gildra v2 · Direction A "Broadcast Editorial". Every building block of the rebuild in one place.
+// Gildra v3 · "Will Call" (the Golden Ticket world). Every building block in one place; DESIGN.md is the rulebook.
 const colors = [
-  { name: "ink", hex: "#0B0C0E", use: "Page background" },
-  { name: "graphite", hex: "#14171B", use: "Cards, rows" },
-  { name: "plate", hex: "#1C2026", use: "Hover / pressed" },
-  { name: "rule", hex: "#2A2F36", use: "Hairlines, borders" },
-  { name: "steel", hex: "#8B929B", use: "Secondary text · 6.2:1 on ink" },
-  { name: "bone", hex: "#F1F2F0", use: "Primary text, main button · 17.4:1 on ink" },
-  { name: "bolt", hex: "#5B9BFF", use: "The one accent: links, focus, next/now · 7.1:1 on ink" },
-  { name: "foil", hex: "#D9B45A", use: "Golden Ticket only: claimed seats and ticket labels · 9.9:1 on ink" },
-  { name: "signal-live", hex: "#FF4D3D", use: "LIVE only (semantic)" },
+  { name: "ink", hex: "#0D0A3D", use: "Page ground: deep ticket stock" },
+  { name: "graphite", hex: "#1B1580", use: "Ticket stock: cards, rows, passes" },
+  { name: "plate", hex: "#251EA3", use: "Hover / pressed stock, pass bands" },
+  { name: "rule", hex: "#3A33B0", use: "Engraved hairlines, perforations" },
+  { name: "steel", hex: "#BDB8F2", use: "Secondary text (mist) · 10.0:1 on ink, 7.7:1 on stock" },
+  { name: "bone", hex: "#F5F2FF", use: "Primary text · 16.9:1 on ink" },
+  { name: "bolt", hex: "#A8A2FF", use: "Halo: links, focus, next/now · 8.2:1 on ink" },
+  { name: "foil", hex: "#E8B64C", use: "Golden Ticket only: won seats, the stub button · 9.9:1 on ink" },
+  { name: "paper", hex: "#F2EEE4", use: "Reading mode (.on-paper): news, articles, About · ink 15.9:1" },
+  { name: "signal-live", hex: "#FF5A4A", use: "LIVE only (semantic)" },
 ];
 
 const scale = [
@@ -48,7 +49,7 @@ export default function StyleguidePage() {
     <div className="bg-ink font-text text-bone">
       <div className="mx-auto w-full max-w-page px-4 pb-24 pt-[calc(var(--nav-h)+3rem)] sm:px-8">
         <header className="grid gap-4 pb-12">
-          <Label tone="bolt">Gildra v2 · Direction A · Broadcast Editorial</Label>
+          <Label tone="bolt">Gildra v3 · Will Call · the Golden Ticket world</Label>
           <DisplayHeading as="h1" size="hero" lines={[["Style", { image: { src: "/art/th18-warm.webp", alt: "" } }, "guide"]]} />
           <p className="max-w-[60ch] text-lead text-steel">
             The building blocks of the rebuilt site. Monochrome base, one accent from Town Hall 18&apos;s lightning, giant condensed
@@ -83,7 +84,7 @@ export default function StyleguidePage() {
           </ul>
         </Block>
 
-        <Block title="Type · Sofia Sans Extra Condensed / Hanken Grotesk / JetBrains Mono">
+        <Block title="Type · Tanker / Satoshi / Geist Mono">
           <div className="grid gap-8">
             {scale.map((s) => (
               <div key={s.token} className="grid gap-2">
@@ -94,12 +95,12 @@ export default function StyleguidePage() {
               </div>
             ))}
             <div className="grid max-w-[65ch] gap-3">
-              <Label>Text · Hanken Grotesk 16–18px</Label>
+              <Label>Text · Satoshi 16–18px</Label>
               <p className="text-lead">
                 Eight teams, a double-elimination bracket and the last three Golden Tickets to Worlds. Every match is a 5v5 war in Esports
                 Mode on Town Hall 18.
               </p>
-              <Label>Data · JetBrains Mono · times, stages, seats</Label>
+              <Label>Serials · Geist Mono · times, seats, serial numbers only</Label>
               <p className="font-data text-sm tabular-nums">SAT 10 OCT · 18:00 · LCQ UPPER R1 · 03/08</p>
             </div>
           </div>

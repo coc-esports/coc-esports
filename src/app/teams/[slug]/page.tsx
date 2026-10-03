@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Container, Facts, PageIntro, Section } from "@/components/v2/Layout";
 import { HiddenNote, HideResult } from "@/components/v2/HideResult";
 import { StageRow } from "@/components/v2/StageRow";
-import { TeamMark } from "@/components/v2/TeamMark";
+import { TeamCredential } from "@/components/v2/TeamCredential";
 import { TeamPoster } from "@/components/v2/TeamPoster";
 import { sources, stages } from "@/data/season";
 import { findTeam, standingsAsOf, teams } from "@/data/teams";
@@ -36,13 +36,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[slug]">) {
         label={<HideResult safe="Season 2026 team">{team.qualified ? "Golden Ticket · World Finals" : "LCQ contender"}</HideResult>}
         title={team.name}
         intro={<HideResult safe="Season standings and titles are hidden while “Hide results” is on.">{team.qualified ? `${team.qualified}. Booked for the World Finals.` : "Chasing one of the last three Golden Tickets at the Last Chance Qualifier."}</HideResult>}
-        aside={
-          // The team's own colour lights the header (our monogram system; no third-party logos).
-          <div className="relative grid place-items-center p-8">
-            <div aria-hidden className="absolute inset-0 rounded-full opacity-50 blur-3xl" style={{ background: `radial-gradient(closest-side, ${team.color}, transparent)` }} />
-            <TeamMark team={team} size="xl" morph className="relative" />
-          </div>
-        }
+        aside={<TeamCredential team={team} />}
       />
       <Container>
         <HideResult block safe={<div className="pt-12"><HiddenNote /></div>}>

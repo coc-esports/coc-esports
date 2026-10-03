@@ -8,7 +8,7 @@ import { Label } from "./Type";
 // and a code strip generated from the team's slug (a data pattern, not an illustration). Golden Ticket
 // holders get the foil band. The mark morphs into the team page header on navigation.
 // `neutral`: no ticket status, rank or points (used while "Hide results" is on).
-function codeBars(slug: string) {
+export function codeBars(slug: string) {
   return Array.from(slug.padEnd(18, slug), (ch, i) => 1 + ((ch.charCodeAt(0) * (i + 3)) % 4));
 }
 

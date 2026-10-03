@@ -443,3 +443,27 @@ html:not([data-hide-results]) .sp-safe {
   background: var(--paper);
   color: var(--paper-ink);
 }
+
+/* Team credential: hangs from its lanyard and settles once on arrival. */
+.credential {
+  transform-origin: 50% 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .credential {
+    animation: credential-settle 1.6s var(--ease-expo) both;
+  }
+}
+@keyframes credential-settle {
+  0% {
+    transform: rotate(-7deg);
+  }
+  45% {
+    transform: rotate(3deg);
+  }
+  75% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

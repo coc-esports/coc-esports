@@ -130,7 +130,8 @@ export function Header() {
               </button>
             </Dialog.Trigger>
             <Dialog.Portal>
-              <Dialog.Content data-lenis-prevent className="mobile-sheet fixed inset-0 z-50 flex flex-col bg-ink px-4 pb-8 pt-4 outline-none sm:px-8">
+              <Dialog.Content data-lenis-prevent className="mobile-sheet fixed inset-0 z-50 flex flex-col overflow-hidden bg-ink px-4 pb-8 pt-4 outline-none sm:px-8">
+                <div aria-hidden className="guilloche-rosette pointer-events-none absolute -right-[30vmin] bottom-[8%] size-[110vmin] opacity-40" />
                 <Dialog.Title className="sr-only">Menu</Dialog.Title>
                 <Dialog.Description className="sr-only">Site sections</Dialog.Description>
                 <div className="flex h-[calc(var(--nav-h)-1rem)] items-center justify-between">
