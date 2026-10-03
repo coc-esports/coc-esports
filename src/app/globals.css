@@ -507,3 +507,23 @@ html {
   caret-color: var(--bolt);
   scrollbar-color: var(--rule) var(--ink);
 }
+
+/* Hero ticket poster, framed like the 3D camera: by height on wide screens, by width on tall ones. */
+.hero-poster {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  transform: translateX(-50%);
+}
+@media (max-aspect-ratio: 9/10) {
+  .hero-poster {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transform: translateY(-50%);
+  }
+}

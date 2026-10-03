@@ -20,6 +20,8 @@ export type HeroData = {
   seats: SceneSeat[];
   event: { name: string; dateLabel: string; startTime: string; href: string };
   claimed: number;
+  // Tickets on offer at the next event (3 at the LCQ), or null when the next event awards none.
+  stakes: number | null;
 };
 
 function useNow() {
@@ -55,10 +57,10 @@ function Intro({ onDone }: { onDone: () => void }) {
     const start = performance.now();
     let raf = 0;
     const step = (t: number) => {
-      const k = Math.min(1, (t - start) / 1100);
+      const k = Math.min(1, (t - start) / 700);
       setN(Math.round(k * 8));
       if (k < 1) raf = requestAnimationFrame(step);
-      else setTimeout(() => setLeaving(true), 200);
+      else setTimeout(() => setLeaving(true), 120);
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
@@ -67,7 +69,7 @@ function Intro({ onDone }: { onDone: () => void }) {
     <div
       aria-hidden
       onTransitionEnd={onDone}
-      className="fixed inset-0 z-[60] flex items-end justify-between bg-ink p-6 transition-[clip-path] duration-[900ms] ease-expo sm:p-10"
+      className="fixed inset-0 z-[60] flex items-end justify-between bg-ink p-6 transition-[clip-path] duration-[650ms] ease-expo sm:p-10"
       style={{ clipPath: leaving ? "inset(0 0 100% 0)" : "inset(0 0 0 0)" }}
     >
       <div className="guilloche-rosette absolute left-1/2 top-1/2 size-[min(115vmin,1100px)] -translate-x-1/2 -translate-y-1/2" />
@@ -79,6 +81,8 @@ function Intro({ onDone }: { onDone: () => void }) {
     </div>
   );
 }
+
+const spell = (n: number) => ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"][n] ?? String(n);
 
 export function HomeStory({ data }: { data: HeroData }) {
   const { hide } = useSpoilers();
@@ -168,13 +172,33 @@ export function HomeStory({ data }: { data: HeroData }) {
         <div aria-hidden className="guilloche-rosette absolute left-1/2 top-[44%] size-[min(115vmin,1100px)] -translate-x-1/2 -translate-y-1/2" />
 
         <div data-act1 className="pointer-events-none absolute inset-0 flex flex-col items-center justify-start px-4 pt-[calc(var(--nav-h)+0.5rem)] text-center lg:pt-[calc(var(--nav-h)+1.5rem)]">
-          <h1 id="home-title" className="font-cond text-[clamp(4.25rem,17.5vw,17rem)] uppercase leading-[0.82] text-bone lg:whitespace-nowrap lg:text-[clamp(6rem,10.5vw,13rem)]">
-            <span className="block lg:inline">Three </span>
-            <span className="block text-transparent [-webkit-text-stroke:2px_var(--bone)] lg:inline">tickets </span>
-            <span className="block text-bolt lg:inline">left.</span>
+          {/* The headline states what the next event is worth, so it never contradicts the seat count below it. */}
+          <h1 id="home-title" className="font-cond text-[clamp(3.25rem,13vw,17rem)] uppercase leading-[0.84] text-bone lg:text-[clamp(5rem,8.5vw,11rem)]">
+            {data.stakes ? (
+              <>
+                <span className="block">
+                  {spell(data.stakes)} <span className="text-transparent [-webkit-text-stroke:2px_var(--bone)]">tickets.</span>
+                </span>
+                <span className="block text-bolt">One weekend.</span>
+              </>
+            ) : (
+              <>
+                <span className="block">
+                  Eight <span className="text-transparent [-webkit-text-stroke:2px_var(--bone)]">seats.</span>
+                </span>
+                <span className="block text-bolt">One champion.</span>
+              </>
+            )}
           </h1>
         </div>
 
+        {/* Still poster: the same shot as the 3D at rest (public/art/hero-ticket-*.webp, rendered from HeroScene by
+            scripts in the QA notes). It paints at once; the live 3D fades in over it when ready, and it stays if WebGL
+            is unavailable. Wide screens frame by height, tall screens by width, exactly like the 3D camera. */}
+        <picture className={`pointer-events-none absolute inset-0 block overflow-hidden transition-opacity duration-700 ${sceneReady ? "opacity-0" : "opacity-100"}`}>
+          <source media="(max-aspect-ratio: 9/10)" srcSet="/art/hero-ticket-portrait.webp" />
+          <img src="/art/hero-ticket-landscape.webp" alt="" fetchPriority="high" decoding="async" className="hero-poster" />
+        </picture>
         <div className={`absolute inset-0 transition-opacity duration-1000 ${sceneReady ? "opacity-100" : "opacity-0"}`}>
           {sceneOn ? <HeroScene seats={seats} active={visible && !intro} still={still} onReady={() => setSceneReady(true)} /> : null}
         </div>
@@ -229,7 +253,7 @@ export function HomeStory({ data }: { data: HeroData }) {
                   <span key={i} className="flex gap-10">
                     <span className="text-bolt">{data.event.name}</span>
                     <span>{local ? `${local} your time` : data.event.dateLabel}</span>
-                    <span>{open} tickets left</span>
+                    <span>{open} of 8 seats open</span>
                     <span>Admit one team</span>
                     <span>Serial GLD-2026-LCQ</span>
                   </span>

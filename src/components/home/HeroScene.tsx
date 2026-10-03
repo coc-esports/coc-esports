@@ -2,7 +2,6 @@
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, Float, Lightformer, PerformanceMonitor, Text } from "@react-three/drei";
-import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { configureTextBuilder } from "troika-three-text";
@@ -178,7 +177,7 @@ function Story({ seats }: { seats: SceneSeat[] }) {
     const gridY = -2 * zGrid * TAN * (aspect < 0.9 ? 0.12 : 0.17);
     // The headline sits above the ticket (phones: three lines; desktop: one line across the width), so the
     // ticket is framed lower and never hides a word.
-    const heroY = -2 * zHero * TAN * (aspect < 0.9 ? 0.03 : 0.07);
+    const heroY = -2 * zHero * TAN * (aspect < 0.9 ? -0.06 : 0.09);
     const slots = seats.map((_, i) => new THREE.Vector3(((i % cols) - (cols - 1) / 2) * 3.55, ((rows - 1) / 2 - Math.floor(i / cols)) * 1.95 + gridY, 0));
     return { cols, zHero, zGrid, heroY, slots };
   }, [aspect, seats]);
@@ -264,25 +263,15 @@ function Studio() {
 // `still`: reduced motion. The ticket is drawn once (no orbit, no story), and redrawn only when the seats change.
 export default function HeroScene({ seats, active, still, onReady }: { seats: SceneSeat[]; active: boolean; still: boolean; onReady: () => void }) {
   const [dpr, setDpr] = useState(1.5);
-  // No bloom on touch devices (phones): the gold reads without it and the GPU stays cool.
-  const [fx, setFx] = useState(() => typeof window === "undefined" || !matchMedia("(pointer: coarse)").matches);
-  const lower = () => {
-    setDpr(1);
-    setFx(false);
-  };
+  const lower = () => setDpr(1);
   return (
-    // `flat` (no tone mapping) everywhere: the bloom pass already renders without it on desktop, so phones (no bloom)
-    // get the same saturated gold instead of a washed-out cream.
+    // `flat` (no tone mapping): ACES desaturates gold toward cream; flat keeps the foil saturated on every device.
+    // No post-processing: the bloom pass cost a full-screen render and a large library for a barely visible glow.
     <Canvas flat dpr={dpr} frameloop={!active ? "never" : still ? "demand" : "always"} gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }} camera={{ position: [0, 0, 6.4], fov: 32 }} onCreated={() => onReady()} aria-hidden>
       <PerformanceMonitor onDecline={lower} onIncline={() => setDpr(1.5)} flipflops={3} onFallback={lower} />
       <Studio />
       <ambientLight intensity={0.15} />
       <Story seats={seats} />
-      {fx ? (
-        <EffectComposer multisampling={0}>
-          <Bloom mipmapBlur intensity={0.6} luminanceThreshold={0.9} />
-        </EffectComposer>
-      ) : null}
     </Canvas>
   );
 }

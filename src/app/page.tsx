@@ -21,6 +21,7 @@ export default function Home() {
           seats: sceneSeats,
           event: { name: event.name, dateLabel: event.stage?.dateLabel ?? "", startTime: event.startTime, href: event.href },
           claimed: claimedCount(),
+          stakes: event.stage?.kind === "lcq" ? 3 : null,
         }}
       />
       <HomeChapters />
