@@ -35,7 +35,7 @@ const src = join(process.cwd(), "src", "fonts", "fontshare");
 const pub = join(process.cwd(), "public", "fonts", "fontshare");
 const want = {
   tanker: [["Tanker-Regular.woff2", src], ["Tanker-Regular.woff", pub]],
-  satoshi: [["Satoshi-Variable.woff2", src], ["Satoshi-VariableItalic.woff2", src]],
+  satoshi: [["Satoshi-Variable.woff2", src]],
 };
 
 const missing = Object.values(want).flat().filter(([f, dir]) => !existsSync(join(dir, f)));

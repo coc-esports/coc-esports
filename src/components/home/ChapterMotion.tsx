@@ -15,8 +15,8 @@ export function ChapterMotion({ children }: { children: ReactNode }) {
       // Strong motion lives only in the three key moments (hero ticket, Town Hall, road); elsewhere just the reveal.
       if (hasWar) gsap.fromTo("[data-th]", { scale: 0.62, yPercent: 14 }, { scale: 1.05, yPercent: -6, ease: "none", scrollTrigger: war });
       if (hasWar) gsap.fromTo("[data-war-map]", { yPercent: -8 }, { yPercent: 8, ease: "none", scrollTrigger: war });
-      if (hasWar) gsap.fromTo("[data-line-a]", { xPercent: 6 }, { xPercent: -24, ease: "none", scrollTrigger: war });
-      if (hasWar) gsap.fromTo("[data-line-b]", { xPercent: -24 }, { xPercent: 6, ease: "none", scrollTrigger: war });
+      if (hasWar) gsap.fromTo("[data-line-a]", { xPercent: 8 }, { xPercent: -8, ease: "none", scrollTrigger: war });
+      if (hasWar) gsap.fromTo("[data-line-b]", { xPercent: -8 }, { xPercent: 8, ease: "none", scrollTrigger: war });
 
       // Professional touch on section titles: lines rise out of a mask as they enter.
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((h) => {

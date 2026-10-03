@@ -74,7 +74,7 @@ function Intro({ onDone }: { onDone: () => void }) {
       <span className="relative font-data text-label uppercase text-steel">Seats at the World Finals</span>
       <span className="relative font-cond text-[clamp(8rem,30vw,22rem)] leading-[0.8] tabular-nums text-bone">
         {String(n).padStart(2, "0")}
-        <span className="text-foil">/08</span>
+        <span className="text-bolt">/08</span>
       </span>
     </div>
   );
@@ -105,10 +105,22 @@ export function HomeStory({ data }: { data: HeroData }) {
       ok = !!document.createElement("canvas").getContext("webgl2");
     } catch {}
     if (!ok) return;
-    const id = setTimeout(() => {
+    // The 3D starts once the page has loaded and the main thread is idle, or on the first interaction,
+    // whichever comes first: the first paint and first tap never wait on WebGL.
+    let started = false;
+    const start = () => {
+      if (started) return;
+      started = true;
       setStill(matchMedia("(prefers-reduced-motion: reduce)").matches);
       setSceneOn(true);
-    }, 150);
+    };
+    // Otherwise it starts after the page has been quiet for a moment (~3.5 s): the headline, countdown and actions are
+    // already there, so the ticket fades in without ever competing with the first paint or the first tap.
+    const idle = () => setTimeout(() => (typeof window.requestIdleCallback === "function" ? window.requestIdleCallback(start, { timeout: 2000 }) : start()), 3500) as unknown as number;
+    let id = 0;
+    if (document.readyState === "complete") id = idle();
+    else addEventListener("load", () => void (id = idle()), { once: true });
+    for (const ev of ["pointermove", "pointerdown", "keydown", "wheel", "touchstart"]) addEventListener(ev, start, { once: true, passive: true });
     const onMove = (e: PointerEvent) => {
       if (e.pointerType !== "mouse") return;
       pointer.x = e.clientX / innerWidth - 0.5;
@@ -117,6 +129,7 @@ export function HomeStory({ data }: { data: HeroData }) {
     addEventListener("pointermove", onMove);
     return () => {
       clearTimeout(id);
+      for (const ev of ["pointermove", "pointerdown", "keydown", "wheel", "touchstart"]) removeEventListener(ev, start);
       removeEventListener("pointermove", onMove);
     };
   }, []);
@@ -154,11 +167,11 @@ export function HomeStory({ data }: { data: HeroData }) {
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_42%,#2a22b8,transparent_72%),linear-gradient(180deg,#14107a,#0d0a3d)]" />
         <div aria-hidden className="guilloche-rosette absolute left-1/2 top-[44%] size-[min(115vmin,1100px)] -translate-x-1/2 -translate-y-1/2" />
 
-        <div data-act1 className="pointer-events-none absolute inset-0 flex flex-col items-center justify-start px-4 pt-[calc(var(--nav-h)+0.5rem)] text-center lg:justify-center lg:pb-[12vh] lg:pt-0">
-          <h1 id="home-title" className="font-cond text-[clamp(4.25rem,17.5vw,17rem)] uppercase leading-[0.82] text-bone">
-            <span className="block">Three</span>
-            <span className="block text-transparent [-webkit-text-stroke:2px_var(--bone)]">tickets</span>
-            <span className="block text-foil">left.</span>
+        <div data-act1 className="pointer-events-none absolute inset-0 flex flex-col items-center justify-start px-4 pt-[calc(var(--nav-h)+0.5rem)] text-center lg:pt-[calc(var(--nav-h)+1.5rem)]">
+          <h1 id="home-title" className="font-cond text-[clamp(4.25rem,17.5vw,17rem)] uppercase leading-[0.82] text-bone lg:whitespace-nowrap lg:text-[clamp(6rem,10.5vw,13rem)]">
+            <span className="block lg:inline">Three </span>
+            <span className="block text-transparent [-webkit-text-stroke:2px_var(--bone)] lg:inline">tickets </span>
+            <span className="block text-bolt lg:inline">left.</span>
           </h1>
         </div>
 
@@ -170,7 +183,7 @@ export function HomeStory({ data }: { data: HeroData }) {
           <p className="font-cond text-[clamp(3rem,7.5vw,7.5rem)] uppercase leading-[0.86] text-bone">
             Eight seats.
             <br />
-            <span className="text-foil">{open} still open.</span>
+            <span className="text-bolt">{open} still open.</span>
           </p>
           <p className="mt-4 max-w-[40ch] text-lead text-steel">
             Three were won at the Monthly Finals. The rest go to September&apos;s winner, the China Regional and the top three of the Last Chance Qualifier.
@@ -179,9 +192,6 @@ export function HomeStory({ data }: { data: HeroData }) {
 
         <div data-hero-ui className="absolute inset-x-0 bottom-12 flex flex-wrap items-end justify-between gap-6 px-4 sm:bottom-14 sm:px-8 lg:px-[max(2rem,calc((100vw-80rem)/2+2rem))]">
           <div className="ticket-field grid gap-2 px-5 py-4">
-            <p className="font-data text-label uppercase text-steel">
-              Doors open · {data.event.name} · {data.event.dateLabel}
-            </p>
             <div className="flex gap-4 font-data text-[clamp(2rem,4vw,3.25rem)] font-medium leading-none tabular-nums text-bone" role="timer" aria-label={`Time until the ${data.event.name}`}>
               {(["d", "h", "m", "s"] as const).map((k, i) => (
                 <span key={k} className="grid gap-1">
@@ -193,6 +203,9 @@ export function HomeStory({ data }: { data: HeroData }) {
                 </span>
               ))}
             </div>
+            <p className="font-data text-label uppercase text-steel">
+              Doors open · {data.event.name} · {data.event.dateLabel}
+            </p>
           </div>
           <div className="flex flex-wrap items-center gap-5">
             <Link href="/news/how-worlds-2026-works" className="inline-flex min-h-11 items-center font-text text-sm font-semibold uppercase tracking-[0.12em] text-steel hover:text-bone">
@@ -214,7 +227,7 @@ export function HomeStory({ data }: { data: HeroData }) {
               <span key={k} className="flex gap-10 pr-10">
                 {Array.from({ length: 4 }, (_, i) => (
                   <span key={i} className="flex gap-10">
-                    <span className="text-foil">{data.event.name}</span>
+                    <span className="text-bolt">{data.event.name}</span>
                     <span>{local ? `${local} your time` : data.event.dateLabel}</span>
                     <span>{open} tickets left</span>
                     <span>Admit one team</span>

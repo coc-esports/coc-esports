@@ -32,7 +32,7 @@ export function DisplayHeading({
               if (typeof part === "string") return <span key={j}>{part}</span>;
               if ("em" in part)
                 return (
-                  <em key={j} className="not-italic text-foil">
+                  <em key={j} className="not-italic text-bolt">
                     {part.em}
                   </em>
                 );

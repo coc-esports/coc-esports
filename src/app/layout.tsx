@@ -21,10 +21,8 @@ const tanker = localFont({
 });
 
 const satoshi = localFont({
-  src: [
-    { path: "../fonts/fontshare/Satoshi-Variable.woff2", weight: "300 900", style: "normal" },
-    { path: "../fonts/fontshare/Satoshi-VariableItalic.woff2", weight: "300 900", style: "italic" },
-  ],
+  // Upright only: the design sets no italic text (and font-synthesis is off), so no italic file is downloaded.
+  src: [{ path: "../fonts/fontshare/Satoshi-Variable.woff2", weight: "300 900", style: "normal" }],
   variable: "--font-satoshi",
   display: "swap",
 });

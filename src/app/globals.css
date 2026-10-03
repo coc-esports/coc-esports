@@ -354,7 +354,7 @@ html:not([data-hide-results]) .sp-safe {
     radial-gradient(circle at 100% 100%, transparent var(--c), #000 calc(var(--c) + 0.5px)) bottom right / 51% 51% no-repeat;
 }
 
-/* The primary action is a tear-off stub: foil, notched on both sides. */
+/* The primary action is a tear-off stub: bone card stock, notched on both sides (foil is kept for won tickets). */
 .stub-button {
   --n: 8px;
   display: inline-flex;
@@ -362,8 +362,8 @@ html:not([data-hide-results]) .sp-safe {
   align-items: center;
   gap: 1rem;
   padding: 0 1.75rem;
-  background: linear-gradient(135deg, #f6d27a, var(--foil) 45%, #c9922f);
-  color: var(--bolt-ink);
+  background: var(--bone);
+  color: var(--ink);
   font-family: var(--font-text);
   font-size: 0.875rem;
   font-weight: 700;
@@ -376,11 +376,11 @@ html:not([data-hide-results]) .sp-safe {
 }
 .stub-button:hover {
   transform: translateY(-2px) rotate(-1.5deg);
-  filter: brightness(1.08);
+  background: var(--bolt);
 }
 /* Masks clip anything outside the shape, so the keyboard ring sits inside the stub. */
 .stub-button:focus-visible {
-  outline: 2px solid var(--bolt-ink);
+  outline: 2px solid var(--ink);
   outline-offset: -7px;
 }
 
@@ -466,4 +466,36 @@ html:not([data-hide-results]) .sp-safe {
   100% {
     transform: rotate(0deg);
   }
+}
+
+/* Reduced motion: the season road is a plain scrollable row of stubs (no pin), so every stage stays reachable. */
+@media (prefers-reduced-motion: reduce) {
+  [data-road] {
+    height: auto;
+    padding-block: calc(var(--nav-h) + 1rem) 4rem;
+  }
+  [data-road-head] {
+    position: static;
+  }
+  [data-road-track] {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-block: 2rem 1rem;
+  }
+  [data-road-track] > li {
+    scroll-snap-align: start;
+  }
+}
+
+/* Browser surfaces in the palette: selection, caret, scrollbars. */
+::selection {
+  background: var(--bolt);
+  color: var(--ink);
+}
+html {
+  caret-color: var(--bolt);
+  scrollbar-color: var(--rule) var(--ink);
 }

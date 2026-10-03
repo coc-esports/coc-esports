@@ -16,7 +16,7 @@ const base =
 
 const variants: Record<Variant, string> = {
   solid: "stub-button",
-  outline: "h-12 border border-rule bg-ink/40 px-6 text-bone hover:border-foil hover:text-foil",
+  outline: "h-12 border border-rule bg-ink/40 px-6 text-bone hover:border-bolt hover:text-bolt",
   text: "min-h-11 text-bone underline decoration-bolt decoration-2 underline-offset-[6px] hover:text-bolt",
 };
 

@@ -80,18 +80,17 @@ function Perforation({ color }: { color: string }) {
   );
 }
 
-function Face({ kicker, title, sub, color }: { kicker: string; title: string; sub: string; color: string }) {
+// Ticket face. No line above the title (no kickers): the ticket's own label prints on its bottom line.
+// `big`: phones, where the chart is framed smaller, so the small lines grow to stay readable.
+function Face({ kicker, title, sub, color, big = false }: { kicker: string; title: string; sub: string; color: string; big?: boolean }) {
   const L = -W / 2 + 0.3;
   return (
     <group position={[0, 0, FRONT]}>
-      <Text font={DISPLAY} fontSize={0.12} letterSpacing={0.14} color={color} anchorX="left" anchorY="top" position={[L, H / 2 - 0.2, 0]}>
-        {kicker}
-      </Text>
-      <Text font={DISPLAY} fontSize={title.length > 12 ? 0.3 : 0.4} maxWidth={STUB - L - 0.18} lineHeight={0.92} color={color} anchorX="left" anchorY="middle" position={[L, 0.02, 0]}>
+      <Text font={DISPLAY} fontSize={title.length > 12 ? (big ? 0.34 : 0.3) : big ? 0.46 : 0.4} maxWidth={STUB - L - 0.18} lineHeight={0.92} color={color} anchorX="left" anchorY="middle" position={[L, 0.12, 0]}>
         {title.toUpperCase()}
       </Text>
-      <Text font={DISPLAY} fontSize={0.095} letterSpacing={0.08} color={color} anchorX="left" anchorY="bottom" position={[L, -H / 2 + 0.2, 0]}>
-        {sub.toUpperCase()}
+      <Text font={DISPLAY} fontSize={big ? 0.16 : 0.1} maxWidth={STUB - L - 0.18} letterSpacing={0.08} lineHeight={1.1} color={color} anchorX="left" anchorY="bottom" position={[L, -H / 2 + 0.2, 0]}>
+        {`${kicker} · ${sub}`.toUpperCase()}
       </Text>
     </group>
   );
@@ -105,8 +104,8 @@ function StubFace({ seat, color }: { seat: number; color: string }) {
   );
 }
 
-function Gold() {
-  return <meshPhysicalMaterial color={GOLD} metalness={1} roughness={0.24} clearcoat={0.5} clearcoatRoughness={0.2} envMapIntensity={1.25} />;
+function Gold({ rough = 0.24 }: { rough?: number }) {
+  return <meshPhysicalMaterial color={GOLD} metalness={1} roughness={rough} clearcoat={0.5} clearcoatRoughness={0.2} envMapIntensity={1.25} />;
 }
 
 function HoloStrip() {
@@ -121,23 +120,23 @@ function HoloStrip() {
 
 type Parts = ReturnType<typeof useTicketParts>;
 
-function WonTicket({ parts, kicker, title, sub, seat }: { parts: Parts; kicker: string; title: string; sub: string; seat: number }) {
+function WonTicket({ parts, kicker, title, sub, seat, big }: { parts: Parts; kicker: string; title: string; sub: string; seat: number; big?: boolean }) {
   return (
     <group>
       <mesh geometry={parts.body}>
-        <Gold />
+        <Gold rough={0.34} />
       </mesh>
       <mesh geometry={parts.stub}>
-        <Gold />
+        <Gold rough={0.34} />
       </mesh>
-      <Face kicker={kicker} title={title} sub={sub} color={INK_ON_GOLD} />
+      <Face kicker={kicker} title={title} sub={sub} color={INK_ON_GOLD} big={big} />
       <StubFace seat={seat} color={INK_ON_GOLD} />
       <Perforation color={INK_ON_GOLD} />
     </group>
   );
 }
 
-function GhostTicket({ parts, title, sub, seat }: { parts: Parts; title: string; sub: string; seat: number }) {
+function GhostTicket({ parts, title, sub, seat, big }: { parts: Parts; title: string; sub: string; seat: number; big?: boolean }) {
   // An open seat: printed but not yet issued. Faint stock, engraved outline, no foil.
   return (
     <group>
@@ -153,7 +152,7 @@ function GhostTicket({ parts, title, sub, seat }: { parts: Parts; title: string;
       <lineSegments geometry={parts.edgesStub}>
         <lineBasicMaterial color={HALO} transparent opacity={0.85} />
       </lineSegments>
-      <Face kicker="OPEN SEAT" title={title} sub={sub} color="#d9d5ff" />
+      <Face kicker="Open seat" title={title} sub={sub} color="#d9d5ff" big={big} />
       <StubFace seat={seat} color="#d9d5ff" />
       <Perforation color={HALO} />
     </group>
@@ -164,6 +163,8 @@ const ease = (t: number) => (t <= 0 ? 0 : t >= 1 ? 1 : 1 - Math.pow(1 - t, 3));
 const span = (p: number, a: number, b: number) => ease((p - a) / (b - a));
 
 function Story({ seats }: { seats: SceneSeat[] }) {
+  // The seating chart is built only when the scroll story gets near it: its 3D text is the heaviest work.
+  const [gridOn, setGridOn] = useState(false);
   const parts = useTicketParts();
   const hero = useRef<THREE.Group>(null);
   const heroStub = useRef<THREE.Group>(null);
@@ -172,16 +173,19 @@ function Story({ seats }: { seats: SceneSeat[] }) {
   const layout = useMemo(() => {
     const cols = aspect < 0.9 ? 2 : 4;
     const rows = Math.ceil(seats.length / cols);
-    const zHero = Math.max(6.4, 3.9 / (2 * TAN * aspect));
+    const zHero = Math.max(aspect < 0.9 ? 6.4 : 7.6, 3.9 / (2 * TAN * aspect));
     const zGrid = Math.max((cols * 3.55 + 0.4) / (2 * TAN * aspect), (rows * 1.95 + 3.2) / (2 * TAN)) * 1.04;
     const gridY = -2 * zGrid * TAN * (aspect < 0.9 ? 0.12 : 0.17);
-    const heroY = aspect < 0.9 ? -2 * zHero * TAN * 0.03 : 0; // phones: the headline sits above the ticket
+    // The headline sits above the ticket (phones: three lines; desktop: one line across the width), so the
+    // ticket is framed lower and never hides a word.
+    const heroY = -2 * zHero * TAN * (aspect < 0.9 ? 0.03 : 0.07);
     const slots = seats.map((_, i) => new THREE.Vector3(((i % cols) - (cols - 1) / 2) * 3.55, ((rows - 1) / 2 - Math.floor(i / cols)) * 1.95 + gridY, 0));
     return { cols, zHero, zGrid, heroY, slots };
   }, [aspect, seats]);
 
   useFrame((state, dt) => {
     const p = story.p;
+    if (!gridOn && p > 0.18) setGridOn(true);
     const cam = state.camera;
     const pull = span(p, 0.36, 0.66);
     cam.position.z = THREE.MathUtils.damp(cam.position.z, layout.zHero + pull * (layout.zGrid - layout.zHero), 6, dt);
@@ -220,7 +224,7 @@ function Story({ seats }: { seats: SceneSeat[] }) {
             <Gold />
           </mesh>
           <HoloStrip />
-          <Face kicker="GOLDEN TICKET · WORLD FINALS 2026" title="Admit one team" sub="Town Hall 18 · 5 v 5 · double elimination" color={INK_ON_GOLD} />
+          <Face kicker="Golden ticket · World Finals 2026" title="Admit one team" sub="Town Hall 18 · 5 v 5" color={INK_ON_GOLD} />
           <group ref={heroStub} position={[STUB, 0, 0]}>
             <group position={[-STUB, 0, 0]}>
               <mesh geometry={parts.stub}>
@@ -232,9 +236,9 @@ function Story({ seats }: { seats: SceneSeat[] }) {
           </group>
         </group>
       </Float>
-      {seats.map((s, i) => (
+      {gridOn && seats.map((s, i) => (
         <group key={s.seat} ref={(el) => void (grid.current[i] = el)} visible={false}>
-          {s.claimed ? <WonTicket parts={parts} kicker="GOLDEN TICKET" title={s.title} sub={s.sub} seat={s.seat} /> : <GhostTicket parts={parts} title={s.title} sub={s.sub} seat={s.seat} />}
+          {s.claimed ? <WonTicket parts={parts} kicker="Golden ticket" title={s.title} sub={s.sub} seat={s.seat} big={layout.cols === 2} /> : <GhostTicket parts={parts} title={s.title} sub={s.sub} seat={s.seat} big={layout.cols === 2} />}
         </group>
       ))}
     </>
@@ -245,7 +249,7 @@ function Studio() {
   // A dim room with bright cards: gold reads as metal, not yellow plastic or a black mirror. The biggest soft card
   // sits behind the viewer (a face-on ticket mirrors it); hard strips draw moving highlights along the bevels.
   return (
-    <Environment resolution={512} frames={1}>
+    <Environment resolution={256} frames={1}>
       <color attach="background" args={["#14102e"]} />
       <Lightformer form="rect" intensity={1.15} color="#fff1d6" position={[0, 0.8, 9]} scale={[16, 7, 1]} />
       <Lightformer form="rect" intensity={7} color="#ffffff" position={[-6, 2, 4]} scale={[0.9, 9, 1]} />
@@ -260,7 +264,8 @@ function Studio() {
 // `still`: reduced motion. The ticket is drawn once (no orbit, no story), and redrawn only when the seats change.
 export default function HeroScene({ seats, active, still, onReady }: { seats: SceneSeat[]; active: boolean; still: boolean; onReady: () => void }) {
   const [dpr, setDpr] = useState(1.5);
-  const [fx, setFx] = useState(true);
+  // No bloom on touch devices (phones): the gold reads without it and the GPU stays cool.
+  const [fx, setFx] = useState(() => typeof window === "undefined" || !matchMedia("(pointer: coarse)").matches);
   const lower = () => {
     setDpr(1);
     setFx(false);
